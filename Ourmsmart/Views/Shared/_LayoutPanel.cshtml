@@ -17,6 +17,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="~/Content/panel/plugins/images/favicon.png">
     <!-- Custom CSS -->
     <link href="~/Content/panel/css/style.min.css" rel="stylesheet">
+    <link href="~/Content/toastr/build/toastr.min.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -202,10 +203,9 @@
                             <ol class="breadcrumb ml-auto">
                                 <li><a href="#">Dashboard</a></li>
                             </ol>
-                            <a href="https://wrappixel.com/templates/ampleadmin/" target="_blank"
+                            <a  onclick="exitpanel()"
                                class="btn btn-danger  d-none d-md-block pull-right m-l-20 hidden-xs hidden-sm waves-effect waves-light">
-                                Upgrade
-                                to Pro
+                                Exit
                             </a>
                         </div>
                     </div>
@@ -243,7 +243,6 @@
             <!-- footer -->
             <!-- ============================================================== -->
             <footer class="footer text-center">
-                2020 © Ample Admin brought to you by <a href="https://www.wrappixel.com/">wrappixel.com</a>
             </footer>
             <!-- ============================================================== -->
             <!-- End footer -->
@@ -270,6 +269,25 @@
     <script src="~/Content/panel/js/sidebarmenu.js"></script>
     <!--Custom JavaScript -->
     <script src="~/Content/panel/js/custom.js"></script>
+    <script src="~/Content/toastr/build/toastr.min.js"></script>
+    <script>
+        function exitpanel()
+        {
+            $.ajax({
+                type: 'GET',
+                dataType: 'JSON',
+                contentType: 'application/json; charset=utf-8',
+                url: '/api/Auth/logout',
+                success: function (rs) {
+                    toastr.success(rs.message, rs.title, { timeOut: 3000 });
+                    setTimeout(function () { window.location.replace('@Url.Action("Index","Home")'); }, 3000);
+                },
+                error: function (response) {
+                    toastr.error(response.message, "Error", { timeOut: 3000 });
+                }
+            });
+        }
+    </script>
 </body>
 
 </html>

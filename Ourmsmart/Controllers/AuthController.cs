@@ -1,4 +1,5 @@
-﻿using Ourmsmart.Models;
+﻿using Ourmsmart.Filter;
+using Ourmsmart.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,12 +17,21 @@ namespace Ourmsmart.Controllers
         {
             if (user.Username == "sajjad" && user.Password == "137596")
             {
+                AuthFilter.Role = "Admin";
                 return Json(new { success = true, message = "You Login Successfully." });
             }
             else
             {
                 return Json(new { success = false, message = "Your Information is Incorrect." });
             }
+        }
+
+        [HttpGet]
+        [Route("api/Auth/logout")]
+        public IHttpActionResult logout()
+        {
+            AuthFilter.Role = null;
+            return Json(new { message = "You Logout Successfully.", title = "Exit" });
         }
     }
 }

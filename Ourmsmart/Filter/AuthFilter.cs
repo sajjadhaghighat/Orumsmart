@@ -10,11 +10,11 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Http;
 
-namespace Virap.Filter
+namespace Ourmsmart.Filter
 {
     public class AuthFilter : AuthorizeAttribute
     {
-        public string Role { get; set; }
+        public static string Role { get; set; }
         public static int uid { get; set; }
 
         public override void OnAuthorization(System.Web.Http.Controllers.HttpActionContext actionContext)
