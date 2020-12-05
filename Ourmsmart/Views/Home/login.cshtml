@@ -115,8 +115,10 @@
             url: "/api/Auth/login",
             success: function (rs) {
                 if (rs.success) {
-                    toastr.success(rs.message, 'Success Alert', { timeOut: 3000 });
-                    window.location.href = '@Url.Action("Index", "Panel")';
+                    toastr.success(rs.message, 'Success Alert', { timeOut: 2000 });
+                    setTimeout(() => {
+                        window.location.href = '@Url.Action("Index", "Panel")';
+                    }, 2000);
                 }
                 else {
                     toastr.warning(rs.message, 'Warning Alert', { timeOut: 3000 });

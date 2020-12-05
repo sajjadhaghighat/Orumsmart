@@ -248,6 +248,7 @@
     <Content Include="Content\panel\css\style.min.css" />
     <Content Include="Content\panel\js\app-style-switcher.js" />
     <Content Include="Content\panel\js\custom.js" />
+    <Content Include="Content\panel\js\jquery.form.js" />
     <Content Include="Content\panel\js\pages\dashboards\dashboard1.js" />
     <Content Include="Content\panel\js\sidebarmenu.js" />
     <Content Include="Content\panel\js\waves.js" />
@@ -339,6 +340,7 @@
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PanelController.cs" />
+    <Compile Include="Controllers\StoreController.cs" />
     <Compile Include="Filter\ActFilter.cs" />
     <Compile Include="Filter\AuthFilter.cs" />
     <Compile Include="Global.asax.cs">
@@ -786,6 +788,8 @@
     <Content Include="Views\Home\login.cshtml" />
     <Content Include="Views\Shared\_LayoutPanel.cshtml" />
     <Content Include="Views\Panel\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutMain.cshtml" />
+    <Content Include="Views\Store\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -794,7 +798,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Folder Include="App_Data\images\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

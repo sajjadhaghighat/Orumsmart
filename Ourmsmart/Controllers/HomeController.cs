@@ -20,5 +20,14 @@ namespace Ourmsmart.Controllers
             return View();
         }
 
+        [AllowAnonymous]
+        [HttpPost]
+        public ActionResult Contact()
+        {
+                
+            return Json(new { success = true, message = "Your Message Send Successfully." });
+
+        }
+
     }
 }
