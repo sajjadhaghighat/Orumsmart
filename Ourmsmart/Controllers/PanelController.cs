@@ -31,5 +31,11 @@ namespace Ourmsmart.Controllers
         }
 
 
+        public ActionResult Contents()
+        {
+            return View();
+        }
+
+
     }
 }

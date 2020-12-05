@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "Contents";
+    Layout = "~/Views/Shared/_LayoutPanel.cshtml";
+}
+<script src="~/Content/ckfinder/ckfinder.js"></script>
+<script src="~/Content/ckeditor/ckeditor.js"></script>
+
+
+@Html.TextArea("contents");
+
+
+<script type="text/javascript">
+        var editor = CKEDITOR.instances['contents'];
+        if (editor) {
+            editor.destroy(true);
+        }
+        CKEDITOR.replace('contents', {
+            enterMode : CKEDITOR.ENTER_BR
+        });
+        CKFinder.setupCKEditor(null, '@Url.Content("~/Content/ckfinder/")');
+</script>
+
+
