@@ -9,9 +9,9 @@ using System.Web.Mvc;
 namespace Ourmsmart.Controllers
 {
     //[ActFilter]
-    public class PanelController : Controller
+    public class ProfileController : Controller
     {
-        // GET: Panel
+        // Show: Profile
         public ActionResult Index()
         {
             return View();
@@ -29,13 +29,6 @@ namespace Ourmsmart.Controllers
             //string imgpath = "<img src='" + path + "' />";
             //return Content(imgpath , "text/html");
         }
-
-
-        public ActionResult Contents()
-        {
-            return View();
-        }
-
 
     }
 }

@@ -25,7 +25,7 @@ namespace Ourmsmart.Controllers
         public ActionResult Contact()
         {
                 
-            return Json(new { success = true, message = "Your Message Send Successfully." });
+            return Json(new { success = true, message = "پیام شما با موفقیت ارسال شد" });
 
         }
 

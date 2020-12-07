@@ -9045,7 +9045,7 @@ html[dir="ltr"] body .p-l-0 {
   /*Vertical*/
   /*sidebar type*/ }
   #main-wrapper[data-layout="vertical"][data-sidebartype="full"] .page-wrapper {
-    margin-left: 250px; }
+    margin-right: 250px; }
 
 /*******************
  Vertical responsive layout

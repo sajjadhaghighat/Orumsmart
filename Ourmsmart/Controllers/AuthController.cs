@@ -22,11 +22,11 @@ namespace Ourmsmart.Controllers
             if (user.Username == "sajjad" && user.Password == "137596")
             {
                 AuthFilter.Role = "Admin";
-                return Json(new { success = true, message = "You Login Successfully." });
+                return Json(new { success = true, message = "با موفقیت وارد شدید", title = "سلام" });
             }
             else
             {
-                return Json(new { success = false, message = "Your Information is Incorrect." });
+                return Json(new { success = false, message = "اطلاعات ورودی صحیح نیست", title = "خطا" });
             }
         }
 
@@ -35,7 +35,7 @@ namespace Ourmsmart.Controllers
         public IHttpActionResult logout()
         {
             AuthFilter.Role = null;
-            return Json(new { message = "You Logout Successfully.", title = "Exit" });
+            return Json(new { message = "با موفقیت خارج شدید", title = "خروج از حساب" });
         }
 
         /*[HttpPost]

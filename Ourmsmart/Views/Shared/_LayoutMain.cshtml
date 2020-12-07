@@ -21,8 +21,9 @@
     <link rel="stylesheet" href="~/Content/Home/css/flaticon.css">
     <link rel="stylesheet" href="~/Content/Home/css/icomoon.css">
     <link rel="stylesheet" href="~/Content/Home/css/style.css">
+    <link href="~/Content/Home/customfont.css" rel="stylesheet" />
 </head>
-<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300" dir="rtl" style="text-align: justify; font-family: 'IRANSans'">
     <div class="py-1 bg-black top">
         <div class="container">
             <div class="row no-gutters d-flex align-items-start align-items-center px-md-0">
@@ -30,11 +31,11 @@
                     <div class="row d-flex">
                         <div class="col-md pr-4 d-flex topper align-items-center">
                             <div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-phone2"></span></div>
-                            <span class="text">+98 04432351828</span>
+                            <span class="text">۰۴۴ - ۳۲۳۵۱۸۲۸</span>
                         </div>
                         <div class="col-md pr-4 d-flex topper align-items-center">
                             <div class="icon mr-2 d-flex justify-content-center align-items-center"><span class=""></span></div>
-                            <span class="text">Vira Rayanesh Aria Pad</span>
+                            <span class="text">ویرا رایانش آریا پاد</span>
                         </div>
                         <div class="col-md-5 pr-4 d-flex topper align-items-center text-lg-right justify-content-end">
 
@@ -49,18 +50,22 @@
 
     @RenderBody()
 
-
-    <footer class="ftco-footer ftco-section img" style="background-image: url(../../Content/Home/images/footer-bg.jpg);">
+    <style>
+        ul {
+            padding:0;
+        }
+    </style>
+    <footer class="ftco-footer ftco-section img" style="background-image: url(../../Content/Home/images/footer-bg.jpg);" >
         <div class="overlay"></div>
         <div class="container-fluid px-md-5">
             <div class="row mb-5">
                 <div class="col-md">
                     <div class="ftco-footer-widget mb-4">
-                        <h2 class="ftco-heading-2">Orumsmart</h2>
-                        <p>Smart Home</p>
-                        <p>Smart City</p>
-                        <p>Smart Industrial</p>
-                        <p>Smart Farms</p>
+                        <h2 class="ftco-heading-2">اروم اسمارت</h2>
+                        <p>خانه هوشمند</p>
+                        <p>شهر هوشمند</p>
+                        <p>صنایع هوشمند</p>
+                        <p>مزارع هوشمند</p>
                         <ul class="ftco-footer-social list-unstyled mt-5">
                             <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
                             <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
@@ -69,50 +74,33 @@
                     </div>
                 </div>
                 <div class="col-md">
-                    <div class="ftco-footer-widget mb-4 ml-md-4">
-                        <h2 class="ftco-heading-2">Departments</h2>
-                        <ul class="list-unstyled">
-                            <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Neurology</a></li>
-                            <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Opthalmology</a></li>
-                            <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Nuclear Magnetic</a></li>
-                            <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Surgical</a></li>
-                            <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Cardiology</a></li>
-                            <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Dental</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md">
-                    <div class="ftco-footer-widget mb-4 ml-md-4">
-                        <h2 class="ftco-heading-2">Links</h2>
-                        <ul class="list-unstyled">
-                            <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Home</a></li>
-                            <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>About</a></li>
-                            <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Departments</a></li>
-                            <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Doctors</a></li>
-                            <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Blog</a></li>
-                            <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Pricing</a></li>
-                            <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Contact</a></li>
+                    <div class="ftco-footer-widget mb-4 ml-md-4" style="text-align:right">
+                        <h2 class="ftco-heading-2">پیوندها</h2>
+                        <ul class="list-unstyled" >
+                            <li><a href=@Url.Action("Index","Home")><span class="icon-angle-double-left mr-2"></span>صفحه اصلی </a></li>
+                            <li><a href=@Url.Action("Login","Home")><span class="icon-angle-double-left mr-2"></span>ورود</a></li>
+                            <li><a href=@Url.Action("Index","Store")><span class="icon-angle-double-left mr-2"></span>فروشگاه</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-md">
                     <div class="ftco-footer-widget mb-4">
-                        <h2 class="ftco-heading-2">Services</h2>
+                        <h2 class="ftco-heading-2">خدمات</h2>
                         <ul class="list-unstyled">
-                            <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Emergency Services</a></li>
-                            <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Qualified Doctors</a></li>
-                            <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Outdoors Checkup</a></li>
-                            <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>24 Hours Services</a></li>
+                            <li><a href="#"><span class="icon-angle-double-left mr-2"></span>اتوماسیون خانگی</a></li>
+                            <li><a href="#"><span class="icon-angle-double-left mr-2"></span>اشیاء هوشمند</a></li>
+                            <li><a href="#"><span class="icon-angle-double-left mr-2"></span>امنیت هوشمند</a></li>
+                            <li><a href="#"><span class="icon-angle-double-left mr-2"></span>کنترل هوشمند</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-md">
                     <div class="ftco-footer-widget mb-4">
-                        <h2 class="ftco-heading-2">Have a Questions?</h2>
+                        <h2 class="ftco-heading-2">سوالی دارید؟</h2>
                         <div class="block-23 mb-3">
                             <ul>
-                                <li><span class="icon icon-map-marker"></span><span class="text">St. Molavi View, Urmia, West Azerbaijan, IRAN</span></li>
-                                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+98 3235 1828</span></a></li>
+                                <li><span class="icon icon-map-marker"></span><span class="text">ایران، آ.غ، ارومیه ، مولوی</span></li>
+                                <li><a href="#"><span class="icon icon-phone"></span><span class="text">۳۲۳۵۱۸۲۸ ۰۴۴</span></a></li>
                                 <li><a href="#"><span class="icon icon-envelope pr-4"></span><span class="text">info@orumsmart.com</span></a></li>
                             </ul>
                         </div>
@@ -123,8 +111,8 @@
                 <div class="col-md-12 text-center">
 
                     <p>
-                        Copyright &copy;
-                        <script>document.write(new Date().getFullYear());</script> All rights reserved
+                        کپی رایت &copy;
+                        <script>document.write(new Date().getFullYear());</script> تمام حقوق محفوظ است
                     </p>
                 </div>
             </div>
@@ -147,8 +135,6 @@
     <script src="~/Content/Home/js/aos.js"></script>
     <script src="~/Content/Home/js/jquery.animateNumber.min.js"></script>
     <script src="~/Content/Home/js/scrollax.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-    <script src="~/Content/Home/js/google-map.js"></script>
 
     <script src="~/Content/Home/js/main.js"></script>
 </body>
