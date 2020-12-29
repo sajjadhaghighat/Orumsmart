@@ -4,22 +4,17 @@
     <title>@ViewBag.Title</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
-
     <link rel="stylesheet" href="~/Content/Home/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="~/Content/Home/css/animate.css">
-
     <link rel="stylesheet" href="~/Content/Home/css/owl.carousel.min.css">
     <link rel="stylesheet" href="~/Content/Home/css/owl.theme.default.min.css">
     <link rel="stylesheet" href="~/Content/Home/css/magnific-popup.css">
-
     <link rel="stylesheet" href="~/Content/Home/css/aos.css">
-
     <link rel="stylesheet" href="~/Content/Home/css/ionicons.min.css">
-
     <link rel="stylesheet" href="~/Content/Home/css/flaticon.css">
     <link rel="stylesheet" href="~/Content/Home/css/icomoon.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="~/Content/Home/css/style.css">
     <link href="~/Content/Home/customfont.css" rel="stylesheet" />
 </head>
@@ -45,17 +40,17 @@
             </div>
         </div>
     </div>
-    
+
 
 
     @RenderBody()
 
     <style>
         ul {
-            padding:0;
+            padding: 0;
         }
     </style>
-    <footer class="ftco-footer ftco-section img" style="background-image: url(../../Content/Home/images/footer-bg.jpg);" >
+    <footer class="ftco-footer ftco-section img" style="background-image: url(../../Content/Home/images/footer-bg.jpg);">
         <div class="overlay"></div>
         <div class="container-fluid px-md-5">
             <div class="row mb-5">
@@ -76,7 +71,7 @@
                 <div class="col-md">
                     <div class="ftco-footer-widget mb-4 ml-md-4" style="text-align:right">
                         <h2 class="ftco-heading-2">پیوندها</h2>
-                        <ul class="list-unstyled" >
+                        <ul class="list-unstyled">
                             <li><a href=@Url.Action("Index","Home")><span class="icon-angle-double-left mr-2"></span>صفحه اصلی </a></li>
                             <li><a href=@Url.Action("Login","Home")><span class="icon-angle-double-left mr-2"></span>ورود</a></li>
                             <li><a href=@Url.Action("Index","Store")><span class="icon-angle-double-left mr-2"></span>فروشگاه</a></li>
@@ -121,7 +116,7 @@
 
     <!-- loader -->
     <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" /><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg></div>
-
+    <a id="topbutton"></a>
 
     <script src="~/Content/Home/js/jquery.min.js"></script>
     <script src="~/Content/Home/js/jquery-migrate-3.0.1.min.js"></script>
@@ -137,5 +132,21 @@
     <script src="~/Content/Home/js/scrollax.min.js"></script>
 
     <script src="~/Content/Home/js/main.js"></script>
+    <script>
+        var btn = $('#topbutton');
+
+        $(window).scroll(function () {
+            if ($(window).scrollTop() > 300) {
+                btn.addClass('show');
+            } else {
+                btn.removeClass('show');
+            }
+        });
+
+        btn.on('click', function (e) {
+            e.preventDefault();
+            $('html, body').animate({ scrollTop: 0 }, '300');
+        });
+    </script>
 </body>
 </html>

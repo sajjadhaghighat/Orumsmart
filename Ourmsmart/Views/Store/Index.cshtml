@@ -1,9 +1,34 @@
-﻿
+﻿@using PagedList
+@using PagedList.Mvc
+@model IEnumerable<Ourmsmart.Models.FAProduct>
 @{
     ViewBag.Title = "فروشگاه";
     Layout = "~/Views/Shared/_LayoutMain.cshtml";
 }
-
+<style>
+    .search-form-control
+    {
+        height:auto;
+        font-size:15px;
+        width:100%;
+        padding:4px;
+    }
+    .search {
+        height: auto;
+        font-size: 15px;
+        width: 100%;
+        padding: 4px 0px 4px 0px;
+    }
+    .searchform {
+        width: 100%;
+        height: auto;
+        border-bottom: 2px solid blue;
+        border-top: 2px solid blue;
+        margin-bottom: 15px;
+        margin-top : 15px;
+        padding-top: 15px;
+    }
+</style>
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
     <div class="container">
         <a class="navbar-brand" href="#">Orumsmart</a>
@@ -13,175 +38,65 @@
 
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav nav ml-auto">
-                <li class="nav-item"><a href=@Url.Action("Index", "Home") class="nav-link"><span>Home</span></a></li>
-                <li class="nav-item cta mr-md-2"><a href=@Url.Action("Login", "Home") class="nav-link">CMS</a></li>
-                <li class="nav-item cta mr-md-2"><a href=@Url.Action("Index", "Store") class="nav-link">Store</a></li>
+                <li class="nav-item"><a href=@Url.Action("Index", "Home") class="nav-link"><span>خانه</span></a></li>
+                <li class="nav-item cta mr-md-2"><a href=@Url.Action("Login", "Home") class="nav-link">ورود</a></li>
             </ul>
+            <div dir="ltr">
+                <ul class="navbar-nav nav ml-auto" >
+                    <li class="nav-item cta mr-md-2"><a href=@Url.Action("basket", "Ordering") class="nav-link">سبد خرید <span>0</span></a></li>
+                </ul>
+            </div>
         </div>
     </div>
 </nav>
-
 <section class="ftco-section bg-light" id="blog-section">
     <div class="container">
-        <div class="row justify-content-center mb-5 pb-5">
+        <!--<div class="row justify-content-center mb-5 pb-5">
             <div class="col-md-10 heading-section text-center ftco-animate">
-                <h2 class="mb-4">Vira Store</h2>
-                <p>Gets Every New Smart Home Products Here</p>
+                <h2 class="mb-4">فروشگاه ویرا</h2>
             </div>
+        </div>-->
+        <div  style="width:100%;height:auto;" >
+            <form class="row bg-light searchform">
+                <div class="col-md-4 heading-section text-center ftco-animate">
+                    <h2 class="mb-4">فروشگاه ویرا</h2>
+                </div>
+                <div class="form-group col-md-3">
+                    <select name="Category" class="search-form-control" id="Category">
+                        <option value="" disabled selected>انتخاب دسته بندی</option>
+                        <option value="volvo" >همه</option>
+                        <option value="saab">گجت</option>
+                        <option value="mercedes">دستگاه</option>
+                        <option value="audi">قطعات</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <input type="text" class="search-form-control" id="cname" placeholder="جستجو ...">
+                </div>
+                <div class="form-group col-md-2">
+                    <p> <a onclick="search()" class="btn btn-secondary search">جستجو</a></p>
+                </div>
+            </form>
         </div>
         <div class="row d-flex">
-            <div class="col-md-4 ftco-animate">
-                <div class="blog-entry">
-                    <a href="blog-single.html" class="block-20" style="background-image: url('../../Content/Home/images/image_1.jpg');">
-                    </a>
-                    <div class="text d-block">
-                        <div class="meta mb-3">
-                            <div><a href="#">June 9, 2019</a></div>
-                            <div><a href="#">Admin</a></div>
-                            <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
+            @foreach (var item in Model)
+            {
+                <div class="col-md-3 ftco-animate">
+                    <div class="blog-entry">
+                        <a href=@Url.Action("Detail", "Store",new { id = item.PID }) class="block-20" style="background-image: url('../../Content/Home/images/image_1.jpg');">
+                        </a>
+                        <div class="text d-block">
+                            <div class="meta mb-3">
+                                <div><a href="#">@item.Status</a></div>
+                                <div><a href="#">@item.Price</a></div>
+                                <div><a href="#">@item.Qty</a></div>
+                            </div>
+                            <p class=""><a href="#">@item.Title</a></p>
+                            <p><a  class="btn btn-secondary py-2 px-3">افزودن به سبد خرید +</a></p>
                         </div>
-                        <h3 class="heading"><a href="#">Scary Thing That You Don’t Get Enough Sleep</a></h3>
-                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                        <p><a href="blog-single.html" class="btn btn-primary py-2 px-3">Read more</a></p>
                     </div>
                 </div>
-            </div>
-
-            <div class="col-md-4 ftco-animate">
-                <div class="blog-entry">
-                    <a href="blog-single.html" class="block-20" style="background-image: url('../../Content/Home/images/image_2.jpg');">
-                    </a>
-                    <div class="text d-block">
-                        <div class="meta mb-3">
-                            <div><a href="#">June 9, 2019</a></div>
-                            <div><a href="#">Admin</a></div>
-                            <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-                        </div>
-                        <h3 class="heading"><a href="#">Scary Thing That You Don’t Get Enough Sleep</a></h3>
-                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                        <p><a href="blog-single.html" class="btn btn-primary py-2 px-3">Read more</a></p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 ftco-animate">
-                <div class="blog-entry">
-                    <a href="blog-single.html" class="block-20" style="background-image: url('../../Content/Home/images/image_3.jpg');">
-                    </a>
-                    <div class="text d-block">
-                        <div class="meta mb-3">
-                            <div><a href="#">June 9, 2019</a></div>
-                            <div><a href="#">Admin</a></div>
-                            <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-                        </div>
-                        <h3 class="heading"><a href="#">Scary Thing That You Don’t Get Enough Sleep</a></h3>
-                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                        <p><a href="blog-single.html" class="btn btn-primary py-2 px-3">Read more</a></p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 ftco-animate">
-                <div class="blog-entry">
-                    <a href="blog-single.html" class="block-20" style="background-image: url('../../Content/Home/images/image_4.jpg');">
-                    </a>
-                    <div class="text d-block">
-                        <div class="meta mb-3">
-                            <div><a href="#">June 9, 2019</a></div>
-                            <div><a href="#">Admin</a></div>
-                            <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-                        </div>
-                        <h3 class="heading"><a href="#">Scary Thing That You Don’t Get Enough Sleep</a></h3>
-                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                        <p><a href="blog-single.html" class="btn btn-primary py-2 px-3">Read more</a></p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 ftco-animate">
-                <div class="blog-entry">
-                    <a href="blog-single.html" class="block-20" style="background-image: url('../../Content/Home/images/image_5.jpg');">
-                    </a>
-                    <div class="text d-block">
-                        <div class="meta mb-3">
-                            <div><a href="#">June 9, 2019</a></div>
-                            <div><a href="#">Admin</a></div>
-                            <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-                        </div>
-                        <h3 class="heading"><a href="#">Scary Thing That You Don’t Get Enough Sleep</a></h3>
-                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                        <p><a href="blog-single.html" class="btn btn-primary py-2 px-3">Read more</a></p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 ftco-animate">
-                <div class="blog-entry">
-                    <a href="blog-single.html" class="block-20" style="background-image: url('../../Content/Home/images/image_6.jpg');">
-                    </a>
-                    <div class="text d-block">
-                        <div class="meta mb-3">
-                            <div><a href="#">June 9, 2019</a></div>
-                            <div><a href="#">Admin</a></div>
-                            <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-                        </div>
-                        <h3 class="heading"><a href="#">Scary Thing That You Don’t Get Enough Sleep</a></h3>
-                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                        <p><a href="blog-single.html" class="btn btn-primary py-2 px-3">Read more</a></p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 ftco-animate">
-                <div class="blog-entry">
-                    <a href="blog-single.html" class="block-20" style="background-image: url('../../Content/Home/images/image_1.jpg');">
-                    </a>
-                    <div class="text d-block">
-                        <div class="meta mb-3">
-                            <div><a href="#">June 9, 2019</a></div>
-                            <div><a href="#">Admin</a></div>
-                            <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-                        </div>
-                        <h3 class="heading"><a href="#">Scary Thing That You Don’t Get Enough Sleep</a></h3>
-                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                        <p><a href="blog-single.html" class="btn btn-primary py-2 px-3">Read more</a></p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 ftco-animate">
-                <div class="blog-entry">
-                    <a href="blog-single.html" class="block-20" style="background-image: url('../../Content/Home/images/image_1.jpg');">
-                    </a>
-                    <div class="text d-block">
-                        <div class="meta mb-3">
-                            <div><a href="#">June 9, 2019</a></div>
-                            <div><a href="#">Admin</a></div>
-                            <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-                        </div>
-                        <h3 class="heading"><a href="#">Scary Thing That You Don’t Get Enough Sleep</a></h3>
-                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                        <p><a href="blog-single.html" class="btn btn-primary py-2 px-3">Read more</a></p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 ftco-animate">
-                <div class="blog-entry">
-                    <a href="blog-single.html" class="block-20" style="background-image: url('../../Content/Home/images/image_1.jpg');">
-                    </a>
-                    <div class="text d-block">
-                        <div class="meta mb-3">
-                            <div><a href="#">June 9, 2019</a></div>
-                            <div><a href="#">Admin</a></div>
-                            <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-                        </div>
-                        <h3 class="heading"><a href="#">Scary Thing That You Don’t Get Enough Sleep</a></h3>
-                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                        <p><a href="blog-single.html" class="btn btn-primary py-2 px-3">Read more</a></p>
-                    </div>
-                </div>
-            </div>
+            }
         </div>
     </div>
 </section>

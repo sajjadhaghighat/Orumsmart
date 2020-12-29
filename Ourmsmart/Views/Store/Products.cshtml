@@ -1,0 +1,73 @@
+﻿@model IEnumerable<Ourmsmart.Models.FAProduct>
+
+@{
+    ViewBag.Title = "مدیریت محصولات";
+    Layout = "~/Views/Shared/_LayoutPanel.cshtml";
+}
+
+<div style="text-align:right; background-color:white;padding:25px;overflow-x:auto;">
+    <p>
+        @Html.ActionLink("ایجاد محصول جدید", "CreateProduct")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Summary)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Qty)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Imagepath)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CATID)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Summary)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Qty)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Imagepath)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CATID)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.PID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.PID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.PID })
+                </td>
+            </tr>
+        }
+
+    </table>
+
+
+</div>

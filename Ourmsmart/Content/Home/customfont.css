@@ -5,3 +5,45 @@
     url('fonts/IRANSansWeb.woff') format('woff'), /* Pretty Modern Browsers */
     url('fonts/IRANSansWeb.ttf') format('truetype'); /* Safari, Android, iOS */
 }
+
+#topbutton {
+    display: inline-block;
+    background-color: #FF9800;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    border-radius: 4px;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    transition: background-color .3s, opacity .5s, visibility .5s;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 1000;
+}
+
+    #topbutton::after {
+        content: "\f077";
+        font-family: FontAwesome;
+        font-weight: normal;
+        font-style: normal;
+        font-size: 2em;
+        line-height: 50px;
+        color: #fff;
+    }
+
+    #topbutton:hover {
+        cursor: pointer;
+        background-color: #333;
+    }
+
+    #topbutton:active {
+        background-color: #555;
+    }
+
+    #topbutton.show {
+        opacity: 1;
+        visibility: visible;
+    }
+
+/* Styles for the content section */
