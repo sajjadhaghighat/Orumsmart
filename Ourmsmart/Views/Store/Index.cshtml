@@ -1,39 +1,59 @@
 ﻿@using PagedList
 @using PagedList.Mvc
-@model IEnumerable<Ourmsmart.Models.FAProduct>
+@using Ourmsmart.Models
+@using Ourmsmart.Controllers
+@model IPagedList<Ourmsmart.Models.FAProduct>
 @{
     ViewBag.Title = "فروشگاه";
     Layout = "~/Views/Shared/_LayoutMain.cshtml";
 }
 <style>
-    .search-form-control
-    {
-        height:auto;
-        font-size:15px;
-        width:100%;
-        padding:4px;
+    .search-form-control {
+        height: auto;
+        font-size: 15px;
+        width: 100%;
+        padding: 4px;
     }
+
     .search {
         height: auto;
         font-size: 15px;
         width: 100%;
         padding: 4px 0px 4px 0px;
     }
+
     .searchform {
         width: 100%;
         height: auto;
         border-bottom: 2px solid blue;
         border-top: 2px solid blue;
         margin-bottom: 15px;
-        margin-top : 15px;
+        margin-top: 15px;
         padding-top: 15px;
     }
+
+    .block-20:hover {
+        zoom: 1.02;
+        border-right: solid 10px #207dff;
+        border-bottom: solid 10px #207dff;
+    }
+
+    .pagenum {
+        text-align: center;
+        font-family: 'IRANSans';
+    }
+
+    .itemstyle {
+        background-color: lightgrey;
+        padding-top: 10px;
+    }
 </style>
+<link href="~/Content/PagedList.css" rel="stylesheet" />
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
     <div class="container">
         <a class="navbar-brand" href="#">Orumsmart</a>
         <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="oi oi-menu"></span> Menu
+            <span class="oi oi-menu"></span> منو
         </button>
 
         <div class="collapse navbar-collapse" id="ftco-nav">
@@ -42,8 +62,29 @@
                 <li class="nav-item cta mr-md-2"><a href=@Url.Action("Login", "Home") class="nav-link">ورود</a></li>
             </ul>
             <div dir="ltr">
-                <ul class="navbar-nav nav ml-auto" >
-                    <li class="nav-item cta mr-md-2"><a href=@Url.Action("basket", "Ordering") class="nav-link">سبد خرید <span>0</span></a></li>
+                <ul class="navbar-nav nav ml-auto">
+                    <li class="nav-item cta mr-md-2">
+                        <a data-toggle="modal" data-target="#exampleModal" class="nav-link">
+                            سبد خرید <span>
+                                @{
+                                    if (Session["Basket"] != null)
+                                    {
+                                        List<Cbasket> cb = (List<Cbasket>)Session["Basket"];
+                                        <div>
+                                            @cb.Count
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div>
+                                            0
+                                        </div>
+                                    }
+
+                                }
+                            </span>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -56,43 +97,52 @@
                 <h2 class="mb-4">فروشگاه ویرا</h2>
             </div>
         </div>-->
-        <div  style="width:100%;height:auto;" >
-            <form class="row bg-light searchform">
+        <div style="width:100%;height:auto;">
+            <form class="row bg-light searchform" method="get" action="@Url.Action("Index", "Store")">
                 <div class="col-md-4 heading-section text-center ftco-animate">
                     <h2 class="mb-4">فروشگاه ویرا</h2>
                 </div>
                 <div class="form-group col-md-3">
                     <select name="Category" class="search-form-control" id="Category">
                         <option value="" disabled selected>انتخاب دسته بندی</option>
-                        <option value="volvo" >همه</option>
-                        <option value="saab">گجت</option>
-                        <option value="mercedes">دستگاه</option>
-                        <option value="audi">قطعات</option>
+                        <option value="Gadget">گجت</option>
+                        <option value="Device">دستگاه</option>
+                        <option value="Module">قطعات</option>
                     </select>
                 </div>
                 <div class="form-group col-md-3">
-                    <input type="text" class="search-form-control" id="cname" placeholder="جستجو ...">
+                    <input type="text" class="search-form-control" name="search" id="search" placeholder="جستجو ...">
                 </div>
                 <div class="form-group col-md-2">
-                    <p> <a onclick="search()" class="btn btn-secondary search">جستجو</a></p>
+                    <button type="submit" class="btn btn-secondary search">جستجو</button>
                 </div>
             </form>
         </div>
         <div class="row d-flex">
             @foreach (var item in Model)
             {
-                <div class="col-md-3 ftco-animate">
+                <div class="col-md-3 ftco-animate itemstyle">
                     <div class="blog-entry">
-                        <a href=@Url.Action("Detail", "Store",new { id = item.PID }) class="block-20" style="background-image: url('../../Content/Home/images/image_1.jpg');">
+                        <a href=@Url.Action("Detail", "Store", new { id = item.PID }) class="block-20" style="background-image: url('../../@item.Imagepath')">
                         </a>
+                        <div style="margin:-50px -10px 0px 0px;position:relative"><a href=@Url.Action("AddItemToBasket", "Store", new { pid = item.PID, qty = 1 }) class="btn btn-primary">+</a></div>
                         <div class="text d-block">
                             <div class="meta mb-3">
-                                <div><a href="#">@item.Status</a></div>
-                                <div><a href="#">@item.Price</a></div>
-                                <div><a href="#">@item.Qty</a></div>
+                                @if (item.Status == "موجود")
+                                {
+                                    <div style="color:green !important;">@item.Status</div>
+                                    <div style="color:green">@item.Price</div>
+                                    <div style="color:green">ریال</div>
+                                }
+                                else
+                                {
+                                    <div style="color:red">@item.Status</div>
+                                    <div style="color:red">@item.Price</div>
+                                    <div style="color:red">ریال</div>
+                                }
+
                             </div>
-                            <p class=""><a href="#">@item.Title</a></p>
-                            <p><a  class="btn btn-secondary py-2 px-3">افزودن به سبد خرید +</a></p>
+                            <p class=""><a href=@Url.Action("Detail", "Store", new { id = item.PID })>@item.Title</a></p>
                         </div>
                     </div>
                 </div>
@@ -100,4 +150,71 @@
         </div>
     </div>
 </section>
+<br />
+<div class="pagenum">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, Category = Request.QueryString["Category"], search = Request.QueryString["search"] }),
+                new PagedListRenderOptions() { Display = PagedListDisplayMode.IfNeeded }
+                )
+</div>
+<br />
 
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" dir="ltr">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">سبد خرید</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" dir="rtl">
+                @{
+                    if (Session["Basket"] != null)
+                    {
+                        VIRADB db = new VIRADB();
+                        List<Cbasket> cb = (List<Cbasket>)Session["Basket"];
+                        <table class="table">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th scope="col">نام</th>
+                                    <th scope="col">قیمت</th>
+                                    <th scope="col">تعداد</th>
+                                    <th scope="col">قیمت کل</th>
+                                    <th scope="col">عملیات</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in cb)
+                                {
+                                    var q = db.FAProducts.Find(item.PID);
+                                    int tprice = q.Price * item.Qty;
+                                    <tr>
+                                        <td>@q.Title</td>
+                                        <td>@q.Price ریال</td>
+                                        <td>@item.Qty</td>
+                                        <td>@tprice ریال</td>
+                                        <td><a href=@Url.Action("DelItemFromBascket", new { id= item.PID })>حذف</a></td>
+                                    </tr>
+                                }
+                             </tbody>
+                        </table>
+                    }
+                    else
+                    {
+                        <div>
+                            آیتمی در سبد خرید وجود ندارد
+                        </div>
+                    }
+
+                }
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>

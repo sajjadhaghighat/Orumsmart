@@ -4,20 +4,22 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="754934e6466f485a90d5b285832e2b67" Name="Diagram1">
-        <EntityTypeShape EntityType="VIRADBModel.Contact" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="VIRADBModel.ENCategory" Width="1.5" PointX="0.75" PointY="6.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="VIRADBModel.ENContent" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="VIRADBModel.ENProduct" Width="1.5" PointX="3" PointY="6" IsExpanded="true" />
-        <EntityTypeShape EntityType="VIRADBModel.ENUser" Width="1.5" PointX="7.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="VIRADBModel.FACategory" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="VIRADBModel.FAContent" Width="1.5" PointX="5.75" PointY="7.75" IsExpanded="true" />
+      <Diagram DiagramId="5a3b6599af1a46a79acab32e94d50f4e" Name="Diagram1">
+        <EntityTypeShape EntityType="VIRADBModel.ENCategory" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="VIRADBModel.ENContent" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VIRADBModel.ENProduct" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="VIRADBModel.ENUser" Width="1.5" PointX="5.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VIRADBModel.FACategory" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="VIRADBModel.FAContent" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="VIRADBModel.FAProduct" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="VIRADBModel.FAUser" Width="1.5" PointX="7.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="VIRADBModel.Order" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="VIRADBModel.FAUser" Width="1.5" PointX="7.75" PointY="3.75" IsExpanded="true" />
         <AssociationConnector Association="VIRADBModel.FK__ENProduct__CATID__1ED998B2" ManuallyRouted="false" />
         <AssociationConnector Association="VIRADBModel.FK__FAProduct__CATID__1BFD2C07" ManuallyRouted="false" />
-        <AssociationConnector Association="VIRADBModel.FK__Orders__PID__21B6055D" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="VIRADBModel.Contact" Width="1.5" PointX="0.75" PointY="8.75" />
+        <EntityTypeShape EntityType="VIRADBModel.OrderAddress" Width="1.5" PointX="7.875" PointY="8.25" />
+        <EntityTypeShape EntityType="VIRADBModel.Order" Width="1.5" PointX="5.625" PointY="8" />
+        <AssociationConnector Association="VIRADBModel.FK__Orders__PID__21B6055D" />
+        <AssociationConnector Association="VIRADBModel.FK__OrderAddres__OID__24927208" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

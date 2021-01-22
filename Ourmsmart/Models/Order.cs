@@ -14,14 +14,24 @@ namespace Ourmsmart.Models
     
     public partial class Order
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Order()
+        {
+            this.OrderAddresses = new HashSet<OrderAddress>();
+        }
+    
         public int OID { get; set; }
+        public int Cartid { get; set; }
         public int Oqty { get; set; }
-        public string Phone { get; set; }
         public string Timestamp { get; set; }
         public string Price { get; set; }
         public string Status { get; set; }
+        public string Paycode { get; set; }
+        public string Description { get; set; }
         public Nullable<int> PID { get; set; }
     
         public virtual FAProduct FAProduct { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<OrderAddress> OrderAddresses { get; set; }
     }
 }

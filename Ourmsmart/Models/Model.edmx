@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="VIRADBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="VIRADBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Contact">
           <Key>
             <PropertyRef Name="CoID" />
@@ -104,16 +104,32 @@
           <Property Name="Type" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="Imagepath" Type="nvarchar(max)" />
         </EntityType>
+        <EntityType Name="OrderAddress">
+          <Key>
+            <PropertyRef Name="AID" />
+          </Key>
+          <Property Name="AID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Ostan" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="City" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="OID" Type="int" />
+          <Property Name="Codeposti" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
         <EntityType Name="Orders">
           <Key>
             <PropertyRef Name="OID" />
           </Key>
           <Property Name="OID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Cartid" Type="int" Nullable="false" />
           <Property Name="Oqty" Type="int" Nullable="false" />
-          <Property Name="Phone" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="Timestamp" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="Price" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="Status" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Paycode" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
           <Property Name="PID" Type="int" />
         </EntityType>
         <Association Name="FK__ENProduct__CATID__1ED998B2">
@@ -140,6 +156,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__OrderAddres__OID__24927208">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="0..1" />
+          <End Role="OrderAddress" Type="Self.OrderAddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="OID" />
+            </Principal>
+            <Dependent Role="OrderAddress">
+              <PropertyRef Name="OID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Orders__PID__21B6055D">
           <End Role="FAProducts" Type="Self.FAProducts" Multiplicity="0..1" />
           <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
@@ -162,6 +190,7 @@
           <EntitySet Name="FAContents" EntityType="Self.FAContents" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FAProducts" EntityType="Self.FAProducts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FAUsers" EntityType="Self.FAUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderAddress" EntityType="Self.OrderAddress" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__ENProduct__CATID__1ED998B2" Association="Self.FK__ENProduct__CATID__1ED998B2">
             <End Role="ENCategory" EntitySet="ENCategory" />
@@ -171,27 +200,19 @@
             <End Role="FACategory" EntitySet="FACategory" />
             <End Role="FAProducts" EntitySet="FAProducts" />
           </AssociationSet>
+          <AssociationSet Name="FK__OrderAddres__OID__24927208" Association="Self.FK__OrderAddres__OID__24927208">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="OrderAddress" EntitySet="OrderAddress" />
+          </AssociationSet>
           <AssociationSet Name="FK__Orders__PID__21B6055D" Association="Self.FK__Orders__PID__21B6055D">
             <End Role="FAProducts" EntitySet="FAProducts" />
             <End Role="Orders" EntitySet="Orders" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="VIRADBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Contact">
-          <Key>
-            <PropertyRef Name="CoID" />
-          </Key>
-          <Property Name="CoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Subject" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Timestamp" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-        </EntityType>
         <EntityType Name="ENCategory">
           <Key>
             <PropertyRef Name="CATID" />
@@ -269,7 +290,7 @@
           <Property Name="Imagepath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CATID" Type="Int32" />
           <NavigationProperty Name="FACategory" Relationship="Self.FK__FAProduct__CATID__1BFD2C07" FromRole="FAProducts" ToRole="FACategory" />
-          <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__PID__21B6055D" FromRole="FAProducts" ToRole="Orders" />
+          <NavigationProperty Name="Orders" Relationship="VIRADBModel.FK__Orders__PID__21B6055D" FromRole="FAProduct" ToRole="Order" />
         </EntityType>
         <EntityType Name="FAUser">
           <Key>
@@ -284,19 +305,6 @@
           <Property Name="Team" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Type" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Imagepath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="Order">
-          <Key>
-            <PropertyRef Name="OID" />
-          </Key>
-          <Property Name="OID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Oqty" Type="Int32" Nullable="false" />
-          <Property Name="Phone" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Timestamp" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Price" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Status" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="PID" Type="Int32" />
-          <NavigationProperty Name="FAProduct" Relationship="Self.FK__Orders__PID__21B6055D" FromRole="Orders" ToRole="FAProducts" />
         </EntityType>
         <Association Name="FK__ENProduct__CATID__1ED998B2">
           <End Role="ENCategory" Type="Self.ENCategory" Multiplicity="0..1" />
@@ -322,20 +330,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Orders__PID__21B6055D">
-          <End Role="FAProducts" Type="Self.FAProduct" Multiplicity="0..1" />
-          <End Role="Orders" Type="Self.Order" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="FAProducts">
-              <PropertyRef Name="PID" />
-            </Principal>
-            <Dependent Role="Orders">
-              <PropertyRef Name="PID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="VIRADB" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Contacts" EntityType="Self.Contact" />
           <EntitySet Name="ENCategories" EntityType="Self.ENCategory" />
           <EntitySet Name="ENContents" EntityType="Self.ENContent" />
           <EntitySet Name="ENProducts" EntityType="Self.ENProduct" />
@@ -344,7 +339,6 @@
           <EntitySet Name="FAContents" EntityType="Self.FAContent" />
           <EntitySet Name="FAProducts" EntityType="Self.FAProduct" />
           <EntitySet Name="FAUsers" EntityType="Self.FAUser" />
-          <EntitySet Name="Orders" EntityType="Self.Order" />
           <AssociationSet Name="FK__ENProduct__CATID__1ED998B2" Association="Self.FK__ENProduct__CATID__1ED998B2">
             <End Role="ENCategory" EntitySet="ENCategories" />
             <End Role="ENProducts" EntitySet="ENProducts" />
@@ -353,29 +347,90 @@
             <End Role="FACategory" EntitySet="FACategories" />
             <End Role="FAProducts" EntitySet="FAProducts" />
           </AssociationSet>
-          <AssociationSet Name="FK__Orders__PID__21B6055D" Association="Self.FK__Orders__PID__21B6055D">
-            <End Role="FAProducts" EntitySet="FAProducts" />
-            <End Role="Orders" EntitySet="Orders" />
+          <EntitySet Name="Contacts" EntityType="VIRADBModel.Contact" />
+          <EntitySet Name="OrderAddresses" EntityType="VIRADBModel.OrderAddress" />
+          <EntitySet Name="Orders" EntityType="VIRADBModel.Order" />
+          <AssociationSet Name="FK__Orders__PID__21B6055D" Association="VIRADBModel.FK__Orders__PID__21B6055D">
+            <End Role="FAProduct" EntitySet="FAProducts" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderAddres__OID__24927208" Association="VIRADBModel.FK__OrderAddres__OID__24927208">
+            <End Role="Order" EntitySet="Orders" />
+            <End Role="OrderAddress" EntitySet="OrderAddresses" />
           </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="CoID" />
+          </Key>
+          <Property Name="CoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Subject" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Message" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Timestamp" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="OrderAddress">
+          <Key>
+            <PropertyRef Name="AID" />
+          </Key>
+          <Property Name="AID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Ostan" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="OID" Type="Int32" />
+          <NavigationProperty Name="Order" Relationship="VIRADBModel.FK__OrderAddres__OID__24927208" FromRole="OrderAddress" ToRole="Order" />
+          <Property Name="Codeposti" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="OID" />
+          </Key>
+          <Property Name="OID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Cartid" Type="Int32" Nullable="false" />
+          <Property Name="Oqty" Type="Int32" Nullable="false" />
+          <Property Name="Timestamp" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Paycode" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PID" Type="Int32" />
+          <NavigationProperty Name="FAProduct" Relationship="VIRADBModel.FK__Orders__PID__21B6055D" FromRole="Order" ToRole="FAProduct" />
+          <NavigationProperty Name="OrderAddresses" Relationship="VIRADBModel.FK__OrderAddres__OID__24927208" FromRole="Order" ToRole="OrderAddress" />
+        </EntityType>
+        <Association Name="FK__Orders__PID__21B6055D">
+          <End Type="VIRADBModel.FAProduct" Role="FAProduct" Multiplicity="0..1" />
+          <End Type="VIRADBModel.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FAProduct">
+              <PropertyRef Name="PID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="PID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderAddres__OID__24927208">
+          <End Type="VIRADBModel.Order" Role="Order" Multiplicity="0..1" />
+          <End Type="VIRADBModel.OrderAddress" Role="OrderAddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="OID" />
+            </Principal>
+            <Dependent Role="OrderAddress">
+              <PropertyRef Name="OID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="VIRADBModelStoreContainer" CdmEntityContainer="VIRADB">
-          <EntitySetMapping Name="Contacts">
-            <EntityTypeMapping TypeName="VIRADBModel.Contact">
-              <MappingFragment StoreEntitySet="Contact">
-                <ScalarProperty Name="CoID" ColumnName="CoID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Subject" ColumnName="Subject" />
-                <ScalarProperty Name="Message" ColumnName="Message" />
-                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="ENCategories">
             <EntityTypeMapping TypeName="VIRADBModel.ENCategory">
               <MappingFragment StoreEntitySet="ENCategory">
@@ -472,16 +527,45 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Contacts">
+            <EntityTypeMapping TypeName="VIRADBModel.Contact">
+              <MappingFragment StoreEntitySet="Contact">
+                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CoID" ColumnName="CoID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderAddresses">
+            <EntityTypeMapping TypeName="VIRADBModel.OrderAddress">
+              <MappingFragment StoreEntitySet="OrderAddress">
+                <ScalarProperty Name="Codeposti" ColumnName="Codeposti" />
+                <ScalarProperty Name="OID" ColumnName="OID" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Ostan" ColumnName="Ostan" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="AID" ColumnName="AID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Orders">
             <EntityTypeMapping TypeName="VIRADBModel.Order">
               <MappingFragment StoreEntitySet="Orders">
-                <ScalarProperty Name="OID" ColumnName="OID" />
-                <ScalarProperty Name="Oqty" ColumnName="Oqty" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="PID" ColumnName="PID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Paycode" ColumnName="Paycode" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+                <ScalarProperty Name="Oqty" ColumnName="Oqty" />
+                <ScalarProperty Name="Cartid" ColumnName="Cartid" />
+                <ScalarProperty Name="OID" ColumnName="OID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
