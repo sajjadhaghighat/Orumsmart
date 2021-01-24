@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "ثبت سفارش";
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+
+<style>
+    .message {
+        margin-top: 100px;
+        margin-bottom: 100px;
+        text-align: center;
+        background-color: green;
+        color: white;
+        padding: 40px;
+        border-radius: 5px;
+    }
+</style>
+
+<div class="container">
+    <div class="message">
+        <p>ثبت سفارش با موفقیت انجام شد</p>
+        <p>
+            کدرهگیری سفارش شما : @ViewBag.trace
+        </p>
+        <p >
+            <a style="color:yellow;text-decoration:underline overline" href="@Url.Action("Index","Home")"><p>برگشت به صفحه اصلی</p></a>
+        </p>
+    </div>
+</div>
+
+

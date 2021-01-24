@@ -9,6 +9,7 @@ namespace Ourmsmart.Controllers
 {
     public class HomeController : Controller
     {
+        VIRADB db = new VIRADB();
         // GET: Home
         public ActionResult Index()
         {
@@ -22,10 +23,24 @@ namespace Ourmsmart.Controllers
 
         [AllowAnonymous]
         [HttpPost]
-        public ActionResult Contact()
+        public ActionResult Contact(Contact contact)
         {
-                
-            return Json(new { success = true, message = "پیام شما با موفقیت ارسال شد" });
+            if(!ModelState.IsValid)
+            {
+                return Json(new { success = false, message = "پیام شما ارسال نشد. مجددا در تایم بعدی سعی کنید." });
+            }
+            try
+            {
+                contact.Timestamp = DateTime.Now.ToString("h:mm:ss tt"); 
+                db.Contacts.Add(contact);
+                db.SaveChanges();
+                return Json(new { success = true, message = "پیام شما با موفقیت ارسال شد" });
+            }
+            catch (Exception)
+            {
+                return Json(new { success = false, message = "پیام شما ارسال نشد. مجددا در تایم بعدی سعی کنید." });
+            }
+
 
         }
 

@@ -3,7 +3,6 @@
     ViewBag.Title = "صفحه اصلی";
     Layout = "~/Views/Shared/_LayoutMain.cshtml";
 }
-
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
     <div class="container">
         <a class="navbar-brand" href="#">
@@ -35,7 +34,7 @@
             <div class="col-md-6 pt-5 ftco-animate">
                 <div class="mt-5">
                     <span class="subheading">به اروم اسمارت خوش آمدید</span>
-                    <h1 class="mb-4" style="color:white;line-height:1.2" >خانه هوشمند ویرا <br></h1>
+                    <h1 class="mb-4" style="color:white;line-height:1.2">خانه هوشمند ویرا <br></h1>
                     <p class="mb-4" style="width:80%;text-align:justify;color:yellow">شرکت ویرا رایانش آریا پاد</p>
                 </div>
             </div>
@@ -237,7 +236,7 @@
                                 <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
                                 <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
                             </ul>
-                            
+
                         </div>
                     </div>
                 </div>
@@ -284,7 +283,7 @@
                                 <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
                                 <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
                             </ul>
-                            
+
                         </div>
                     </div>
                 </div>
@@ -307,7 +306,7 @@
                     <div class="col-md-6 d-flex justify-content-center counter-wrap ftco-animate">
                         <div class="block-18">
                             <div class="text">
-                                <strong class="number" >۱</strong>
+                                <strong class="number">۱</strong>
                                 <span>سال تجربه</span>
                             </div>
                         </div>
@@ -315,7 +314,7 @@
                     <div class="col-md-6 d-flex justify-content-center counter-wrap ftco-animate">
                         <div class="block-18">
                             <div class="text">
-                                <strong class="number" >۱</strong>
+                                <strong class="number">۱</strong>
                                 <span>تعداد کارها</span>
                             </div>
                         </div>
@@ -323,7 +322,7 @@
                     <div class="col-md-6 d-flex justify-content-center counter-wrap ftco-animate">
                         <div class="block-18">
                             <div class="text">
-                                <strong class="number" >۳</strong>
+                                <strong class="number">۳</strong>
                                 <span>تعداد تیم ها</span>
                             </div>
                         </div>
@@ -331,7 +330,7 @@
                     <div class="col-md-6 d-flex justify-content-center counter-wrap ftco-animate">
                         <div class="block-18">
                             <div class="text">
-                                <strong class="number" >۷</strong>
+                                <strong class="number">۷</strong>
                                 <span>تعداد کارکنان</span>
                             </div>
                         </div>
@@ -513,18 +512,18 @@
         </div>
         <div class="row no-gutters block-9">
             <div class="col-md-6 order-md-last d-flex">
-                <form class="bg-light p-5 contact-form">
+                <form class="bg-light p-5 contact-form" id="contactform">
                     <div class="form-group">
-                        <input type="text" class="form-control" id="cname" placeholder="نام و نام خانوادگی">
+                        <input type="text" class="form-control" id="cname" name="Name" placeholder="نام و نام خانوادگی">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" id="cemail" placeholder="ایمیل">
+                        <input type="text" class="form-control" id="cemail" name="Email" placeholder="ایمیل">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" id="csubject" placeholder="موضوع">
+                        <input type="text" class="form-control" id="csubject" name="Subject" placeholder="موضوع">
                     </div>
                     <div class="form-group">
-                        <textarea name="" id="cmessage" cols="30" rows="7" class="form-control" placeholder="پیام"></textarea>
+                        <textarea name="Message" id="cmessage" cols="30" rows="7" class="form-control" placeholder="پیام"></textarea>
                     </div>
                     <div class="form-group">
                         <p> <a onclick="postcontact()" class="btn btn-secondary py-3 px-5">ارسال پیام</a></p>
@@ -543,26 +542,32 @@
 
 <script>
     function postcontact() {
-        sData = JSON.stringify({ Name: $('#cname').val(), Email: $('#cemail').val(), Subject: $('#csubject').val(), Message: $('#cmessage').val()});
-            jQuery.support.cors = true;
-            $.ajax({
-            type: 'POST' ,
-            dataType : 'JSON',
-            contentType : 'application/json; charset=utf-8',
+        sData = JSON.stringify({ Name: $('#cname').val(), Email: $('#cemail').val(), Subject: $('#csubject').val(), Message: $('#cmessage').val() });
+        jQuery.support.cors = true;
+        $.ajax({
+            type: 'POST',
+            dataType: 'JSON',
+            contentType: 'application/json; charset=utf-8',
             data: sData,
             url: "/Home/Contact",
             success: function (rs) {
                 if (rs.success) {
-                    toastr.success(rs.message, 'Success Alert', { timeOut: 3000 });
+                    toastr.success(rs.message, 'با سلام', { timeOut: 3000 });
+                    document.getElementById("contactform").reset();
+                    setTimeout(() => {
+                        $('html, body').animate({ scrollTop: 0 }, 1500);
+                    }, 3000);
+                    
+
                 }
                 else {
-                    toastr.warning(rs.message, 'Warning Alert', { timeOut: 3000 });
+                    toastr.warning(rs.message, 'خطا', { timeOut: 3000 });
 
                 }
             },
             error: function (response) {
-                toastr.error(response.message, 'Error Alert' , { timeOut: 3000 });
+                toastr.error(response.message, 'خطا', { timeOut: 3000 });
             }
-            });
+        });
     }
 </script>

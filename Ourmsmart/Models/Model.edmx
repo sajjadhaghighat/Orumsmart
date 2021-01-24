@@ -117,6 +117,7 @@
           <Property Name="Email" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="OID" Type="int" />
           <Property Name="Codeposti" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Cartid" Type="int" />
         </EntityType>
         <EntityType Name="Orders">
           <Key>
@@ -131,6 +132,7 @@
           <Property Name="Paycode" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="Description" Type="nvarchar(max)" />
           <Property Name="PID" Type="int" />
+          <Property Name="Tracingcode" Type="nvarchar(max)" />
         </EntityType>
         <Association Name="FK__ENProduct__CATID__1ED998B2">
           <End Role="ENCategory" Type="Self.ENCategory" Multiplicity="0..1" />
@@ -384,6 +386,7 @@
           <Property Name="OID" Type="Int32" />
           <NavigationProperty Name="Order" Relationship="VIRADBModel.FK__OrderAddres__OID__24927208" FromRole="OrderAddress" ToRole="Order" />
           <Property Name="Codeposti" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Cartid" Type="Int32" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
@@ -400,6 +403,7 @@
           <Property Name="PID" Type="Int32" />
           <NavigationProperty Name="FAProduct" Relationship="VIRADBModel.FK__Orders__PID__21B6055D" FromRole="Order" ToRole="FAProduct" />
           <NavigationProperty Name="OrderAddresses" Relationship="VIRADBModel.FK__OrderAddres__OID__24927208" FromRole="Order" ToRole="OrderAddress" />
+          <Property Name="Tracingcode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK__Orders__PID__21B6055D">
           <End Type="VIRADBModel.FAProduct" Role="FAProduct" Multiplicity="0..1" />
@@ -542,6 +546,7 @@
           <EntitySetMapping Name="OrderAddresses">
             <EntityTypeMapping TypeName="VIRADBModel.OrderAddress">
               <MappingFragment StoreEntitySet="OrderAddress">
+                <ScalarProperty Name="Cartid" ColumnName="Cartid" />
                 <ScalarProperty Name="Codeposti" ColumnName="Codeposti" />
                 <ScalarProperty Name="OID" ColumnName="OID" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
@@ -557,6 +562,7 @@
           <EntitySetMapping Name="Orders">
             <EntityTypeMapping TypeName="VIRADBModel.Order">
               <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="Tracingcode" ColumnName="Tracingcode" />
                 <ScalarProperty Name="PID" ColumnName="PID" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Paycode" ColumnName="Paycode" />

@@ -1446,7 +1446,10 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\Panel\ContactController.cs" />
     <Compile Include="Controllers\Panel\ContentsController.cs" />
+    <Compile Include="Controllers\Panel\MessageController.cs" />
+    <Compile Include="Controllers\Panel\OrderController.cs" />
     <Compile Include="Controllers\Panel\ProfileController.cs" />
     <Compile Include="Controllers\StoreController.cs" />
     <Compile Include="Filter\ActFilter.cs" />
@@ -1999,6 +2002,12 @@
     <Content Include="Views\Store\Products.cshtml" />
     <Content Include="Views\Store\CreateProduct.cshtml" />
     <Content Include="Views\Store\Detail.cshtml" />
+    <Content Include="Views\Message\commitOrder.cshtml" />
+    <Content Include="Views\Contact\Create.cshtml" />
+    <Content Include="Views\Contact\Delete.cshtml" />
+    <Content Include="Views\Contact\Details.cshtml" />
+    <Content Include="Views\Contact\Edit.cshtml" />
+    <Content Include="Views\Contact\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2008,6 +2017,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Data\" />
+    <Folder Include="Views\Order\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />

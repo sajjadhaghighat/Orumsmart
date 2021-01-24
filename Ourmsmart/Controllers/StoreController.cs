@@ -29,12 +29,12 @@ namespace Ourmsmart.Controllers
         {
             if (Category != null)
             {
-                var q = db.FAProducts.Where( x => x.FACategory.family == search || search == null).ToList().ToPagedList(page ?? 1, 1);
+                var q = db.FAProducts.Where( x => x.FACategory.family == search || search == null).ToList().ToPagedList(page ?? 1, 4);
                 return View(q);
             }
             else
             {
-                var q = db.FAProducts.Where(x => x.Title.Contains(search) || search == null).ToList().ToPagedList(page ?? 1, 1);
+                var q = db.FAProducts.Where(x => x.Title.Contains(search) || search == null).ToList().ToPagedList(page ?? 1, 4);
                 return View(q);
             }
           
@@ -80,19 +80,22 @@ namespace Ourmsmart.Controllers
         
         public ActionResult AddItemToBasket(int pid, int qty)
         {
-            if (Session["Basket"] != null)
+            if (qty > 0)
             {
-                cb = (List<Cbasket>)Session["Basket"];
-                var index = cb.FindIndex(a => a.PID == pid);
-                if (index > -1)
+                if (Session["Basket"] != null)
                 {
-                    cb[index].Qty = cb[index].Qty + qty;
-                    Session["Basket"] = cb;
-                    return RedirectToAction("Index");
+                    cb = (List<Cbasket>)Session["Basket"];
+                    var index = cb.FindIndex(a => a.PID == pid);
+                    if (index > -1)
+                    {
+                        cb[index].Qty = cb[index].Qty + qty;
+                        Session["Basket"] = cb;
+                        return RedirectToAction("Index");
+                    }
                 }
+                cb.Add(new Cbasket(pid, qty));
+                Session["Basket"] = cb;
             }
-            cb.Add(new Cbasket(pid, qty));
-            Session["Basket"] = cb;
             return RedirectToAction("Index");
         }
 

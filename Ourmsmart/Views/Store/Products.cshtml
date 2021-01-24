@@ -26,12 +26,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.Qty)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Imagepath)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CATID)
-            </th>
             <th></th>
         </tr>
 
@@ -54,15 +48,9 @@
                     @Html.DisplayFor(modelItem => item.Qty)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Imagepath)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CATID)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.PID }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.PID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.PID })
+                    @Html.ActionLink("ویرایش", "Edit", new { id = item.PID }) |
+                    @Html.ActionLink("جزپیات", "Details", new { id = item.PID }) |
+                    @Html.ActionLink("حذف", "Delete", new { id = item.PID })
                 </td>
             </tr>
         }
