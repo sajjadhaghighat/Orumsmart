@@ -33,7 +33,7 @@ namespace Ourmsmart.Controllers.Panel
                 foreach (var item in cb)
                 {
                     order.Cartid = rand_num;
-                    order.Timestamp = DateTime.Now.ToString("h:mm:ss tt");
+                    order.Timestamp = DateTime.Now.ToString("dddd, dd MMMM yyyy HH:mm:ss tt");
                     order.Oqty = item.Qty;
                     order.PID = item.PID;
                     order.Status = "در انتظار بررسی";
@@ -52,6 +52,13 @@ namespace Ourmsmart.Controllers.Panel
                 return RedirectToAction("failOrder", "Message");
             }
 
+        }
+
+        [HttpPost]
+        public ActionResult traceOrder(string trace)
+        {
+            var q = from a in db.Orders where a.Tracingcode == trace select a;
+            return View(q);
         }
 
     }

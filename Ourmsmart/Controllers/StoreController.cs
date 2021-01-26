@@ -57,17 +57,17 @@ namespace Ourmsmart.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return Json(new { message = "" , title = ""});
+                return Json(new { message = "خطا" , title = ""});
             }
             try
             {
                 db.FAProducts.Add(product);
                 db.SaveChanges();
-                return Json(new { message = "", title = "" });
+                return Json(new { message = "موفقیت آمیز", title = "" });
             }
             catch (Exception)
             {
-                return Json(new { message = "", title = "" });
+                return Json(new { message = "خطا", title = "" });
             }
         }
 
@@ -113,6 +113,23 @@ namespace Ourmsmart.Controllers
                 Session["Basket"] = null;
             }
             return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public ActionResult deleteProduct(int id)
+        {
+            FAProduct fa = db.FAProducts.Find(id);
+            db.FAProducts.Remove(fa);
+            db.SaveChanges();
+            //return RedirectToAction("Products");
+            return Json(new { success = true, message = "آیتم با موفقیت حذف شد" });
+        }
+
+
+        public ActionResult showeditProduct(int id)
+        {
+            FAProduct fa = db.FAProducts.Find(id);
+            return View(fa);
         }
     }
 

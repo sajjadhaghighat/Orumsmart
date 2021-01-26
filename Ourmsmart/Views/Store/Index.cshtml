@@ -48,10 +48,22 @@
         padding-top: 10px;
         margin:2px;
     }
-    .row input{
+    .modal ,.modal-body {
+        color:yellow;
+        background-image: linear-gradient(to left,#314755,#26a0da);
+    }
+    .modal-body div{
         margin-top:5px;
     }
-
+    .nav-link{
+        cursor:pointer;
+    }
+    .modal-body a {
+        background-color:white;
+        color:red;
+        padding:2px;
+        border-radius:2px;
+    }
 </style>
 <link href="~/Content/PagedList.css" rel="stylesheet" />
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
@@ -173,7 +185,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">سبد خرید</h5>
+                <h5 class="modal-title" id="exampleModalLabel">رهگیری وضعیت سفارش</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -184,7 +196,7 @@
                     <input type="text" class="search-form-control" name="trace" value="" />
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">بررسی</button>
+                    <button type="submit" class="btn btn-primary">بررسی</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">بستن</button>
 
                 </div>
@@ -205,107 +217,116 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="@Url.Action("insertOrder","Order")" method="post">
-                <div class="modal-body" dir="rtl">
-                    @{
-                        if (Session["Basket"] != null)
-                        {
-                            VIRADB db = new VIRADB();
-                            List<Cbasket> cb = (List<Cbasket>)Session["Basket"];
-                            <table class="table">
-                                <thead class="thead-light">
-                                    <tr>
-                                        <th scope="col">نام</th>
-                                        <th scope="col">قیمت</th>
-                                        <th scope="col">تعداد</th>
-                                        <th scope="col">قیمت کل</th>
-                                        <th scope="col">عملیات</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @{
-                                        ViewBag.sum = 250000;
-                                    }
-                                    @foreach (var item in cb)
-                                    {
-                                        var q = db.FAProducts.Find(item.PID);
-                                        int tprice = q.Price * item.Qty;
-                                        ViewBag.sum += tprice;
+            @if (Session["Basket"] != null)
+            {
+                <form action="@Url.Action("insertOrder","Order")" method="post">
+                    <div class="modal-body" dir="rtl">
+                        @{
+                            if (Session["Basket"] != null)
+                            {
+                                VIRADB db = new VIRADB();
+                                List<Cbasket> cb = (List<Cbasket>)Session["Basket"];
+                                <table class="table">
+                                    <thead class="thead-light">
                                         <tr>
-                                            <td>@q.Title</td>
-                                            <td>@q.Price ریال</td>
-                                            <td>@item.Qty</td>
-                                            <td>@tprice ریال</td>
-                                            <td><a href=@Url.Action("DelItemFromBascket", new { id = item.PID })>حذف</a></td>
+                                            <th scope="col">نام</th>
+                                            <th scope="col">قیمت</th>
+                                            <th scope="col">تعداد</th>
+                                            <th scope="col">قیمت کل</th>
+                                            <th scope="col">عملیات</th>
                                         </tr>
-                                    }
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody>
+                                        @{
+                                            ViewBag.sum = 250000;
+                                        }
+                                        @foreach (var item in cb)
+                                        {
+                                            var q = db.FAProducts.Find(item.PID);
+                                            int tprice = q.Price * item.Qty;
+                                            ViewBag.sum += tprice;
+                                            <tr>
+                                                <td>@q.Title</td>
+                                                <td>@q.Price ریال</td>
+                                                <td>@item.Qty</td>
+                                                <td>@tprice ریال</td>
+                                                <td><a href=@Url.Action("DelItemFromBascket", new { id = item.PID }) >حذف</a></td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            }
+                            else
+                            {
+                                <div>
+                                    آیتمی در سبد خرید وجود ندارد
+                                </div>
+                            }
+
                         }
-                        else
-                        {
-                            <div>
-                                آیتمی در سبد خرید وجود ندارد
+                        <br />
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="text" class="search-form-control" name="Name" placeholder="نام و نام خانوادگی" />
                             </div>
-                        }
+                            <div class="col-md-6">
+                                <input type="text" class="search-form-control" name="Phone" placeholder="شماره تلفن" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="text" class="search-form-control" name="Email" placeholder="ایمیل" />
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="search-form-control" name="Paycode" placeholder="کد واریز" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="text" class="search-form-control" name="Ostan" placeholder="استان" />
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="search-form-control" name="City" placeholder="شهر" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <input type="text" class="search-form-control" name="Address" placeholder="آدرس" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <input type="text" class="search-form-control" name="Codeposti" placeholder="کدپستی" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <input type="text" class="search-form-control" name="Description" placeholder="توضیحات" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label>هزینه ارسال : 250000 ریال</label>
+                            </div>
+                            <div class="col-md-12">
+                                <label>مبلغ پرداختی : @ViewBag.sum ریال</label>
+                            </div>
+                        </div>
 
-                    }
-                    <br />
-
-                    <div class="row">
-                        <div class="col-md-6">
-                            <input type="text" class="search-form-control" name="Name" placeholder="نام و نام خانوادگی" />
-                        </div>
-                        <div class="col-md-6">
-                            <input type="text" class="search-form-control" name="Phone" placeholder="شماره تلفن" />
-                        </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <input type="text" class="search-form-control" name="Email" placeholder="ایمیل" />
-                        </div>
-                        <div class="col-md-6">
-                            <input type="text" class="search-form-control" name="Paycode" placeholder="کد واریز" />
-                        </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">ثبت سفارش</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">بستن</button>
                     </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <input type="text" class="search-form-control" name="Ostan" placeholder="استان" />
-                        </div>
-                        <div class="col-md-6">
-                            <input type="text" class="search-form-control" name="City" placeholder="شهر" />
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <input type="text" class="search-form-control" name="Address" placeholder="آدرس" />
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <input type="text" class="search-form-control" name="Codeposti" placeholder="کدپستی" />
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <input type="text" class="search-form-control" name="Description" placeholder="توضیحات" />
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <label>هزینه ارسال : 250000 ریال</label>
-                        </div>
-                        <div class="col-md-12">
-                            <label>مبلغ پرداختی : @ViewBag.sum ریال</label>
-                        </div>
-                    </div>
-
+                </form>
+            }
+            else
+            {
+                <div class="modal-body" style="text-align:center">
+                    آیتمی در سبد خرید وجود ندارد
                 </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">ثبت سفارش</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">بستن</button>
-                </div>
-            </form>
+            }
         </div>
     </div>
 </div>

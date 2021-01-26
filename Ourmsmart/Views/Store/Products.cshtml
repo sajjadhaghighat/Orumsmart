@@ -48,14 +48,73 @@
                     @Html.DisplayFor(modelItem => item.Qty)
                 </td>
                 <td>
-                    @Html.ActionLink("ویرایش", "Edit", new { id = item.PID }) |
-                    @Html.ActionLink("جزپیات", "Details", new { id = item.PID }) |
-                    @Html.ActionLink("حذف", "Delete", new { id = item.PID })
+                    @Html.ActionLink("ویرایش", "showeditProduct", new { id = item.PID }) |
+                    @Html.ActionLink("جزپیات", "Detail", new { id = item.PID }) |
+                    <a data-toggle="modal" data-target="#exampleModal" onclick="sendpid(@item.PID)" class="nav-link" style="cursor:pointer">حذف</a>
                 </td>
             </tr>
         }
 
     </table>
-
-
 </div>
+
+<!-- Modal Basket-->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" dir="ltr">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">حذف</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="@Url.Action("traceOrder","Order")" method="get">
+                <div class="modal-body" dir="rtl"style="text-align:center">
+                    <label>آیا از حذف مطمئن هستید ؟</label>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" onclick="deleteProduct()" class="btn btn-primary" >بله</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">خیر</button>
+
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+
+<script>
+    var ppid;
+    function sendpid(pid) {
+        ppid = pid;
+    }
+    function deleteProduct() {
+        sdata = JSON.stringify({ id : ppid})
+        jQuery.support.cors = true;
+        $.ajax({
+            type: 'POST',
+            dataType: 'JSON',
+            data: sdata,
+            contentType: 'application/json; charset=utf-8',
+            url: "/Store/deleteProduct",
+            success: function (rs) {
+                if (rs.success) {
+                    toastr.success(rs.message, 'پیام', { timeOut: 3000 }); 
+                    $('#exampleModal').modal('hide');
+                    setTimeout(() => { location.reload(); }, 3000);
+                }
+                else {
+                    toastr.warning(rs.message, 'خطا', { timeOut: 3000 });
+                    $('#exampleModal').modal('hide');
+                }  
+            },
+            error: function (response) {
+                toastr.error(response.message, 'خطای سیستمی', { timeOut: 3000 });
+                $('#exampleModal').modal('hide');
+            }
+        });
+
+    }
+</script>
+

@@ -1,0 +1,99 @@
+﻿@model IEnumerable<Ourmsmart.Models.Order>
+@using Ourmsmart.Models
+@{
+    ViewBag.Title = "رهگیری";
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+
+<style>
+    .message {
+        margin-top: 100px;
+        margin-bottom: 100px;
+        text-align: center;
+        background-color: green;
+        color: white;
+        padding: 40px;
+        border-radius: 5px;
+    }
+    .row{
+        text-align:right;
+        border-bottom:1px solid;
+    }
+</style>
+
+<div class="container">
+    <div class="message">
+        <table class="table">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">نام</th>
+                    <th scope="col">قیمت</th>
+                    <th scope="col">تعداد</th>
+                    <th scope="col">قیمت کل</th>
+                    <th scope="col">وضعیت</th>
+                    <th scope="col">کد واریز</th>
+                    <th scope="col">زمان سفارش</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    ViewBag.sum = 250000;
+                    VIRADB db = new VIRADB();
+                    int add = 0;
+                }
+                @foreach (var item in Model)
+                {
+                    var q = db.FAProducts.Find(item.PID);
+                    add = item.Cartid;
+                    ViewBag.sum += Int32.Parse(item.Price);
+                    <tr>
+                        <td>@q.Title</td>
+                        <td>@q.Price ریال</td>
+                        <td>@item.Oqty</td>
+                        <td>@item.Price ریال</td>
+                        <td>@item.Status</td>
+                        <td>@item.Paycode</td>
+                        <td>@item.Timestamp</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        @{
+            var user = db.OrderAddresses.Where(x => x.Cartid == add).SingleOrDefault();
+        }
+        <div class="row">
+            <div class="col-md-4">نام و نام خانوادگی</div>
+            <div class="col-md-4">@user.Name</div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">شماره تلفن</div>
+            <div class="col-md-4">@user.Phone</div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">ایمیل</div>
+            <div class="col-md-4">@user.Email</div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">استان</div>
+            <div class="col-md-4">@user.Ostan</div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">شهر</div>
+            <div class="col-md-4">@user.City</div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">آدرس</div>
+            <div class="col-md-4">@user.Address</div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">کدپستی</div>
+            <div class="col-md-4">@user.Codeposti</div>
+        </div>
+        <div class="" style="text-align:center;border:1px solid">
+            <label>قیمت کل</label>
+            <p>@ViewBag.sum ریال</p>
+        </div>
+        <a style="color:yellow;text-decoration:underline overline" href="@Url.Action("Index","Home")"><p>برگشت به صفحه اصلی</p></a>
+    </div>
+</div>
+

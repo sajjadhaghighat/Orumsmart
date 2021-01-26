@@ -31,7 +31,7 @@ namespace Ourmsmart.Controllers
             }
             try
             {
-                contact.Timestamp = DateTime.Now.ToString("h:mm:ss tt"); 
+                contact.Timestamp = DateTime.Now.ToString("dddd, dd MMMM yyyy HH:mm:ss tt");
                 db.Contacts.Add(contact);
                 db.SaveChanges();
                 return Json(new { success = true, message = "پیام شما با موفقیت ارسال شد" });

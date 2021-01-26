@@ -1,65 +1,77 @@
 ﻿@model Ourmsmart.Models.Contact
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "حذف پیام";
     Layout = "~/Views/Shared/_LayoutPanel.cshtml";
 }
 
-<h2>Delete</h2>
-
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Contact</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Subject)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Subject)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Message)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Message)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Timestamp)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Timestamp)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>
+<style>
+    dd {
+        border-bottom: 1px solid blue;
+        border-right: 1px solid blue;
+        padding:5px;
     }
+</style>
+
+<div style="text-align:right; background-color:white;padding:25px;overflow-x:auto;">
+    <h2>حذف</h2>
+
+    <h3>آیا از حذف این پیام مطمئن هستید ؟</h3>
+    <div>
+        <h4>اطلاعات مخاطب</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Subject)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Subject)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Message)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Message)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Timestamp)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Timestamp)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color" style="text-align:center">
+                <button type="button" class="btn btn-light">@Html.ActionLink("برگشت به لیست پیام", "Index")</button> |
+                <button type="submit" class="btn btn-primary">حذف</button>
+            </div>
+        }
+    </div>
 </div>
+
