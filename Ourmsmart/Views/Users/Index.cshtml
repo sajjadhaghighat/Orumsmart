@@ -1,0 +1,79 @@
+﻿@model IEnumerable<Ourmsmart.Models.FAUser>
+
+@{
+    ViewBag.Title = "اعضاء";
+    Layout = "~/Views/Shared/_LayoutPanel.cshtml";
+}
+
+<div style="text-align:right;background-color:white;padding:15px" dir="rtl">
+    <h2>اعضاء</h2>
+
+    <p>
+        @Html.ActionLink("ایجاد حساب", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Fullname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Username)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Password)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Bio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Team)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Imagepath)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fullname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Username)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Password)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Bio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Team)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Type)
+                </td>
+                <td>
+                    <img  src="@Html.Raw(item.Imagepath)" width="50" alt="بدون عکس" />
+                </td>
+                <td>
+                    @Html.ActionLink("ویرایش", "Edit", new { id = item.UID }) |
+                    @Html.ActionLink("مشخصات", "Details", new { id = item.UID }) |
+                    @Html.ActionLink("حذف", "Delete", new { id = item.UID })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

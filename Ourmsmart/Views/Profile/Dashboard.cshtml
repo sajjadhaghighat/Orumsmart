@@ -1,0 +1,68 @@
+﻿@using Ourmsmart.Models
+@{
+    ViewBag.Title = "داشبورد";
+    Layout = "~/Views/Shared/_LayoutPanel.cshtml";
+}
+<style>
+    .row .col-md-6 {
+        padding: 25px;
+        border-radius: 30%;
+    }
+</style>
+<div style="text-align:right;background-color:white;padding:25px;text-align:center" dir="rtl">
+    <div class="row">
+        <div class="col-md-6" style="background-color:lightcyan">
+            <label>تعداد محصولات</label>
+            @{
+                VIRADB db = new VIRADB();
+                var p = (from a in db.FAProducts select a).Count();
+                <h2>
+                    @p
+                </h2>
+            }
+        </div>
+        <div class="col-md-6" style="background-color:yellow">
+            <label>تعداد سفارشات بررسی نشده</label>
+            @{
+                var o = (from c in db.Orders group c by c.Cartid into uniqueIds select uniqueIds.FirstOrDefault()).Count();
+                <h2>
+                    @o
+                </h2>
+            }
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6" style="background-color:lightgreen">
+            <label>تعداد اعضا</label>
+            @{
+                var u = (from a in db.FAUsers select a).Count();
+                <h2>
+                    @u
+                </h2>
+            }
+        </div>
+        <div class="col-md-6" style="background-color:lightblue">
+            <label>تعداد پیام ها</label>
+            @{
+                var m = (from a in db.Contacts select a).Count();
+                <h2>
+                    @m
+                </h2>
+            }
+        </div>
+    </div>
+</div>
+
+<script language="JavaScript" type="text/javascript">
+function replaceDigits(post){
+var map =[ "&\#1776;","&\#1777;","&\#1778;","&\#1779;","&\#1780;", "&\#1781;","&\#1782;","&\#1783;","&\#1784;","&\#1785;"]
+post.innerHTML = post.innerHTML.replace(/\d(?=[^<>]*(<|$))/g,function($0) { return map[$0] });
+}
+</script>
+
+<script type="text/javascript">
+var posts = document.getElementsByTagName('h2');
+for( var i = 0; i < posts.length; i++ ){
+        replaceDigits(posts[i]);
+}
+</script>

@@ -1,0 +1,89 @@
+﻿@model Ourmsmart.Models.FAUser
+
+@{
+    ViewBag.Title = "مشخصات کاربر";
+    Layout = "~/Views/Shared/_LayoutPanel.cshtml";
+}
+<style>
+    dd {
+        border-bottom: 1px solid blue;
+        text-align: center
+    }
+</style>
+
+<div style="text-align:right;background-color:white;padding:15px" dir="rtl">
+    <div>
+        <h4>مشخصات کاربر</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dd style="text-align:center">
+                <img src="@Html.Raw(Model.Imagepath)" width="100" alt="بدون عکس" />
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Fullname)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Fullname)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Username)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Username)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Password)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Password)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Bio)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Bio)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Team)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Team)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Type)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Type)
+            </dd>
+
+
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("برو به ویرایش", "Edit", new { id = Model.UID }) |
+        @Html.ActionLink("برگشت به لیست", "Index")
+    </p>
+</div>
+
+

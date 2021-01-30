@@ -17,8 +17,8 @@
                 <li class="nav-item"><a href="#home-section" class="nav-link"><span>خانه</span></a></li>
                 <li class="nav-item"><a href="#about-section" class="nav-link"><span>درباره ما</span></a></li>
                 <li class="nav-item"><a href="#department-section" class="nav-link"><span>خدمات</span></a></li>
-                <li class="nav-item"><a href="#doctor-section" class="nav-link"><span>اعضاء</span></a></li>
-                <li class="nav-item"><a href="#blog-section" class="nav-link"><span>محصولات برتر</span></a></li>
+                <li class="nav-item"><a href="#doctor-section" class="nav-link"><span>تیم ها</span></a></li>
+                <li class="nav-item"><a href="#blog-section" class="nav-link"><span>آخرین محصولات</span></a></li>
                 <li class="nav-item"><a href="#contact-section" class="nav-link"><span>تماس با ما</span></a></li>
                 <li class="nav-item cta mr-md-2"><a href=@Url.Action("Login", "Home") class="nav-link">ورود</a></li>
                 <li class="nav-item cta mr-md-2"><a href=@Url.Action("Index", "Store") class="nav-link">فروشگاه</a></li>
@@ -33,9 +33,21 @@
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-start" data-scrollax-parent="true">
             <div class="col-md-6 pt-5 ftco-animate">
                 <div class="mt-5">
-                    <span class="subheading">به اروم اسمارت خوش آمدید</span>
-                    <h1 class="mb-4" style="color:white;line-height:1.2">خانه هوشمند ویرا <br></h1>
-                    <p class="mb-4" style="width:80%;text-align:justify;color:yellow">شرکت ویرا رایانش آریا پاد</p>
+                    @{
+                        VIRADB db = new VIRADB();
+                        var ct = (from a in db.FAContents select a).Where(x => x.title == "عنوان").FirstOrDefault();
+                        if (ct != null)
+                        {
+                            @Html.Raw(ct.content);
+                        }
+                        else
+                        {
+                            <span class="subheading">به اروم اسمارت خوش آمدید</span>
+                            <h1 class="mb-4" style="color:white;line-height:1.2">خانه هوشمند ویرا <br></h1>
+                            <p class="mb-4" style="width:80%;text-align:justify;color:yellow">شرکت ویرا رایانش آریا پاد</p>
+                        }
+
+                    }
                 </div>
             </div>
         </div>
@@ -53,11 +65,21 @@
                 <div class="py-md-5">
                     <div class="row justify-content-start pb-3">
                         <div class="col-md-12 heading-section ftco-animate p-4 p-lg-5">
-                            <h2 class="mb-4">ما <span>Orumsmart</span> هستیم.</h2>
-                            <h3>یک مؤسسه فعال در زمینه هوشمندسازی خانه ها</h3>
-                            <p>
-                                شرکت ویرا رایانش آریا پد در سال ۲۰۲۰ در ارومیه تأسیس شد. هدف اصلی این شرکت ارائه خدمات کامل و جامع در زمینه خانه های هوشمند است. کلیه کالاهای مورد استفاده این شرکت در بهترین شرکت های اروپا و آسیا تولید می شود و کیفیت ناب را به مشتری ارائه می دهد. ما و همه تیم های این شرکت تمام تلاش خود را کرده ایم تا بهترین کیفیت را با جدیدترین فناوری های روز دنیا ترکیب کرده و احساس واقعی خانه هوشمند را به مشتریان ارائه دهیم. شرکت ویرا رایانش آریا پاد در سراسر ایران فعالیت می کند.
-                            </p>
+                            @{
+                                var cd = (from a in db.FAContents select a).Where(x => x.title == "درباره ما").SingleOrDefault();
+                                if (cd != null)
+                                {
+                                    @Html.Raw(cd.content);
+                                }
+                                else
+                                {
+                                    <h2 class="mb-4">ما <span>Orumsmart</span> هستیم.</h2>
+                                    <h3>یک مؤسسه فعال در زمینه هوشمندسازی خانه ها</h3>
+                                    <p>
+                                        شرکت ویرا رایانش آریا پد در سال ۲۰۲۰ در ارومیه تأسیس شد. هدف اصلی این شرکت ارائه خدمات کامل و جامع در زمینه خانه های هوشمند است. کلیه کالاهای مورد استفاده این شرکت در بهترین شرکت های اروپا و آسیا تولید می شود و کیفیت ناب را به مشتری ارائه می دهد. ما و همه تیم های این شرکت تمام تلاش خود را کرده ایم تا بهترین کیفیت را با جدیدترین فناوری های روز دنیا ترکیب کرده و احساس واقعی خانه هوشمند را به مشتریان ارائه دهیم. شرکت ویرا رایانش آریا پاد در سراسر ایران فعالیت می کند.
+                                    </p>
+                                }
+                            }
                             <p> <a href="#contact-section" class="btn btn-secondary py-3 px-4">تماس با ما</a></p>
                         </div>
                     </div>
@@ -77,7 +99,7 @@
             <div class="col-md-9 text-center">
                 <h2>خدمات ما</h2>
                 <p>ما می توانیم هوشمندی را به خانه اتان بیاوریم</p>
-                <p class="mb-0"><a href="#" class="btn btn-white px-4 py-3">نمونه کارها</a></p>
+                
             </div>
         </div>
     </div>
@@ -91,96 +113,28 @@
             </div>-->
 
             <div class="col-md-12">
-                <div class="row no-gutters">
-                    <div class="col-md-4">
-                        <div class="department-wrap p-4 ftco-animate">
-                            <div class="text p-2 text-center">
-                                <div class="icon">
-                                    <span class="flaticon-24-hours"></span>
+                <div class="row no-gutters d-flex">
+                    @{
+                        Services s = new Services();
+                        List<string> ls = s.getServices();
+                        int i = 1;
+                    }
+                    @foreach (var item in ls)
+                    {
+                        <div class="col-md-4">
+                            <div class="department-wrap p-4 ftco-animate">
+                                <div class="text p-2 text-center">
+                                    <div class="icon">
+                                        <span class="flaticon-24-hours"></span>
+                                    </div>
+                                    <h3><a href="#">@item</a></h3>
+                                    <p>@i</p>
                                 </div>
-                                <h3><a href="#">Smart Lights</a></h3>
-                                <p>خدمات برتر</p>
                             </div>
                         </div>
-                        <div class="department-wrap p-4 ftco-animate">
-                            <div class="text p-2 text-center">
-                                <div class="icon">
-                                    <span class="flaticon-24-hours"></span>
-                                </div>
-                                <h3><a href="#">Smart Security</a></h3>
-                                <p>خدمات برتر</p>
-                            </div>
-                        </div>
-                        <div class="department-wrap p-4 ftco-animate">
-                            <div class="text p-2 text-center">
-                                <div class="icon">
-                                    <span class="flaticon-24-hours"></span>
-                                </div>
-                                <h3><a href="#">کنترل هوشمند</a></h3>
-                                <p>خدمات برتر</p>
-                            </div>
-                        </div>
-                    </div>
+                        i = i + 1;
+                    }
 
-                    <div class="col-md-4">
-                        <div class="department-wrap p-4 ftco-animate">
-                            <div class="text p-2 text-center">
-                                <div class="icon">
-                                    <span class="flaticon-24-hours"></span>
-                                </div>
-                                <h3><a href="#">پنجره های هوشمند</a></h3>
-                                <p>خدمات برتر</p>
-                            </div>
-                        </div>
-                        <div class="department-wrap p-4 ftco-animate">
-                            <div class="text p-2 text-center">
-                                <div class="icon">
-                                    <span class="flaticon-24-hours"></span>
-                                </div>
-                                <h3><a href="#">اتومانیزه کردن خانه</a></h3>
-                                <p>خدمات برتر</p>
-                            </div>
-                        </div>
-                        <div class="department-wrap p-4 ftco-animate">
-                            <div class="text p-2 text-center">
-                                <div class="icon">
-                                    <span class="flaticon-24-hours"></span>
-                                </div>
-                                <h3><a href="#">پله های هوشمند</a></h3>
-                                <p>خدمات برتر</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="department-wrap p-4 ftco-animate">
-                            <div class="text p-2 text-center">
-                                <div class="icon">
-                                    <span class="flaticon-24-hours"></span>
-                                </div>
-                                <h3><a href="#">شهر هوشمند</a></h3>
-                                <p>خدمات برتر</p>
-                            </div>
-                        </div>
-                        <div class="department-wrap p-4 ftco-animate">
-                            <div class="text p-2 text-center">
-                                <div class="icon">
-                                    <span class="flaticon-24-hours"></span>
-                                </div>
-                                <h3><a href="#">صنایع هوشمند</a></h3>
-                                <p>خدمات برتر</p>
-                            </div>
-                        </div>
-                        <div class="department-wrap p-4 ftco-animate">
-                            <div class="text p-2 text-center">
-                                <div class="icon">
-                                    <span class="flaticon-24-hours"></span>
-                                </div>
-                                <h3><a href="#">مزارع هوشمند</a></h3>
-                                <p>خدمات برتر</p>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -191,7 +145,7 @@
     <div class="container-fluid px-5">
         <div class="row justify-content-center mb-5 pb-2">
             <div class="col-md-8 text-center heading-section ftco-animate">
-                <h2 class="mb-4">اعضاء</h2>
+                <h2 class="mb-4">تیم ها</h2>
                 <p>کادر مجرب و متخصص در زمینه نرم افزار، شبکه، الکترونیک</p>
             </div>
         </div>
@@ -206,8 +160,6 @@
                         <span class="mb-2" style="color:blue">کار بر روی نرم افزار اتوماسیون خانه</span>
                         <div class="faded">
                             <br />
-                            <p>مهندس حقیقت</p>
-                            <p>مهندس فايزی نیا</p>
                             <ul class="ftco-social text-center">
                                 <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
                                 <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
@@ -229,7 +181,6 @@
                         <span class="mb-2" style="color:blue">کار بروی اتصالات شبکه</span>
                         <div class="faded">
                             <br />
-                            <p>مهندس اکبرزاده</p>
                             <ul class="ftco-social text-center">
                                 <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
                                 <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
@@ -251,9 +202,6 @@
                         <span class="mb-2" style="color:blue">کار بر روی مدارهای الکترونیکی</span>
                         <div class="faded">
                             <br />
-                            <p>مهندس غلامزاده</p>
-                            <p>مهندس فاخری</p>
-                            <p>مهندس علیزاده</p>
                             <ul class="ftco-social text-center">
                                 <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
                                 <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
@@ -271,12 +219,10 @@
                         <div class="img align-self-stretch" style="background-image: url(../../Content/Home/images/doc-4.png);"></div>
                     </div>
                     <div class="text pt-3 text-center">
-                        <h3 class="mb-2">تیم مدیریت</h3>
-                        <span class=" mb-2" style="color:blue">مدیریت پروژه و جریان کاری</span>
+                        <h3 class="mb-2">تیم طراحی</h3>
+                        <span class=" mb-2" style="color:blue">طراحی و شبیه سازی</span>
                         <div class="faded">
                             <br />
-                            <p>مهندس اکبرزاده</p>
-                            <p>مهندس نصرالله پور</p>
                             <ul class="ftco-social text-center">
                                 <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
                                 <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
@@ -297,8 +243,22 @@
     <div class="container">
         <div class="row d-flex align-items-center">
             <div class="col-md-5 heading-section heading-section-white">
-                <span class="subheading">مشخصات</span>
-                <h2 class="mb-4">اعتماد شما اعتبار ماست.</h2>
+                @{
+                    var csh = (from a in db.FAContents select a).Where(x => x.title == "شعار").FirstOrDefault();
+                    var cta = (from a in db.FAContents select a).Where(x => x.title == "تجربه").FirstOrDefault();
+                    var ctkar = (from a in db.FAContents select a).Where(x => x.title == "تعداد کارها").FirstOrDefault();
+                    var ctt = (from a in db.FAContents select a).Where(x => x.title == "تعداد تیم ها").FirstOrDefault();
+                    var ctk = (from a in db.FAContents select a).Where(x => x.title == "تعداد کارکنان").FirstOrDefault();
+                    if (csh != null)
+                    {
+                        @Html.Raw(csh.content);
+                    }
+                    else
+                    {
+                        <span class="subheading"></span>
+                        <h2 class="mb-4">اعتماد شما اعتبار ماست.</h2>
+                    }
+                }
                 <p class="mb-0"><a href="#contact-section" class="btn btn-secondary px-4 py-3">تماس با ما</a></p>
             </div>
             <div class="col-md-7">
@@ -306,7 +266,7 @@
                     <div class="col-md-6 d-flex justify-content-center counter-wrap ftco-animate">
                         <div class="block-18">
                             <div class="text">
-                                <strong class="number">۱</strong>
+                                <strong class="number">@if (cta != null) {@Html.Raw(cta.content)}</strong>
                                 <span>سال تجربه</span>
                             </div>
                         </div>
@@ -314,7 +274,7 @@
                     <div class="col-md-6 d-flex justify-content-center counter-wrap ftco-animate">
                         <div class="block-18">
                             <div class="text">
-                                <strong class="number">۱</strong>
+                                <strong class="number">@if (ctkar != null) {@Html.Raw(ctkar.content)}</strong>
                                 <span>تعداد کارها</span>
                             </div>
                         </div>
@@ -322,7 +282,7 @@
                     <div class="col-md-6 d-flex justify-content-center counter-wrap ftco-animate">
                         <div class="block-18">
                             <div class="text">
-                                <strong class="number">۳</strong>
+                                <strong class="number">@if (ctt != null) {@Html.Raw(ctt.content)}</strong>
                                 <span>تعداد تیم ها</span>
                             </div>
                         </div>
@@ -330,7 +290,7 @@
                     <div class="col-md-6 d-flex justify-content-center counter-wrap ftco-animate">
                         <div class="block-18">
                             <div class="text">
-                                <strong class="number">۷</strong>
+                                <strong class="number">@if (ctk != null) {@Html.Raw(ctk.content)}</strong>
                                 <span>تعداد کارکنان</span>
                             </div>
                         </div>
@@ -352,7 +312,6 @@
         </div>
         <div class="row d-flex">
             @{
-                VIRADB db = new VIRADB();
                 var q = from a in db.FAProducts select a;
                 foreach (var item in q)
                 {

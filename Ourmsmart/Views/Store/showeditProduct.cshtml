@@ -6,10 +6,15 @@
 }
 <script src="~/Content/ckfinder/ckfinder.js"></script>
 <script src="~/Content/ckeditor/ckeditor.js"></script>
+<style >
+    .form-group input {
+        border-bottom: 1px solid blue;
+        border-right: 1px solid blue;
+    }
+</style>
 
-
-<div style="text-align:right" dir="rtl">
-    @using (Html.BeginForm())
+<div style="text-align:right;background-color:white;padding:15px;" dir="rtl">
+    @using (Html.BeginForm("editProduct", "Store", FormMethod.Post))
     {
         @Html.AntiForgeryToken()
         <h2>ویرایش آیتم</h2>
@@ -43,6 +48,14 @@
             </div>
 
             <div class="form-group">
+                @Html.LabelFor(model => model.Imagepath, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Imagepath, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Imagepath, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
                 @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
@@ -66,19 +79,20 @@
                 </div>
             </div>
 
+
             <div class="form-group">
-                @Html.LabelFor(model => model.Imagepath, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.Ptype, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Imagepath, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Imagepath, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.Ptype, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Ptype, "", new { @class = "text-danger" })
                 </div>
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.CATID, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.Pmodel, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.CATID, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.CATID, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.Pmodel, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Pmodel, "", new { @class = "text-danger" })
                 </div>
             </div>
 

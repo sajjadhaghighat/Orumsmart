@@ -3,17 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Ourmsmart.Filter;
 using Ourmsmart.Models;
 
 namespace Ourmsmart.Controllers.Panel
 {
+    [BothFilter]
     public class OrderController : Controller
     {
         VIRADB db = new VIRADB();
         // GET: Order
         public ActionResult Index()
         {
-            return View();
+            var q = (from c in db.Orders
+                                 group c by c.Cartid into uniqueIds
+                                 select uniqueIds.FirstOrDefault()).OrderByDescending(x => x.OID);
+            return View(q);
         }
 
         [HttpPost] 
@@ -37,7 +42,7 @@ namespace Ourmsmart.Controllers.Panel
                     order.Oqty = item.Qty;
                     order.PID = item.PID;
                     order.Status = "در انتظار بررسی";
-                    order.Price = (item.Qty * db.FAProducts.Find(item.PID).Price).ToString();
+                    order.Price = (item.Qty * Int32.Parse(db.FAProducts.Find(item.PID).Price)).ToString();
                     order.Tracingcode = trace;
                     db.Orders.Add(order);
                     db.SaveChanges();
@@ -60,6 +65,13 @@ namespace Ourmsmart.Controllers.Panel
             var q = from a in db.Orders where a.Tracingcode == trace select a;
             return View(q);
         }
+
+        public ActionResult detailOrder(string trace)
+        {
+            var q = from a in db.Orders where a.Tracingcode == trace select a;
+            return View(q);
+        }
+
 
     }
 }

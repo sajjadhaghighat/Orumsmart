@@ -1434,6 +1434,7 @@
       <DependentUpon>Model.edmx</DependentUpon>
       <LastGenOutput>Model.Context.cs</LastGenOutput>
     </Content>
+    <Content Include="Models\Model.edmx.sql" />
     <Content Include="Models\Model.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model.edmx</DependentUpon>
@@ -1451,16 +1452,16 @@
     <Compile Include="Controllers\Panel\MessageController.cs" />
     <Compile Include="Controllers\Panel\OrderController.cs" />
     <Compile Include="Controllers\Panel\ProfileController.cs" />
+    <Compile Include="Controllers\Panel\UsersController.cs" />
     <Compile Include="Controllers\StoreController.cs" />
-    <Compile Include="Filter\ActFilter.cs" />
+    <Compile Include="Filter\AdFilter.cs" />
     <Compile Include="Filter\AuthFilter.cs" />
+    <Compile Include="Filter\BothFilter.cs" />
+    <Compile Include="Filter\CarFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Contact.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ENCategory.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ENContent.cs">
@@ -1470,9 +1471,6 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ENUser.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\FACategory.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\FAContent.cs">
@@ -1505,7 +1503,7 @@
     <Compile Include="Models\OrderAddress.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Users.cs" />
+    <Compile Include="Models\Services.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1998,7 +1996,6 @@
     <Content Include="Views\Shared\_LayoutMain.cshtml" />
     <Content Include="Views\Store\Index.cshtml" />
     <Content Include="Views\Profile\Index.cshtml" />
-    <Content Include="Views\Contents\Index.cshtml" />
     <Content Include="Views\Store\Products.cshtml" />
     <Content Include="Views\Store\CreateProduct.cshtml" />
     <Content Include="Views\Store\Detail.cshtml" />
@@ -2010,6 +2007,20 @@
     <Content Include="Views\Contact\Index.cshtml" />
     <Content Include="Views\Order\traceOrder.cshtml" />
     <Content Include="Views\Store\showeditProduct.cshtml" />
+    <Content Include="Views\Order\Index.cshtml" />
+    <Content Include="Views\Order\detailOrder.cshtml" />
+    <Content Include="Views\Users\Create.cshtml" />
+    <Content Include="Views\Users\Delete.cshtml" />
+    <Content Include="Views\Users\Details.cshtml" />
+    <Content Include="Views\Users\Edit.cshtml" />
+    <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\Profile\Dashboard.cshtml" />
+    <Content Include="Views\Contents\Create.cshtml" />
+    <Content Include="Views\Contents\Delete.cshtml" />
+    <Content Include="Views\Contents\Details.cshtml" />
+    <Content Include="Views\Contents\Edit.cshtml" />
+    <Content Include="Views\Contents\Index.cshtml" />
+    <Content Include="Views\Message\http401.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

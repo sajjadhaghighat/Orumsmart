@@ -15,9 +15,9 @@ namespace Ourmsmart.Filter
     public class AuthFilter : AuthorizeAttribute
     {
         public static string Role { get; set; }
-        public static int uid { get; set; }
+        public static string username { get; set; }
 
-        public override void OnAuthorization(System.Web.Http.Controllers.HttpActionContext actionContext)
+        /*public override void OnAuthorization(System.Web.Http.Controllers.HttpActionContext actionContext)
         {
             if (AuthorizeRequest(actionContext))
             {
@@ -60,6 +60,6 @@ namespace Ourmsmart.Filter
                 return false;
             }
 
-        }
+        }*/
     }
 }

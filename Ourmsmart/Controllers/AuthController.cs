@@ -13,15 +13,26 @@ using System.Web.Http;
 
 namespace Ourmsmart.Controllers
 {
+    
     public class AuthController : ApiController
     {
+        public class Users
+        {
+            public string Username { get; set; }
+            public string Password { get; set; }
+        }
+
+        VIRADB db = new VIRADB();
+
         [HttpPost]
         [Route("api/Auth/login")]
-        public IHttpActionResult login(Users user)
+        public IHttpActionResult login(Users u)
         {
-            if (user.Username == "sajjad" && user.Password == "137596")
+            var q = (from a in db.FAUsers select a).Where(x => x.Username == u.Username && x.Password == u.Password).FirstOrDefault();
+            if (q != null)
             {
-                AuthFilter.Role = "Admin";
+                AuthFilter.Role = q.Type;
+                AuthFilter.username = q.Username;
                 return Json(new { success = true, message = "با موفقیت وارد شدید", title = "سلام" });
             }
             else

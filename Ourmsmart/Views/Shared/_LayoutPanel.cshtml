@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using Ourmsmart.Filter
+@using Ourmsmart.Models
+<!DOCTYPE html>
 <html dir="ltr" lang="en">
 
 <head>
@@ -87,21 +89,34 @@
                         <!-- ============================================================== -->
                         <li>
                             <a class="profile-pic" href="#">
-                                <span class="text-white font-medium">ادمین</span>
-                                <img src="~/Content/panel/plugins/images/users/varun.jpg" alt="user-img" width="36"
+                                <span class="text-white font-medium">
+                                @{ 
+                                    VIRADB db = new VIRADB();
+                                    var u = (from a in db.FAUsers select a).Where(x => x.Username == AuthFilter.username).FirstOrDefault();
+                                 }
+                                @if (AuthFilter.Role == "Admin")
+                                {
+                                    <span> نقش : وبمستر</span>
+                                }
+                                else
+                                {
+                                    <span>نقش : کاربر</span>
+                                }</span>
+                                <img src="@u.Imagepath" alt="-" width="36"
                                      class="img-circle">
+                                <span> @u.Fullname </span>
                             </a>
                         </li>
                         <!-- Search -->
                         <!-- ============================================================== -->
-                        <li class=" in">
+                         <!--<li class=" in">
                             <form role="search" class="app-search d-none d-md-block mr-3">
                                 <input type="text" placeholder="جستجو..." class="form-control mt-0">
                                 <a href="" class="active">
                                     <i class="fa fa-search"></i>
                                 </a>
                             </form>
-                        </li>
+                        </li>-->
                         <!-- ============================================================== -->
                         <!-- ============================================================== -->
                         <!-- User profile and search -->
@@ -125,7 +140,7 @@
                         <!-- User Profile-->
                         <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                               href="#" aria-expanded="false">
+                               href=@Url.Action("Dashboard","Profile") aria-expanded="false">
                                 <i class="fas fa-clock fa-fw"
                                    aria-hidden="true"></i><span class="hide-menu">داشبورد</span>
                             </a>
@@ -136,16 +151,27 @@
                                 <i class="fa fa-user" aria-hidden="true"></i><span class="hide-menu">پروفایل</span>
                             </a>
                         </li>
+                        @if (AuthFilter.Role == "Admin")
+                        {
+                            <li class="sidebar-item">
+                                <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                   href=@Url.Action("Index","Contents") aria-expanded="false">
+                                    <i class="fa fa-table"
+                                       aria-hidden="true"></i><span class="hide-menu">محتوا</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                   href=@Url.Action("Index","Users") aria-expanded="false">
+                                    <i class="fa fa-info-circle"
+                                       aria-hidden="true"></i><span class="hide-menu">اعضاء</span>
+                                </a>
+                            </li>
+                        }
+
                         <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                               href=@Url.Action("Index","Contents") aria-expanded="false">
-                                <i class="fa fa-table"
-                                   aria-hidden="true"></i><span class="hide-menu">مدیریت محتوا</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                               href=@Url.Action("Index","Orders") aria-expanded="false">
+                               href=@Url.Action("Index","Order") aria-expanded="false">
                                 <i class="fa fa-font"
                                    aria-hidden="true"></i><span class="hide-menu">سفارشات</span>
                             </a>
@@ -154,21 +180,14 @@
                             <a class="sidebar-link waves-effect waves-dark sidebar-link"
                                href=@Url.Action("Products","Store") aria-expanded="false">
                                 <i class="fa fa-globe"
-                                   aria-hidden="true"></i><span class="hide-menu">مدیریت محصولات</span>
+                                   aria-hidden="true"></i><span class="hide-menu">محصولات</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link"
                                href=@Url.Action("Index","Contact") aria-expanded="false">
                                 <i class="fa fa-columns"
-                                   aria-hidden="true"></i><span class="hide-menu">ییام ها</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                               href=@Url.Action("Index","Users") aria-expanded="false">
-                                <i class="fa fa-info-circle"
-                                   aria-hidden="true"></i><span class="hide-menu">مدیریت اعضاء</span>
+                                   aria-hidden="true"></i><span class="hide-menu">صندوق پیام</span>
                             </a>
                         </li>
                         <li class="text-center p-20 upgrade-btn">

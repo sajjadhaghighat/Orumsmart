@@ -1,24 +1,37 @@
-﻿
+﻿@model IEnumerable<Ourmsmart.Models.FAContent>
+
 @{
-    ViewBag.Title = "مدیریت محتوا";
+    ViewBag.Title = "محتوا";
     Layout = "~/Views/Shared/_LayoutPanel.cshtml";
 }
-<script src="~/Content/ckfinder/ckfinder.js"></script>
-<script src="~/Content/ckeditor/ckeditor.js"></script>
+<div style="text-align:right; background-color:white;padding:25px;overflow-x:auto;">
+    <h2>محتوا</h2>
 
+    <p>
+        @Html.ActionLink("ایجاد محتوا", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.title)
+            </th>
+            <th></th>
+        </tr>
 
-@Html.TextArea("contents");
-
-
-<script type="text/javascript">
-        var editor = CKEDITOR.instances['contents'];
-        if (editor) {
-            editor.destroy(true);
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.title)
+                </td>
+                <td>
+                    @Html.ActionLink("ویرایش", "Edit", new { id = item.CID }) |
+                    @Html.ActionLink("جزئیات", "Details", new { id = item.CID }) |
+                    @Html.ActionLink("حذف", "Delete", new { id = item.CID })
+                </td>
+            </tr>
         }
-        CKEDITOR.replace('contents', {
-            enterMode : CKEDITOR.ENTER_BR
-        });
-        CKFinder.setupCKEditor(null, '@Url.Content("~/Content/ckfinder/")');
-</script>
 
+    </table>
+</div>
 

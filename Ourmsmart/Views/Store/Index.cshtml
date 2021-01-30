@@ -243,7 +243,7 @@
                                         @foreach (var item in cb)
                                         {
                                             var q = db.FAProducts.Find(item.PID);
-                                            int tprice = q.Price * item.Qty;
+                                            int tprice = Int32.Parse(q.Price) * item.Qty;
                                             ViewBag.sum += tprice;
                                             <tr>
                                                 <td>@q.Title</td>

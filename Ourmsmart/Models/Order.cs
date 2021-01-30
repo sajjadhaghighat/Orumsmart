@@ -28,8 +28,8 @@ namespace Ourmsmart.Models
         public string Status { get; set; }
         public string Paycode { get; set; }
         public string Description { get; set; }
-        public Nullable<int> PID { get; set; }
         public string Tracingcode { get; set; }
+        public Nullable<int> PID { get; set; }
     
         public virtual FAProduct FAProduct { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

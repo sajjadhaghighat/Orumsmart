@@ -14,5 +14,11 @@ namespace Ourmsmart.Controllers.Panel
             ViewBag.trace = trace;
             return View();
         }
+
+        public ActionResult http401()
+        {
+            return View();
+        }
     }
+
 }

@@ -1,0 +1,60 @@
+﻿@model Ourmsmart.Models.FAContent
+
+@{
+    ViewBag.Title = "ویرایش";
+    Layout = "~/Views/Shared/_LayoutPanel.cshtml";
+}
+
+<script src="~/Content/ckfinder/ckfinder.js"></script>
+<script src="~/Content/ckeditor/ckeditor.js"></script>
+
+<div style="text-align:right; background-color:white;padding:25px;overflow-x:auto;">
+    <h2>ویرایش محتوا</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.CID)
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.title, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <label>@Model.title</label>
+                    @Html.HiddenFor(model => model.title, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.title, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.content, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.content, new { @id = "content" })
+                    @Html.ValidationMessageFor(model => model.content, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    @Html.ActionLink("Back to List", "Index") |
+                    <input type="submit" value="ذخیره" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>
+    }
+
+</div>
+
+<script type="text/javascript">
+        var editor = CKEDITOR.instances['content'];
+        if (editor) {
+            editor.destroy(true);
+        }
+        CKEDITOR.replace('content', {
+            enterMode : CKEDITOR.ENTER_BR
+        });
+        CKFinder.setupCKEditor(null, '@Url.Content("~/Content/ckfinder/")');
+</script>

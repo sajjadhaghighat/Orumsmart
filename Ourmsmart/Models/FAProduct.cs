@@ -24,13 +24,13 @@ namespace Ourmsmart.Models
         public string Title { get; set; }
         public string Summary { get; set; }
         public string Description { get; set; }
-        public int Price { get; set; }
+        public string Price { get; set; }
         public string Status { get; set; }
         public int Qty { get; set; }
         public string Imagepath { get; set; }
-        public Nullable<int> CATID { get; set; }
+        public string Ptype { get; set; }
+        public string Pmodel { get; set; }
     
-        public virtual FACategory FACategory { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order> Orders { get; set; }
     }

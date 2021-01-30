@@ -21,9 +21,9 @@ namespace Ourmsmart.Models
         public string Address { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
-        public Nullable<int> OID { get; set; }
         public string Codeposti { get; set; }
         public Nullable<int> Cartid { get; set; }
+        public Nullable<int> OID { get; set; }
     
         public virtual Order Order { get; set; }
     }

@@ -6,10 +6,12 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Ourmsmart.Filter;
 using Ourmsmart.Models;
 
 namespace Ourmsmart.Controllers.Panel
 {
+    [BothFilter]
     public class ContactController : Controller
     {
         private VIRADB db = new VIRADB();
@@ -17,7 +19,7 @@ namespace Ourmsmart.Controllers.Panel
         // GET: Contact
         public ActionResult Index()
         {
-            return View(db.Contacts.ToList());
+            return View(db.Contacts.ToList().OrderByDescending(x => x.CoID));
         }
 
         // GET: Contact/Details/5

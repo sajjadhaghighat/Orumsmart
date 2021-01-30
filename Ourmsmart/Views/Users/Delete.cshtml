@@ -1,0 +1,92 @@
+﻿@model Ourmsmart.Models.FAUser
+
+@{
+    ViewBag.Title = "حذف کاربر";
+    Layout = "~/Views/Shared/_LayoutPanel.cshtml";
+}
+
+<div style="text-align:right;background-color:white;padding:15px" dir="rtl">
+    <h3>آیا از حذف کاربر مطمئن هستید ؟</h3>
+    <div>
+        <h4>مشخصات کاربر</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Fullname)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Fullname)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Username)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Username)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Password)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Password)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Bio)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Bio)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Team)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Team)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Type)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Type)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Imagepath)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Imagepath)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="حذف" class="btn btn-primary" /> |
+                @Html.ActionLink("برگشت به لیست", "Index")
+            </div>
+        }
+    </div>
+</div>
+
+

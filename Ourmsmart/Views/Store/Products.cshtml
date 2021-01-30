@@ -105,7 +105,7 @@
                     setTimeout(() => { location.reload(); }, 3000);
                 }
                 else {
-                    toastr.warning(rs.message, 'خطا', { timeOut: 3000 });
+                    toastr.error(rs.message, 'خطا', { timeOut: 4000 });
                     $('#exampleModal').modal('hide');
                 }  
             },

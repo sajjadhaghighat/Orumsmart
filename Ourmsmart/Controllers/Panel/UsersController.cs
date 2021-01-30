@@ -12,107 +12,110 @@ using Ourmsmart.Models;
 namespace Ourmsmart.Controllers.Panel
 {
     [AdFilter]
-    public class ContentsController : Controller
+    public class UsersController : Controller
     {
         private VIRADB db = new VIRADB();
 
-        // GET: Contents
+        // GET: Users
         public ActionResult Index()
         {
-            return View(db.FAContents.ToList().OrderByDescending(x => x.CID));
+            return View(db.FAUsers.ToList());
         }
 
-        // GET: Contents/Details/5
+        // GET: Users/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            FAContent fAContent = db.FAContents.Find(id);
-            if (fAContent == null)
+            FAUser fAUser = db.FAUsers.Find(id);
+            if (fAUser == null)
             {
                 return HttpNotFound();
             }
-            return View(fAContent);
+            return View(fAUser);
         }
 
-        // GET: Contents/Create
+        // GET: Users/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Contents/Create
+        // POST: Users/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost, ValidateInput(false)]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CID,title,content")] FAContent fAContent)
+        public ActionResult Create([Bind(Include = "UID,Fullname,Username,Password,Email,Bio,Team,Type,Imagepath")] FAUser fAUser)
         {
             if (ModelState.IsValid)
             {
-                db.FAContents.Add(fAContent);
+                db.FAUsers.Add(fAUser);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(fAContent);
+            return View(fAUser);
         }
 
-        // GET: Contents/Edit/5
+        // GET: Users/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            FAContent fAContent = db.FAContents.Find(id);
-            if (fAContent == null)
+            FAUser fAUser = db.FAUsers.Find(id);
+            if (fAUser == null)
             {
                 return HttpNotFound();
             }
-            return View(fAContent);
+            return View(fAUser);
         }
 
-        // POST: Contents/Edit/5
+        // POST: Users/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost, ValidateInput(false)]
+
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CID,title,content")] FAContent fAContent)
+        public ActionResult Edit([Bind(Include = "UID,Fullname,Username,Password,Email,Bio,Team,Type,Imagepath")] FAUser fAUser)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(fAContent).State = EntityState.Modified;
+                db.Entry(fAUser).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(fAContent);
+            return View(fAUser);
         }
 
-        // GET: Contents/Delete/5
+
+        // GET: Users/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            FAContent fAContent = db.FAContents.Find(id);
-            if (fAContent == null)
+            FAUser fAUser = db.FAUsers.Find(id);
+            if (fAUser == null)
             {
                 return HttpNotFound();
             }
-            return View(fAContent);
+            return View(fAUser);
         }
 
-        // POST: Contents/Delete/5
+
+        // POST: Users/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            FAContent fAContent = db.FAContents.Find(id);
-            db.FAContents.Remove(fAContent);
+            FAUser fAUser = db.FAUsers.Find(id);
+            db.FAUsers.Remove(fAUser);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -6,6 +6,8 @@ using System.Web;
 using System.Web.Mvc;
 using PagedList;
 using PagedList.Mvc;
+using System.Data.Entity;
+using Ourmsmart.Filter;
 
 namespace Ourmsmart.Controllers
 {
@@ -29,7 +31,7 @@ namespace Ourmsmart.Controllers
         {
             if (Category != null)
             {
-                var q = db.FAProducts.Where( x => x.FACategory.family == search || search == null).ToList().ToPagedList(page ?? 1, 4);
+                var q = db.FAProducts.Where( x => x.Ptype == search || search == null).ToList().ToPagedList(page ?? 1, 4);
                 return View(q);
             }
             else
@@ -41,17 +43,20 @@ namespace Ourmsmart.Controllers
             
         }
 
+        [BothFilter]
         public ActionResult Products()
         {
-            var q = from a in db.FAProducts select a;
+            var q = (from a in db.FAProducts select a).OrderByDescending(x => x.PID);
             return View(q);
         }
 
+        [BothFilter]
         public ActionResult CreateProduct()
         {
             return View();
         }
 
+        [BothFilter]
         [HttpPost, ValidateInput(false)]
         public ActionResult CreateProduct(FAProduct product)
         {
@@ -78,6 +83,7 @@ namespace Ourmsmart.Controllers
         }
 
         
+
         public ActionResult AddItemToBasket(int pid, int qty)
         {
             if (qty > 0)
@@ -116,20 +122,42 @@ namespace Ourmsmart.Controllers
         }
 
         [HttpPost]
+        [BothFilter]
         public ActionResult deleteProduct(int id)
         {
-            FAProduct fa = db.FAProducts.Find(id);
-            db.FAProducts.Remove(fa);
-            db.SaveChanges();
-            //return RedirectToAction("Products");
-            return Json(new { success = true, message = "آیتم با موفقیت حذف شد" });
+            try
+            {
+                FAProduct fa = db.FAProducts.Find(id);
+                db.FAProducts.Remove(fa);
+                db.SaveChanges();
+                //return RedirectToAction("Products");
+                return Json(new { success = true, message = "آیتم با موفقیت حذف شد" });
+            }
+            catch (Exception)
+            {
+                return Json(new { success = false, message = "آیتم نمی تواند حذف شود. احتمالا آیتم در لیست سفارشات وجود دارد" });
+                throw;
+            }
+
         }
 
-
+        [BothFilter]
         public ActionResult showeditProduct(int id)
         {
             FAProduct fa = db.FAProducts.Find(id);
             return View(fa);
+        }
+
+        [BothFilter]
+        [HttpPost, ValidateInput(false)]
+        public ActionResult editProduct(FAProduct fa)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(fa).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+            return RedirectToAction("Products");
         }
     }
 

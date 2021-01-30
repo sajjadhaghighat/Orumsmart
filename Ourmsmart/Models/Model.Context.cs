@@ -25,15 +25,13 @@ namespace Ourmsmart.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<ENCategory> ENCategories { get; set; }
+        public virtual DbSet<Contact> Contacts { get; set; }
         public virtual DbSet<ENContent> ENContents { get; set; }
         public virtual DbSet<ENProduct> ENProducts { get; set; }
         public virtual DbSet<ENUser> ENUsers { get; set; }
-        public virtual DbSet<FACategory> FACategories { get; set; }
         public virtual DbSet<FAContent> FAContents { get; set; }
         public virtual DbSet<FAProduct> FAProducts { get; set; }
         public virtual DbSet<FAUser> FAUsers { get; set; }
-        public virtual DbSet<Contact> Contacts { get; set; }
         public virtual DbSet<OrderAddress> OrderAddresses { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
     }
