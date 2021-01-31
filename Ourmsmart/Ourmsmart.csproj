@@ -2021,6 +2021,10 @@
     <Content Include="Views\Contents\Edit.cshtml" />
     <Content Include="Views\Contents\Index.cshtml" />
     <Content Include="Views\Message\http401.cshtml" />
+    <Content Include="Views\Order\showeditOrder.cshtml" />
+    <Content Include="Views\Message\DBerror.cshtml" />
+    <Content Include="Views\Message\SuccessInsertProduct.cshtml" />
+    <Content Include="Views\Message\AbortOrder.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

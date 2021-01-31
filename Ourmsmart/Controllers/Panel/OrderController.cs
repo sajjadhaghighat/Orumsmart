@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -8,11 +9,12 @@ using Ourmsmart.Models;
 
 namespace Ourmsmart.Controllers.Panel
 {
-    [BothFilter]
+    
     public class OrderController : Controller
     {
         VIRADB db = new VIRADB();
         // GET: Order
+        [BothFilter]
         public ActionResult Index()
         {
             var q = (from c in db.Orders
@@ -54,7 +56,7 @@ namespace Ourmsmart.Controllers.Panel
             }
             catch (Exception)
             {
-                return RedirectToAction("failOrder", "Message");
+                return RedirectToAction("AbortOrder", "Message");
             }
 
         }
@@ -66,10 +68,67 @@ namespace Ourmsmart.Controllers.Panel
             return View(q);
         }
 
+        [BothFilter]
         public ActionResult detailOrder(string trace)
         {
             var q = from a in db.Orders where a.Tracingcode == trace select a;
             return View(q);
+        }
+
+        [BothFilter]
+        public ActionResult showeditOrder(int id)
+        {
+            Order o = db.Orders.Find(id);
+            return View(o);
+        }
+
+        [BothFilter]
+        [HttpPost]
+        public ActionResult editOrder(Order o)
+        {
+            var q = (from a in db.Orders select a).Where(x => x.Cartid == o.Cartid);
+            try
+            {
+                foreach (var item in q)
+                {
+                    if (ModelState.IsValid)
+                    {
+                        item.Status = o.Status;
+                        o = item;
+                        db.Entry(o).State = EntityState.Modified;
+                    }
+                }
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        [HttpPost]
+        public ActionResult deleteOrder(int cartId)
+        {
+            var q = (from a in db.Orders select a).Where(x => x.Cartid == cartId);
+            OrderAddress ad = (from a in db.OrderAddresses select a).Where(x => x.Cartid == cartId).FirstOrDefault();
+            try
+            {
+                foreach (var item in q)
+                {
+                    if (ModelState.IsValid)
+                    {
+                        db.Orders.Remove(item);
+                    }
+                }
+                db.OrderAddresses.Remove(ad);
+                db.SaveChanges();
+                return Json(new { success = true, message = "سفارش حذف شد" });
+            }
+            catch (Exception)
+            {
+                return Json(new { success = false, message = "مشکلی در عملیات بوجود آمد" });
+            }
         }
 
 

@@ -1,0 +1,55 @@
+﻿@model Ourmsmart.Models.Order
+
+@{
+    ViewBag.Title = "تغییر وضعیت سفارش";
+    Layout = "~/Views/Shared/_LayoutPanel.cshtml";
+}
+
+<div style="text-align:right;background-color:white;padding:15px" dir="rtl">
+    @using (Html.BeginForm("editOrder", "Order", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>تغییر وضعیت سفارش</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.OID)
+
+            <div class="form-group">
+                @Html.HiddenFor(model => model.Cartid, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.HiddenFor(model => model.Cartid, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Cartid, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <select name="Status">
+                        <option @if (Model.Status == "در انتظار بررسی") { Html.Raw("selected"); } value="در انتظار بررسی">در انتظار بررسی</option>
+                        <option @if (Model.Status == "تایید سفارش") { Html.Raw("selected"); } value="تایید سفارش">تایید سفارش</option>
+                        <option @if (Model.Status == "عدم تایید سفارش") { Html.Raw("selected"); } value="عدم تایید سفارش">عدم تایید سفارش</option>
+                        <option @if (Model.Status == "در حال آماده سازی") { Html.Raw("selected"); } value="در حال آماده سازی">در حال آماده سازی</option>
+                        <option @if (Model.Status == "ارسال شده") { Html.Raw("selected"); } value="ارسال شده">ارسال شده</option>
+                        <option @if (Model.Status == "تحویل سفارش") { Html.Raw("selected"); } value="تحویل سفارش">تحویل سفارش</option>
+                        <option @if (Model.Status == "مرجوعی") { Html.Raw("selected"); } value="مرجوعی">مرجوعی</option>
+                    </select>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    @Html.ActionLink("برگشت به لیست", "Index") |
+                    <input type="submit" value="ثبت" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>
+    }
+
+
+</div>
+
+

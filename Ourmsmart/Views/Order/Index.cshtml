@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_LayoutPanel.cshtml";
 }
 
-<div style="text-align:right;background-color:white;padding:15px" dir="rtl">
+<div style="text-align:right;background-color:white;padding:15px;overflow-x:auto;" dir="rtl">
     <h2>سفارشات</h2>
 
     <table class="table">
@@ -18,9 +18,6 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Status)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Paycode)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Tracingcode)
@@ -41,17 +38,75 @@
                     @Html.DisplayFor(modelItem => item.Status)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Paycode)
-                </td>
-                <td>
                     @Html.DisplayFor(modelItem => item.Tracingcode)
                 </td>
                 <td>
+                    @Html.ActionLink("تغییر وضعیت سفارش", "showeditOrder", new { id = item.OID }) |
                     @Html.ActionLink("جزئیات", "detailOrder", new { trace = item.Tracingcode }) |
-                    @Html.ActionLink("حذف", "Delete", new { id = item.OID })
+                    <a data-toggle="modal" data-target="#exampleModal" onclick="sendpid(@item.Cartid)" class="nav-link" style="cursor:pointer">حذف</a>
                 </td>
             </tr>
         }
 
     </table>
 </div>
+
+<!-- Modal Basket-->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" dir="ltr">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">حذف</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form>
+                <div class="modal-body" dir="rtl" style="text-align:center">
+                    <label>آیا از حذف مطمئن هستید ؟</label>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" onclick="deleteProduct()" class="btn btn-primary">بله</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">خیر</button>
+
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+
+<script>
+    var ppid;
+    function sendpid(pid) {
+        ppid = pid;
+    }
+    function deleteProduct() {
+        sdata = JSON.stringify({ cartId: ppid })
+        jQuery.support.cors = true;
+        $.ajax({
+            type: 'POST',
+            dataType: 'JSON',
+            data: sdata,
+            contentType: 'application/json; charset=utf-8',
+            url: "/Order/deleteOrder",
+            success: function (rs) {
+                if (rs.success) {
+                    toastr.success(rs.message, 'پیام', { timeOut: 3000 });
+                    $('#exampleModal').modal('hide');
+                    setTimeout(() => { location.reload(); }, 3000);
+                }
+                else {
+                    toastr.error(rs.message, 'خطا', { timeOut: 4000 });
+                    $('#exampleModal').modal('hide');
+                }
+            },
+            error: function (response) {
+                toastr.error(response.message, 'خطای سیستمی', { timeOut: 3000 });
+                $('#exampleModal').modal('hide');
+            }
+        });
+
+    }
+</script>

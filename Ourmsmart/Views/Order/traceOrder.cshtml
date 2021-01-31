@@ -23,41 +23,43 @@
 
 <div class="container">
     <div class="message">
-        <table class="table">
-            <thead class="thead-light">
-                <tr>
-                    <th scope="col">نام</th>
-                    <th scope="col">قیمت</th>
-                    <th scope="col">تعداد</th>
-                    <th scope="col">قیمت کل</th>
-                    <th scope="col">وضعیت</th>
-                    <th scope="col">کد واریز</th>
-                    <th scope="col">زمان سفارش</th>
-                </tr>
-            </thead>
-            <tbody>
-                @{
-                    ViewBag.sum = 250000;
-                    VIRADB db = new VIRADB();
-                    int add = 0;
-                }
-                @foreach (var item in Model)
-                {
-                    var q = db.FAProducts.Find(item.PID);
-                    add = item.Cartid;
-                    ViewBag.sum += Int32.Parse(item.Price);
+        <div style="overflow-x:auto">
+            <table class="table">
+                <thead class="thead-light">
                     <tr>
-                        <td>@q.Title</td>
-                        <td>@q.Price ریال</td>
-                        <td>@item.Oqty</td>
-                        <td>@item.Price ریال</td>
-                        <td>@item.Status</td>
-                        <td>@item.Paycode</td>
-                        <td>@item.Timestamp</td>
+                        <th scope="col">نام</th>
+                        <th scope="col">قیمت</th>
+                        <th scope="col">تعداد</th>
+                        <th scope="col">قیمت کل</th>
+                        <th scope="col">وضعیت</th>
+                        <th scope="col">کد واریز</th>
+                        <th scope="col">زمان سفارش</th>
                     </tr>
-                }
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @{
+                        ViewBag.sum = 250000;
+                        VIRADB db = new VIRADB();
+                        int add = 0;
+                    }
+                    @foreach (var item in Model)
+                    {
+                        var q = db.FAProducts.Find(item.PID);
+                        add = item.Cartid;
+                        ViewBag.sum += Int32.Parse(item.Price);
+                        <tr>
+                            <td>@q.Title</td>
+                            <td>@q.Price ریال</td>
+                            <td>@item.Oqty</td>
+                            <td>@item.Price ریال</td>
+                            <td>@item.Status</td>
+                            <td>@item.Paycode</td>
+                            <td>@item.Timestamp</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
         @{
             var user = db.OrderAddresses.Where(x => x.Cartid == add).SingleOrDefault();
         }

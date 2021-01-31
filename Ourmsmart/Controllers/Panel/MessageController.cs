@@ -14,8 +14,21 @@ namespace Ourmsmart.Controllers.Panel
             ViewBag.trace = trace;
             return View();
         }
-
+        public ActionResult AbortOrder()
+        {
+            return View();
+        }
         public ActionResult http401()
+        {
+            return View();
+        }
+
+        public ActionResult DBerror()
+        {
+            return View();
+        }
+
+        public ActionResult SuccessInsertProduct()
         {
             return View();
         }

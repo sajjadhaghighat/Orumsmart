@@ -62,17 +62,17 @@ namespace Ourmsmart.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return Json(new { message = "خطا" , title = ""});
+                return RedirectToAction("DBerror", "Message");
             }
             try
             {
                 db.FAProducts.Add(product);
                 db.SaveChanges();
-                return Json(new { message = "موفقیت آمیز", title = "" });
+                return RedirectToAction("SuccessInsertProduct", "Message");
             }
             catch (Exception)
             {
-                return Json(new { message = "خطا", title = "" });
+                return RedirectToAction("DBerror", "Message");
             }
         }
 

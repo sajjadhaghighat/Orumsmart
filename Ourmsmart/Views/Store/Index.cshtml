@@ -23,13 +23,12 @@
     }
 
     .searchform {
-        width: 100%;
         height: auto;
-        background-color: lightgray !important;
+        background-color: white !important;
         border-radius: 5px;
         margin-bottom: 15px;
         margin-top: 15px;
-        padding-top: 15px;
+        padding: 15px;
     }
 
     .block-20:hover {
@@ -38,18 +37,19 @@
         border-bottom: solid 10px #207dff;
     }
 
+
     .pagenum {
         text-align: center;
         font-family: 'IRANSans';
     }
 
     .itemstyle {
-        background-color: lightgrey;
+        background-color: white;
         padding-top: 10px;
-        margin:2px;
+        margin: 2px;
     }
-    .modal ,.modal-body {
-        color:yellow;
+    .modal  {
+        color:black;
         background-image: linear-gradient(to left,#314755,#26a0da);
     }
     .modal-body div{
@@ -63,6 +63,32 @@
         color:red;
         padding:2px;
         border-radius:2px;
+    }
+    .animateinput {
+        width: 50%;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+        background-color: white;
+        background-image: url('searchicon.png');
+        background-position: 10px 10px;
+        background-repeat: no-repeat;
+        padding: 5px 20px 5px 40px;
+        -webkit-transition: width 0.4s ease-in-out;
+        transition: width 0.4s ease-in-out;
+    }
+
+    .animateinput:focus {
+        width: 70%;
+    }
+    .seachbtn {
+        background-color: #207dff;
+        color:white;
+        padding: 5px 15px 5px 10px;
+        border-radius:5px;
+        cursor:pointer;
+        margin-right:-10px;
     }
 </style>
 <link href="~/Content/PagedList.css" rel="stylesheet" />
@@ -110,31 +136,24 @@
         </div>
     </div>
 </nav>
-<section class="ftco-section bg-light" id="blog-section">
+<section class="ftco-section bg-light" id="blog-section" style="background-color:lightgray !important">
     <div class="container">
-        <!--<div class="row justify-content-center mb-5 pb-5">
-            <div class="col-md-10 heading-section text-center ftco-animate">
-                <h2 class="mb-4">فروشگاه ویرا</h2>
-            </div>
-        </div>-->
         <div style="width:100%;height:auto;">
             <form class="row bg-light searchform" method="get" action="@Url.Action("Index", "Store")">
                 <div class="col-md-4 heading-section text-center ftco-animate">
                     <h2 class="mb-4">فروشگاه ویرا</h2>
                 </div>
-                <div class="form-group col-md-3">
+                <!--<div class="form-group col-md-3">
                     <select name="Category" class="search-form-control" id="Category">
                         <option value="" disabled selected>انتخاب دسته بندی</option>
                         <option value="Gadget">گجت</option>
                         <option value="Device">دستگاه</option>
                         <option value="Module">قطعات</option>
                     </select>
-                </div>
-                <div class="form-group col-md-3">
-                    <input type="text" class="search-form-control" name="search" id="search" placeholder="جستجو ...">
-                </div>
-                <div class="form-group col-md-2">
-                    <button type="submit" class="btn btn-secondary search">جستجو</button>
+                </div>-->
+                <div class="col-md-8">
+                    <input type="text" class="animateinput" name="search" placeholder="موارد جستجو را اینجا بنویسید...">
+                    <input type="submit" class="seachbtn" value="جستجو">
                 </div>
             </form>
         </div>
@@ -166,6 +185,12 @@
                         </div>
                     </div>
                 </div>
+            }
+            @if(Model == null)
+            {
+                <h3>
+                    موردی یافت نشد
+                </h3>
             }
         </div>
     </div>
@@ -221,51 +246,71 @@
             {
                 <form action="@Url.Action("insertOrder","Order")" method="post">
                     <div class="modal-body" dir="rtl">
-                        @{
-                            if (Session["Basket"] != null)
-                            {
+                        <div style="overflow-x:auto">
+                            @{
                                 VIRADB db = new VIRADB();
-                                List<Cbasket> cb = (List<Cbasket>)Session["Basket"];
-                                <table class="table">
-                                    <thead class="thead-light">
-                                        <tr>
-                                            <th scope="col">نام</th>
-                                            <th scope="col">قیمت</th>
-                                            <th scope="col">تعداد</th>
-                                            <th scope="col">قیمت کل</th>
-                                            <th scope="col">عملیات</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @{
-                                            ViewBag.sum = 250000;
-                                        }
-                                        @foreach (var item in cb)
-                                        {
-                                            var q = db.FAProducts.Find(item.PID);
-                                            int tprice = Int32.Parse(q.Price) * item.Qty;
-                                            ViewBag.sum += tprice;
+                                if (Session["Basket"] != null)
+                                {
+                                    List<Cbasket> cb = (List<Cbasket>)Session["Basket"];
+                                    <table class="table">
+                                        <thead class="thead-light">
                                             <tr>
-                                                <td>@q.Title</td>
-                                                <td>@q.Price ریال</td>
-                                                <td>@item.Qty</td>
-                                                <td>@tprice ریال</td>
-                                                <td><a href=@Url.Action("DelItemFromBascket", new { id = item.PID }) >حذف</a></td>
+                                                <th scope="col">نام</th>
+                                                <th scope="col">قیمت</th>
+                                                <th scope="col">تعداد</th>
+                                                <th scope="col">قیمت کل</th>
+                                                <th scope="col">عملیات</th>
                                             </tr>
-                                        }
-                                    </tbody>
-                                </table>
+                                        </thead>
+                                        <tbody>
+                                            @{
+                                                ViewBag.sum = 250000;
+                                            }
+                                            @foreach (var item in cb)
+                                            {
+                                                var q = db.FAProducts.Find(item.PID);
+                                                int tprice = Int32.Parse(q.Price) * item.Qty;
+                                                ViewBag.sum += tprice;
+                                                <tr>
+                                                    <td>@q.Title</td>
+                                                    <td>@q.Price ریال</td>
+                                                    <td>@item.Qty</td>
+                                                    <td>@tprice ریال</td>
+                                                    <td><a href=@Url.Action("DelItemFromBascket", new { id = item.PID })>حذف</a></td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                }
+                                else
+                                {
+                                    <div>
+                                        آیتمی در سبد خرید وجود ندارد
+                                    </div>
+                                }
+
                             }
-                            else
+                        </div>
+                        <br />
+                        @{
+                            var cshart = (from a in db.FAContents select a).Where(x => x.title == "شرایط پرداخت").FirstOrDefault();
+                            if (cshart != null)
                             {
-                                <div>
-                                    آیتمی در سبد خرید وجود ندارد
+                                <div class="container">
+                                    <div style="width:100%;background-color:red;color:white;text-align:center">
+                                        شرایط پرداخت
+                                    </div>
+
+                                    <div style="padding:20px;">
+                                        @Html.Raw(cshart.content)
+                                    </div>
                                 </div>
                             }
-
                         }
                         <br />
-
+                        <div style="width:100%;background-color:red;color:white;text-align:center">
+                            فرم اطلاعات
+                        </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <input type="text" class="search-form-control" name="Name" placeholder="نام و نام خانوادگی" />
@@ -279,7 +324,7 @@
                                 <input type="text" class="search-form-control" name="Email" placeholder="ایمیل" />
                             </div>
                             <div class="col-md-6">
-                                <input type="text" class="search-form-control" name="Paycode" placeholder="کد واریز" />
+                                <input type="text" class="search-form-control" name="Paycode" placeholder="عکس واریز" />
                             </div>
                         </div>
                         <div class="row">

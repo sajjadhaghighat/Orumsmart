@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Ourmsmart.Models
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <title>@ViewBag.Title</title>
@@ -18,6 +19,18 @@
     <link rel="stylesheet" href="~/Content/Home/css/style.css">
     <link href="~/Content/Home/customfont.css" rel="stylesheet" />
     <link href="~/Content/toastr/build/toastr.min.css" rel="stylesheet" />
+    <style>
+        .footersite {
+            background-image: url(../../Content/Home/images/footer-bg.jpg);
+        }
+        @@media (max-width: 767px) {
+            .footersite {
+                background-image: none;
+                background-color: #207dff;
+                height: auto;
+            }
+        }
+    </style>
 </head>
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300" dir="rtl" style="text-align: justify; font-family: 'IRANSans'">
     <div class="py-1 bg-black top">
@@ -51,17 +64,13 @@
             padding: 0;
         }
     </style>
-    <footer class="ftco-footer ftco-section img" style="background-image: url(../../Content/Home/images/footer-bg.jpg);">
+    <footer class="footersite ftco-footer ftco-section img" >
         <div class="overlay"></div>
         <div class="container-fluid px-md-5">
             <div class="row mb-5">
                 <div class="col-md">
                     <div class="ftco-footer-widget mb-4">
                         <h2 class="ftco-heading-2">اروم اسمارت</h2>
-                        <p>خانه هوشمند</p>
-                        <p>شهر هوشمند</p>
-                        <p>صنایع هوشمند</p>
-                        <p>مزارع هوشمند</p>
                         <ul class="ftco-footer-social list-unstyled mt-5">
                             <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
                             <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
@@ -73,9 +82,9 @@
                     <div class="ftco-footer-widget mb-4 ml-md-4" style="text-align:right">
                         <h2 class="ftco-heading-2">پیوندها</h2>
                         <ul class="list-unstyled">
-                            <li><a href=@Url.Action("Index","Home")><span class="icon-angle-double-left mr-2"></span>صفحه اصلی </a></li>
-                            <li><a href=@Url.Action("Login","Home")><span class="icon-angle-double-left mr-2"></span>ورود</a></li>
-                            <li><a href=@Url.Action("Index","Store")><span class="icon-angle-double-left mr-2"></span>فروشگاه</a></li>
+                            <li><a href=@Url.Action("Index","Home") style="color:blue">* صفحه اصلی </a></li>
+                            <li><a href=@Url.Action("Login","Home") style="color:blue">* ورود</a></li>
+                            <li><a href=@Url.Action("Index","Store") style="color:blue">* فروشگاه</a></li>
                         </ul>
                     </div>
                 </div>
@@ -83,10 +92,15 @@
                     <div class="ftco-footer-widget mb-4">
                         <h2 class="ftco-heading-2">خدمات</h2>
                         <ul class="list-unstyled">
-                            <li><a href="#"><span class="icon-angle-double-left mr-2"></span>اتوماسیون خانگی</a></li>
-                            <li><a href="#"><span class="icon-angle-double-left mr-2"></span>اشیاء هوشمند</a></li>
-                            <li><a href="#"><span class="icon-angle-double-left mr-2"></span>امنیت هوشمند</a></li>
-                            <li><a href="#"><span class="icon-angle-double-left mr-2"></span>کنترل هوشمند</a></li>
+                            @{
+                                Services s = new Services();
+                                List<string> ls = s.getServices();
+                                int i = 1;
+                            }
+                            @foreach (var item in ls)
+                            {
+                                <li style="color:blue">* @item</li>  
+                            }
                         </ul>
                     </div>
                 </div>
@@ -95,9 +109,9 @@
                         <h2 class="ftco-heading-2">سوالی دارید؟</h2>
                         <div class="block-23 mb-3">
                             <ul>
-                                <li><span class="icon icon-map-marker"></span><span class="text">ایران، آ.غ، ارومیه ، مولوی</span></li>
-                                <li><a href="#"><span class="icon icon-phone"></span><span class="text">۳۲۳۵۱۸۲۸ ۰۴۴</span></a></li>
-                                <li><a href="#"><span class="icon icon-envelope pr-4"></span><span class="text">info@orumsmart.com</span></a></li>
+                                <li style="color:blue">ایران، آ.غ، ارومیه ، مولوی</li>
+                                <li style="color:blue">۳۲۳۵۱۸۲۸ ۰۴۴</li>
+                                <li style="color:red">info@orumsmart.com</li>
                             </ul>
                         </div>
                     </div>
@@ -106,7 +120,7 @@
             <div class="row">
                 <div class="col-md-12 text-center">
 
-                    <p>
+                    <p style="color:black">
                         کپی رایت &copy;
                         <script>document.write(new Date().getFullYear());</script> تمام حقوق محفوظ است
                     </p>

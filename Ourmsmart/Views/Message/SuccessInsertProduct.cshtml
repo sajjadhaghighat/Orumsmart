@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "پیام";
+    Layout = "~/Views/Shared/_LayoutPanel.cshtml";
+}
+
+<style>
+    .message {
+        margin-top: 100px;
+        margin-bottom: 100px;
+        text-align: center;
+        background-color: green;
+        color: white;
+        padding: 40px;
+        border-radius: 5px;
+    }
+</style>
+
+<div class="container">
+    <div class="message">
+        <p>عملیات مورد نظر با موفقیت اعمال شد</p>
+        <a style="color:yellow;text-decoration:underline overline" href="@Url.Action("Products","Store")">
+            <p>برگشت به لیست</p>
+        </a>
+
+    </div>
+</div>

@@ -21,8 +21,8 @@
                 </h2>
             }
         </div>
-        <div class="col-md-6" style="background-color:yellow">
-            <label>تعداد سفارشات بررسی نشده</label>
+        <div class="col-md-6" style="background-color:lightcyan">
+            <label>تعداد سفارشات</label>
             @{
                 var o = (from c in db.Orders group c by c.Cartid into uniqueIds select uniqueIds.FirstOrDefault()).Count();
                 <h2>
@@ -32,7 +32,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-6" style="background-color:lightgreen">
+        <div class="col-md-6" style="background-color:lightblue">
             <label>تعداد اعضا</label>
             @{
                 var u = (from a in db.FAUsers select a).Count();
@@ -51,18 +51,24 @@
             }
         </div>
     </div>
+    <br />
+    <div id="navasan_table_container"></div>
 </div>
 
+<script>function navasanret(data) { document.getElementById('navasan_table_container').innerHTML = JSON.parse(data) }</script>
+<script src="http://www.navasan.tech/wp-navasan.php?usd&eur&gbp&aed_note&try&jpy&aud&nzd&cad&sgd&chf&pkr&azn&nok&sek&dkk&kwd&omr&rub&brl&thb&afn&inr&cny&myr&gel&usd_sherkat&usd_shakhs&aed&eur_hav&gbp_hav&hav_cad_cheque&aud_hav&myr_hav&cny_hav&try_hav&jpy_hav&btc&eth&xrp&bch&eos&bnb&usdt&pp&mex_usd_sell&mex_usd_buy&mex_eur_sell&mex_eur_buy&xau&usd_xau&18ayar&sekkeh&bahar&nim&rob&abshodeh&gerami&bub_sekkeh&bub_bahar&bub_nim&bub_rob&bub_18ayar&bub_gerami"></script>
+
+
 <script language="JavaScript" type="text/javascript">
-function replaceDigits(post){
-var map =[ "&\#1776;","&\#1777;","&\#1778;","&\#1779;","&\#1780;", "&\#1781;","&\#1782;","&\#1783;","&\#1784;","&\#1785;"]
-post.innerHTML = post.innerHTML.replace(/\d(?=[^<>]*(<|$))/g,function($0) { return map[$0] });
-}
+    function replaceDigits(post) {
+        var map = ["&\#1776;", "&\#1777;", "&\#1778;", "&\#1779;", "&\#1780;", "&\#1781;", "&\#1782;", "&\#1783;", "&\#1784;", "&\#1785;"]
+        post.innerHTML = post.innerHTML.replace(/\d(?=[^<>]*(<|$))/g, function ($0) { return map[$0] });
+    }
 </script>
 
 <script type="text/javascript">
-var posts = document.getElementsByTagName('h2');
-for( var i = 0; i < posts.length; i++ ){
+    var posts = document.getElementsByTagName('h2');
+    for (var i = 0; i < posts.length; i++) {
         replaceDigits(posts[i]);
-}
+    }
 </script>
