@@ -36,7 +36,11 @@
         border-right: solid 10px #207dff;
         border-bottom: solid 10px #207dff;
     }
-
+    .second:hover {
+        zoom: 1.02;
+        border-right: solid 10px red;
+        border-bottom: solid 10px red;
+    }
 
     .pagenum {
         text-align: center;
@@ -94,34 +98,34 @@
 <link href="~/Content/PagedList.css" rel="stylesheet" />
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
     <div class="container">
-        <a class="navbar-brand" href="#">Orumsmart</a>
+        <a class="navbar-brand bst" href="/Store/Index">Orumsmart</a>
         <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="oi oi-menu"></span> منو
+            <div class="bst"><span class="oi oi-menu"></span> منو</div>
         </button>
 
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav nav ml-auto">
-                <li class="nav-item"><a href=@Url.Action("Index", "Home") class="nav-link"><span>خانه</span></a></li>
-                <li class="nav-item cta mr-md-2"><a href=@Url.Action("Login", "Home") class="nav-link">ورود</a></li>
+                <li class="nav-item"><a href=@Url.Action("Index", "Home") class="nav-link bst"><span>خانه</span></a></li>
+                <li class="nav-item"><a href=@Url.Action("Login", "Home") class="nav-link bst"><span>ورود</span></a></li>
             </ul>
             <div dir="ltr">
                 <ul class="navbar-nav nav ml-auto">
                     <li class="nav-item cta mr-md-2">
-                        <a data-toggle="modal" data-target="#exampleModal2" class="nav-link">
+                        <a data-toggle="modal" data-target="#exampleModal2" class="nav-link" style="margin:1px;">
                             سبد خرید <span>
                                 @{
                                     if (Session["Basket"] != null)
                                     {
                                         List<Cbasket> cb = (List<Cbasket>)Session["Basket"];
-                                        <div>
+                                        <span>
                                             @cb.Count
-                                        </div>
+                                        </span>
                                     }
                                     else
                                     {
-                                        <div>
+                                        <span>
                                             0
-                                        </div>
+                                        </span>
                                     }
 
                                 }
@@ -129,7 +133,7 @@
                         </a>
                     </li>
                     <li class="nav-item cta mr-md-2">
-                        <a data-toggle="modal" data-target="#exampleModal" class="nav-link">رهگیری</a>
+                        <a data-toggle="modal" data-target="#exampleModal" class="nav-link" style="margin:1px;">رهگیری</a>
                     </li>
                 </ul>
             </div>
@@ -162,9 +166,16 @@
             {
                 <div class="col-md-3 ftco-animate itemstyle">
                     <div class="blog-entry">
-                        <a href=@Url.Action("Detail", "Store", new { id = item.PID }) class="block-20" style="background-image: url('../../@item.Imagepath')">
-                        </a>
-                        <div style="margin:-50px -10px 0px 0px;position:relative"><a href=@Url.Action("AddItemToBasket", "Store", new { pid = item.PID, qty = 1 }) class="btn btn-primary">+</a></div>
+                        @if (item.Status == "موجود")
+                        {
+                            <a href=@Url.Action("Detail", "Store", new { id = item.PID }) class="block-20" style="background-image: url('../../@item.Imagepath')"></a>
+                            <div style="margin:-50px -10px 0px 0px;position:relative;"><a href=@Url.Action("AddItemToBasket", "Store", new { pid = item.PID, qty = 1 }) class="btn btn-primary">+</a></div>
+                        }
+                        else
+                        {
+                            <a href=@Url.Action("Detail", "Store", new { id = item.PID }) class="block-20 second" style="background-image: url('../../@item.Imagepath')"></a>
+                            <div style="margin:-50px -10px 0px 0px;position:relative;"><a href="#" class="btn btn-danger" style="background-color:red">+</a></div>
+                        }
                         <div class="text d-block">
                             <div class="meta mb-3">
                                 @if (item.Status == "موجود")

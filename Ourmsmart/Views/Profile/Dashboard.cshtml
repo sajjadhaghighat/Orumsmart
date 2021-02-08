@@ -52,7 +52,9 @@
         </div>
     </div>
     <br />
-    <div id="navasan_table_container"></div>
+    <div style="overflow-x:auto">
+        <div id="navasan_table_container"></div>
+    </div>
 </div>
 
 <script>function navasanret(data) { document.getElementById('navasan_table_container').innerHTML = JSON.parse(data) }</script>
