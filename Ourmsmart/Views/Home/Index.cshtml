@@ -1,6 +1,6 @@
 ﻿@using Ourmsmart.Models
 @{
-    ViewBag.Title = "صفحه اصلی";
+    ViewBag.Title = "صفحه اصلی | خانه هوشمند ارومیه -Orumsmart";
     Layout = "~/Views/Shared/_LayoutMain.cshtml";
 }
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
@@ -20,8 +20,8 @@
                 <li class="nav-item"><a href="#doctor-section" class="nav-link bst"><span>تیم ها</span></a></li>
                 <li class="nav-item"><a href="#blog-section" class="nav-link bst"><span>آخرین محصولات</span></a></li>
                 <li class="nav-item"><a href="#contact-section" class="nav-link bst"><span>تماس با ما</span></a></li>
-                <li class="nav-item cta mr-md-2"><a href=@Url.Action("Login", "Home") class="nav-link" style="margin:1px;">ورود</a></li>
-                <li class="nav-item cta mr-md-2"><a href=@Url.Action("Index", "Store") class="nav-link" style="margin:1px;">فروشگاه</a></li>
+                <li class="nav-item cta mr-md-2"><a href=@Url.Action("Login", "Home") class="nav-link" style="margin:1px;"><i class="fa fa-sign-in" aria-hidden="true"></i> ورود </a></li>
+                <li class="nav-item cta mr-md-2"><a href=@Url.Action("Index", "Store") class="nav-link" style="margin:1px;"><i class="fa fa-shopping-basket" aria-hidden="true"></i> فروشگاه</a></li>
             </ul>
         </div>
     </div>
@@ -43,7 +43,7 @@
                         else
                         {
                             <span class="subheading">به اروم اسمارت خوش آمدید</span>
-                            <h1 class="mb-4" style="color:white;line-height:1.2">خانه هوشمند ویرا <br></h1>
+                            <h1 class="mb-4" style="color:white;line-height:1.2">خانه هوشمند ارومیه <br></h1>
                             <p class="mb-4" style="width:80%;text-align:justify;color:yellow">شرکت ویرا رایانش آریا پاد</p>
                         }
 
@@ -312,7 +312,7 @@
         </div>
         <div class="row d-flex">
             @{
-                var q = from a in db.FAProducts select a;
+                var q = (from a in db.FAProducts select a).OrderByDescending(x => x.PID);
                 foreach (var item in q)
                 {
                     <div class="col-md-3 ftco-animate">
@@ -322,7 +322,7 @@
                             <div class="text d-block">
                                 <div class="meta mb-3">
                                 </div>
-                                <p class=""><a href="#">@item.Summary</a></p>
+                                <p class=""><a href="#">@item.Title</a></p>
                                 <p><a href=@Url.Action("Detail", "Store",new { id = item.PID }) class="btn btn-secondary py-2 px-3">بیشتر بخوانید +</a></p>
                             </div>
                         </div>
@@ -456,7 +456,7 @@
                         <span class="icon-paper-plane"></span>
                     </div>
                     <h3 class="mb-4">پست الکترونیک</h3>
-                    <p><a href="mailto:info@yoursite.com">info@orumsmart.com</a></p>
+                    <p><a href="mailto:info@yoursite.com">info@orumsmart.ir</a></p>
                 </div>
             </div>
             <div class="col-md-6 col-lg-3 d-flex ftco-animate">
@@ -513,9 +513,9 @@
                 if (rs.success) {
                     toastr.success(rs.message, 'با سلام', { timeOut: 3000 });
                     document.getElementById("contactform").reset();
-                    setTimeout(() => {
+                    /*setTimeout(() => {
                         $('html, body').animate({ scrollTop: 0 }, 1500);
-                    }, 3000);
+                    }, 3000);*/
                     
 
                 }

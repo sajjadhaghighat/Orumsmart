@@ -314,7 +314,7 @@ iframe {
 	width: 100%;
 	height: 50px;
 	border-radius: 25px;
-	background: linear-gradient(to left, #279fd8, #0b2c3c);
+	background: #0b2c3c;
 	display: -webkit-box;
 	display: -webkit-flex;
 	display: -moz-box;
@@ -327,10 +327,13 @@ iframe {
 	-o-transition: all 0.4s;
 	-moz-transition: all 0.4s;
 	transition: all 0.4s;
+	border-top: 10px solid #279fd8;
 }
 
 	.login100-form-btn:hover {
-		background: linear-gradient(to left, #0b2c3c,#279fd8);
+		background: #279fd8;
+		border-bottom: 10px solid #0b2c3c;
+		border-top: none;
 	}
 
 

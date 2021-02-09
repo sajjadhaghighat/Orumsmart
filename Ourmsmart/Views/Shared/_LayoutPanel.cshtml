@@ -21,6 +21,7 @@
     <link href="~/Content/panel/css/style.min.css" rel="stylesheet">
     <link href="~/Content/toastr/build/toastr.min.css" rel="stylesheet" />
     <link href="~/Content/Home/customfont.css" rel="stylesheet" />
+    <link href="~/Content/Home/css/font-awesome.min.css" rel="stylesheet" />
 </head>
 
 <body dir="rtl" style="font-family:'IRANSans'">
@@ -163,7 +164,7 @@
                             <li class="sidebar-item">
                                 <a class="sidebar-link waves-effect waves-dark sidebar-link"
                                    href=@Url.Action("Index","Users") aria-expanded="false">
-                                    <i class="fa fa-info-circle"
+                                    <i class="fa fa-user-plus"
                                        aria-hidden="true"></i><span class="hide-menu">اعضاء</span>
                                 </a>
                             </li>
@@ -172,27 +173,36 @@
                         <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link"
                                href=@Url.Action("Index","Order") aria-expanded="false">
-                                <i class="fa fa-font"
+                                <i class="fa fa-shopping-cart"
                                    aria-hidden="true"></i><span class="hide-menu">سفارشات</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link"
                                href=@Url.Action("Products","Store") aria-expanded="false">
-                                <i class="fa fa-globe"
+                                <i class="fa fa-shopping-bag"
                                    aria-hidden="true"></i><span class="hide-menu">محصولات</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link"
                                href=@Url.Action("Index","Contact") aria-expanded="false">
-                                <i class="fa fa-columns"
+                                <i class="fa fa-question-circle"
                                    aria-hidden="true"></i><span class="hide-menu">صندوق پیام</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                               href="#1" onclick="window.open('http://online.1abzar.com/index.php','','resizable=1,scrollbars=1,width=600,height=600,top=,left=,status=1,menubar=1,toolbar=1,location=1,directories=1');return false;" aria-expanded="false">
+                                <i class="fa fa-exchange"
+                                   aria-hidden="true"></i><span class="hide-menu">بخش پشتیبانی</span>
                             </a>
                         </li>
                         <li class="text-center p-20 upgrade-btn">
                             <a onclick="exitpanel()"
                                class="btn btn-block btn-danger text-white">
+                                <i class="fa fa-sign-out"
+                                aria-hidden="true"></i> 
                                 خروج
                             </a>
                         </li>
@@ -216,15 +226,17 @@
             <div class="page-breadcrumb bg-white">
                 <div class="row align-items-center">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h4 class="page-title text-uppercase font-medium font-14">@ViewBag.Title</h4>
+                        <h4 class="page-title text-uppercase font-medium font-14">@if(@ViewBag.Title != "داشبورد"){<span>@ViewBag.Title</span>}</h4>
                     </div>
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                         <div class="d-md-flex">
                             <ol class="breadcrumb ml-auto">
-                                <li><a href="#">داشبورد</a></li>
+                                <li><a href="@Url.Action("Dashboard","Profile")">داشبورد</a></li>
                             </ol>
                             <a onclick="exitpanel()"
                                class="btn btn-danger  d-none d-md-block pull-right m-l-20 hidden-xs hidden-sm waves-effect waves-light">
+                                <i class="fa fa-sign-out"
+                                   aria-hidden="true"></i> 
                                 خروج
                             </a>
                         </div>

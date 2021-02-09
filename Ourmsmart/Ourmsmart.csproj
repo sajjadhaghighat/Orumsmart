@@ -1206,6 +1206,7 @@
     <Content Include="Content\Home\css\css\bootstrap-reboot.css" />
     <Content Include="Content\Home\css\css\mixins\_text-hide.css" />
     <Content Include="Content\Home\css\flaticon.css" />
+    <Content Include="Content\Home\css\font-awesome.min.css" />
     <Content Include="Content\Home\css\icomoon.css" />
     <Content Include="Content\Home\css\ionicons.min.css" />
     <Content Include="Content\Home\css\magnific-popup.css" />
@@ -1989,6 +1990,11 @@
     <Content Include="Models\Model.edmx.diagram">
       <DependentUpon>Model.edmx</DependentUpon>
     </Content>
+    <Content Include="Content\Home\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\Home\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\Home\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\Home\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\Home\fonts\FontAwesome.otf" />
     <None Include="packages.config" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\login.cshtml" />

@@ -4,8 +4,10 @@
 <head>
     <title>@ViewBag.Title</title>
     <meta charset="utf-8">
+    <link rel="icon"
+          type="image/x-icon"
+          href="~/Content/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
     <link rel="stylesheet" href="~/Content/Home/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="~/Content/Home/css/animate.css">
     <link rel="stylesheet" href="~/Content/Home/css/owl.carousel.min.css">
@@ -15,7 +17,7 @@
     <link rel="stylesheet" href="~/Content/Home/css/ionicons.min.css">
     <link rel="stylesheet" href="~/Content/Home/css/flaticon.css">
     <link rel="stylesheet" href="~/Content/Home/css/icomoon.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Content/Home/css/font-awesome.min.css">
     <link rel="stylesheet" href="~/Content/Home/css/style.css">
     <link href="~/Content/Home/customfont.css" rel="stylesheet" />
     <link href="~/Content/toastr/build/toastr.min.css" rel="stylesheet" />
@@ -23,6 +25,7 @@
         .footersite {
             background-image: url(../../Content/Home/images/footer-bg.jpg);
         }
+
         @@media (max-width: 767px) {
             .footersite {
                 background-image: none;
@@ -64,7 +67,7 @@
             padding: 0;
         }
     </style>
-    <footer class="footersite ftco-footer ftco-section img" >
+    <footer class="footersite ftco-footer ftco-section img">
         <div class="overlay"></div>
         <div class="container-fluid px-md-5">
             <div class="row mb-5">
@@ -99,7 +102,8 @@
                             }
                             @foreach (var item in ls)
                             {
-                                <li style="color:blue">* @item</li>  
+                                <li style="color:blue">* @item</li>
+
                             }
                         </ul>
                     </div>
@@ -111,7 +115,9 @@
                             <ul>
                                 <li style="color:blue">ایران، آ.غ، ارومیه ، مولوی</li>
                                 <li style="color:blue">۳۲۳۵۱۸۲۸ ۰۴۴</li>
-                                <li style="color:red">info@orumsmart.com</li>
+                                <li style="color:red">info@orumsmart.ir</li>
+                                <!-- Contact Form by www.1abzar.com --->
+                                <a href="http://www.1abzar.com/visit/contact-form/?email=ce.sajjad.haghighat@gmail.com" target="_blank"><img border=0 src="https://1abzar.ir/abzar/tools/contact-form/c2.png" alt="تماس با ما"></a><!-- Contact Form by www.1abzar.com --->
                             </ul>
                         </div>
                     </div>
@@ -131,7 +137,8 @@
 
     <!-- loader -->
     <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" /><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg></div>
-    <a id="topbutton"></a>
+    <a id="topbutton" style="margin:0px 5px 65px 0px !important"></a>
+
 
     <script src="~/Content/Home/js/jquery.min.js"></script>
     <script src="~/Content/Home/js/jquery-migrate-3.0.1.min.js"></script>
@@ -147,6 +154,12 @@
     <script src="~/Content/Home/js/scrollax.min.js"></script>
     <script src="~/Content/Home/js/main.js"></script>
     <script src="~/Content/toastr/build/toastr.min.js"></script>
+    <!---start GOFTINO code--->
+    <script type="text/javascript">
+        !function () { var a = window, d = document; function g() { var g = d.createElement("script"), s = "https://www.goftino.com/widget/6RMcc9", l = localStorage.getItem("goftino"); g.type = "text/javascript", g.async = !0, g.referrerPolicy = "no-referrer-when-downgrade", g.src = l ? s + "?o=" + l : s; d.getElementsByTagName("head")[0].appendChild(g); } "complete" === d.readyState ? g() : a.attachEvent ? a.attachEvent("onload", g) : a.addEventListener("load", g, !1); }();
+    </script>
+    <!---end GOFTINO code--->
+
     <script>
         var btn = $('#topbutton');
 
@@ -163,5 +176,19 @@
             $('html, body').animate({ scrollTop: 0 }, '300');
         });
     </script>
+    <!-- Online Support by www.1abzar.com --->
+    <style>
+        #abzar-online-support {
+            position: fixed;
+            z-index: 20000;
+            bottom: 10px;
+            left: 10px
+        }
+    </style>
+    <script type="text/javascript" src="https://online.1abzar.com/1abzar.php?admin=3069805&mail=1&mod=3"></script><div style="display:none"><h3><a href="http://www.1abzar.com">&#1662;&#1588;&#1578;&#1740;&#1576;&#1575;&#1606;&#1740;</a></h3></div>
+    <!-- Online Support by www.1abzar.com --->
+    <!-- Loading by www.1abzar.com 
+    <script src="//www.1abzar.ir/abzar/tools/loading/loading.php?txt=ویرا رایانش آریا پاد&pic=1/s%20(24)"></script><div style="display:none"><h3><a href="http://www.1abzar.com/abzar/loading.php">&#1575;&#1576;&#1586;&#1575;&#1585; &#1585;&#1575;&#1740;&#1711;&#1575;&#1606; &#1608;&#1576;&#1604;&#1575;&#1711;</a></h3></div>
+    <!-- Loading by www.1abzar.com --->
 </body>
 </html>

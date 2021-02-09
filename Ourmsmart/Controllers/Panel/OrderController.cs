@@ -64,8 +64,24 @@ namespace Ourmsmart.Controllers.Panel
         [HttpPost]
         public ActionResult traceOrder(string trace)
         {
-            var q = from a in db.Orders where a.Tracingcode == trace select a;
-            return View(q);
+            try
+            {
+                var q = (from a in db.Orders where a.Tracingcode == trace select a).FirstOrDefault();
+                if (q != null)
+                {
+                    return View(q);
+                }
+                else
+                {
+                    return RedirectToAction("AbortOrder", "Message");
+                }
+                
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("AbortOrder", "Message");
+            }
+            
         }
 
         [BothFilter]
