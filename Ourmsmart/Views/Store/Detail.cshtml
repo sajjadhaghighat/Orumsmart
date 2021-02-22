@@ -137,6 +137,9 @@
             width: 100%;
         }
     }
+    .constyle img{
+        width:100%;
+    }
 </style>
 <div class="container detailstyle">
     <h4>مشخصات محصول</h4>
@@ -196,8 +199,7 @@
     <div style="width:100%;background-color:#207dff;color:white;text-align:center">
         توضیحات
     </div>
-
-    <div style="padding:20px;">
+    <div class="constyle" style="width:100%;padding:20px;">
         @Html.Raw(Model.Description)
     </div>
 </div>
@@ -211,7 +213,7 @@
                 شرایط پرداخت
             </div>
 
-            <div style="padding:20px;">
+            <div class="constyle" style="padding:20px;">
                 @Html.Raw(cshart.content)
             </div>
         </div>

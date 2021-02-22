@@ -1238,6 +1238,7 @@
     <Content Include="Content\Home\images\doc-7.jpg" />
     <Content Include="Content\Home\images\doc-8.jpg" />
     <Content Include="Content\Home\images\footer-bg.jpg" />
+    <Content Include="Content\Home\images\footer.jpg" />
     <Content Include="Content\Home\images\image_1.jpg" />
     <Content Include="Content\Home\images\image_2.jpg" />
     <Content Include="Content\Home\images\image_3.jpg" />
@@ -1267,6 +1268,9 @@
     <Content Include="Content\Home\js\owl.carousel.min.js" />
     <Content Include="Content\Home\js\popper.min.js" />
     <Content Include="Content\Home\js\scrollax.min.js" />
+    <Content Include="Content\img\1.jpg" />
+    <Content Include="Content\img\2.jpg" />
+    <Content Include="Content\img\3.jpg" />
     <Content Include="Content\Login\css\main.css" />
     <Content Include="Content\Login\css\util.css" />
     <Content Include="Content\Login\fonts\font-awesome-4.7.0\css\font-awesome.css" />

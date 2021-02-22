@@ -12,9 +12,9 @@
         border-bottom:1px solid black;
     }
 </style>
-<div style="text-align:right;background-color:white;padding:25px;text-align:center" dir="rtl">
-    <div class="row">
-        <div class="col-md-6" style="background-color:lightcyan">
+<div class="row" style="text-align:right;background-color:white;padding:25px;text-align:center" dir="rtl">
+    <div class="col-md-8">
+        <div class="" style="background-color:lightblue">
             <label>تعداد محصولات</label>
             @{
                 VIRADB db = new VIRADB();
@@ -24,7 +24,7 @@
                 </h2>
             }
         </div>
-        <div class="col-md-6" style="background-color:lightcyan">
+        <div class="" style="background-color:lightcyan">
             <label>تعداد سفارشات</label>
             @{
                 var o = (from c in db.Orders group c by c.Cartid into uniqueIds select uniqueIds.FirstOrDefault()).Count();
@@ -33,9 +33,7 @@
                 </h2>
             }
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6" style="background-color:lightblue">
+        <div class="" style="background-color:lightblue">
             <label>تعداد اعضا</label>
             @{
                 var u = (from a in db.FAUsers select a).Count();
@@ -44,7 +42,7 @@
                 </h2>
             }
         </div>
-        <div class="col-md-6" style="background-color:lightblue">
+        <div class="" style="background-color:lightcyan">
             <label>تعداد پیام ها</label>
             @{
                 var m = (from a in db.Contacts select a).Count();
@@ -53,35 +51,33 @@
                 </h2>
             }
         </div>
+        <div style="overflow-x:auto">
+            <div id="navasan_table_container"></div>
+        </div>
     </div>
     <br />
-    <div class="row">
-        <div class="col-md-3" style="background:lightblue;">
+    <div class="col-md-4" style="overflow-x:auto">
+        <div class="" style="background:lightblue;">
             <!-- Calendar by www.1abzar.com --->
             <script type="text/javascript" src="//1abzar.ir/abzar/tools/ruznama/?mod=2"></script><div style="display:none"><h3><a href="http://www.1abzar.com/abzar/ruznama.php">&#1578;&#1602;&#1608;&#1740;&#1605; &#1588;&#1605;&#1587;&#1740;</a></h3></div>
             <!-- Calendar by www.1abzar.com --->
         </div>
-        <div class="col-md-3" style="background:lightcyan;">
-            <!-- Calendar by www.1abzar.com --->
-            <script type="text/javascript" src="//1abzar.ir/abzar/tools/taghvim/?mod=2&abzar=1&kadr=1&kc=BBBBBB"></script><div style="display:none"><h2><a href="http://www.1abzar.com/abzar/taghvim.php">&#1578;&#1602;&#1608;&#1740;&#1605;</a></h2></div>
-            <!-- Calendar by www.1abzar.com --->
+        <div style="background:lightcyan;">
+            <!-- kalam masoomin by www.1abzar.com --->
+            <script type="text/javascript" src="//1abzar.ir/abzar/tools/behesht/?mod=1&kc=dddddd&kadr=1&n1=1&n2=1&n3=1&n4=1&n5=1&n6=1&n7=1&n8=1&n9=1&n10=1&n11=1&n12=1&n13=1&n14=1&time=30"></script><div style="display:none"><h2><a href="http://www.1abzar.com/abzar/behesht.php">ابزار حدیث</a></h2></div><!-- kalam masoomin by www.1abzar.com --->
         </div>
-        <div class="col-md-3" style="background:lightblue;">
+        <div class="" style="background:lightblue;">
             <!-- OghatSharee by www.1abzar.com --->
-            <script type="text/javascript" src="//1abzar.ir/abzar/tools/azan/v2/?mod=mod3&shahr=2-1"></script><div style="display:none"><h2><a href="http://www.1abzar.com/abzar/azan2.php">اوقات شرعی</a></h2></div><!-- OghatSharee by www.1abzar.com --->
+            <script type="text/javascript" src="//1abzar.ir/abzar/tools/azan/v2/?color1=333333&color2=F07022&bg=FEF6DF&kc=B3181D&kadr=1&shahr=2-1"></script><div style="display:none"><h2><a href="http://www.1abzar.com/abzar/azan2.php">اوقات شرعی</a></h2></div><!-- OghatSharee by www.1abzar.com --->
         </div>
-        <div class="col-md-3" style="background:lightcyan;">
+        <div class="" style="background:lightcyan;">
             <!-- Weather by www.1abzar.com --->
             <script type="text/javascript" src="//1abzaar.ir/abzar/tools/weather/hava.php?color=333333&shahr=023&bg=F0F0F0&kc=BBBBBB&kadr=0"></script><div style="display:none"><h2><a href="http://www.1abzar.com/abzar/weather.php">&#1608;&#1590;&#1593;&#1740;&#1578; &#1570;&#1576; &#1608; &#1607;&#1608;&#1575;</a></h2></div><!-- Weather by www.1abzar.com --->
         </div>
         <div>
 
         </div>
-    </div>
-    <br />
-    <div style="overflow-x:auto">
-        <div id="navasan_table_container"></div>
-    </div>
+    </div> 
 </div>
 
 <script>function navasanret(data) { document.getElementById('navasan_table_container').innerHTML = JSON.parse(data) }</script>

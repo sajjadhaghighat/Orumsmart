@@ -23,29 +23,35 @@
     <link href="~/Content/toastr/build/toastr.min.css" rel="stylesheet" />
     <style>
         .footersite {
-            background-image: url(../../Content/Home/images/footer-bg.jpg);
+            background-color:white;
+            border-top:20px solid lightgrey;
         }
 
         @@media (max-width: 767px) {
             .footersite {
                 background-image: none;
-                background-color: #207dff;
+                background-color: white;
                 height: auto;
             }
+        }
+        .col-md-5 img{
+            width:85%;
+            height:auto;
+            padding-right:50px;
         }
     </style>
 </head>
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300" dir="rtl" style="text-align: justify; font-family: 'IRANSans'">
-    <div class="py-1 bg-black top">
+    <div class="py-1 bg-black top" dir="ltr">
         <div class="container">
             <div class="row no-gutters d-flex align-items-start align-items-center px-md-0">
                 <div class="col-lg-12 d-block">
                     <div class="row d-flex">
-                        <div class="col-md pr-4 d-flex topper align-items-center">
+                        <div class="col-md-6 pr-4 d-flex topper align-items-center">
                             <div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-phone2"></span></div>
-                            <span class="text">۰۴۴ - ۳۲۳۵۱۸۲۸</span>
+                            <span class="text">۰۴۴-۳۳۴۸۹۶۹۰ </span>
                         </div>
-                        <div class="col-md pr-4 d-flex topper align-items-center">
+                        <div class="col-md-6 pr-4 d-flex topper align-items-center">
                             <div class="icon mr-2 d-flex justify-content-center align-items-center"><span class=""></span></div>
                             <span class="text">ویرا رایانش آریا پاد</span>
                         </div>
@@ -71,17 +77,13 @@
         <div class="overlay"></div>
         <div class="container-fluid px-md-5">
             <div class="row mb-5">
-                <div class="col-md">
-                    <div class="ftco-footer-widget mb-4">
-                        <h2 class="ftco-heading-2">اروم اسمارت</h2>
-                        <ul class="ftco-footer-social list-unstyled mt-5">
-                            <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-                            <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-                            <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-                        </ul>
+                <div class="col-md-5">
+                    <div class="ftco-footer-widget mb-4" style="width:100%">
+
+                        <img src="~/Content/Home/images/footer.jpg" />
                     </div>
                 </div>
-                <div class="col-md">
+                <div class="col-md-2">
                     <div class="ftco-footer-widget mb-4 ml-md-4" style="text-align:right">
                         <h2 class="ftco-heading-2">پیوندها</h2>
                         <ul class="list-unstyled">
@@ -91,7 +93,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-md">
+                <div class="col-md-2">
                     <div class="ftco-footer-widget mb-4">
                         <h2 class="ftco-heading-2">خدمات</h2>
                         <ul class="list-unstyled">
@@ -108,18 +110,23 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-md">
+                <div class="col-md-3">
                     <div class="ftco-footer-widget mb-4">
                         <h2 class="ftco-heading-2">سوالی دارید؟</h2>
                         <div class="block-23 mb-3">
                             <ul>
-                                <li style="color:blue">ایران، آ.غ، ارومیه ، مولوی</li>
-                                <li style="color:blue">۳۲۳۵۱۸۲۸ ۰۴۴</li>
+                                <li style="color:blue">ارومیه ، مولوی۱ ، نبش کوی هشتم، پلاک ۲۴۴</li>
+                                <li style="color:blue">۳۳۴۸۹۶۹۰ ۰۴۴</li>
                                 <li style="color:red">info@orumsmart.ir</li>
                                 <!-- Contact Form by www.1abzar.com --->
                                 <a href="http://www.1abzar.com/visit/contact-form/?email=ce.sajjad.haghighat@gmail.com" target="_blank"><img border=0 src="https://1abzar.ir/abzar/tools/contact-form/c2.png" alt="تماس با ما"></a><!-- Contact Form by www.1abzar.com --->
                             </ul>
                         </div>
+                        <ul class="ftco-footer-social list-unstyled mt-5">
+                            <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+                            <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+                            <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -130,6 +137,7 @@
                         کپی رایت &copy;
                         <script>document.write(new Date().getFullYear());</script> تمام حقوق محفوظ است
                     </p>
+                    <p>طراحی و توسعه توسط <a href="http://sajjad-haghighat.ir">سجاد حقیقت</a></p>
                 </div>
             </div>
         </div>
@@ -185,10 +193,7 @@
             left: 10px
         }
     </style>
-    <script type="text/javascript" src="https://online.1abzar.com/1abzar.php?admin=3069805&mail=1&mod=3"></script><div style="display:none"><h3><a href="http://www.1abzar.com">&#1662;&#1588;&#1578;&#1740;&#1576;&#1575;&#1606;&#1740;</a></h3></div>
+    <script type="text/javascript" src="https://online.1abzar.com/1abzar.php?admin=3069805&mail=1&mod=4"></script><div style="display:none"><h3><a href="http://www.1abzar.com">&#1662;&#1588;&#1578;&#1740;&#1576;&#1575;&#1606;&#1740;</a></h3></div>
     <!-- Online Support by www.1abzar.com --->
-    <!-- Loading by www.1abzar.com 
-    <script src="//www.1abzar.ir/abzar/tools/loading/loading.php?txt=ویرا رایانش آریا پاد&pic=1/s%20(24)"></script><div style="display:none"><h3><a href="http://www.1abzar.com/abzar/loading.php">&#1575;&#1576;&#1586;&#1575;&#1585; &#1585;&#1575;&#1740;&#1711;&#1575;&#1606; &#1608;&#1576;&#1604;&#1575;&#1711;</a></h3></div>
-    <!-- Loading by www.1abzar.com --->
 </body>
 </html>
