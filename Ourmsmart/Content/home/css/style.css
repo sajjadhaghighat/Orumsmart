@@ -8314,8 +8314,7 @@ h1, h2, h3, h4, h5,
 @media (min-width: 768px) and (max-width: 991px) {
 
     .hero-wrap {
-        background-image: none ;
-        background-color: #207dff;
+        background-image: url('../images/sajjad.jpg');
     }
 }
 
@@ -8323,8 +8322,7 @@ h1, h2, h3, h4, h5,
 @media (max-width: 767px) {
 
     .hero-wrap {
-        background-image: none;
-        background-color: #207dff;
+        background-image: url('../images/sajjad.jpg');
     }
 }
 
@@ -8333,8 +8331,7 @@ h1, h2, h3, h4, h5,
 
     .hero-wrap {
         /*background-image: url('../images/sajjad.jpg');*/
-        background-image: none;
-        background-color: #207dff;
+        background-image: url('../images/sajjad.jpg');
     }
 }
   @media (max-width: 991.98px) {

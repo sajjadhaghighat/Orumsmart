@@ -14,63 +14,69 @@
 </style>
 <div class="row" style="text-align:right;background-color:white;padding:25px;text-align:center" dir="rtl">
     <div class="col-md-8">
-        <div class="" style="background-color:lightblue">
-            <label>تعداد محصولات</label>
-            @{
-                VIRADB db = new VIRADB();
-                var p = (from a in db.FAProducts select a).Count();
-                <h2>
-                    @p
-                </h2>
-            }
+        <div class="row">
+            <div class="col-md-6">
+                <div class="" style="background-color:lightblue;padding:15px">
+                    <label>تعداد محصولات</label>
+                    @{
+                        VIRADB db = new VIRADB();
+                        var p = (from a in db.FAProducts select a).Count();
+                        <h2>
+                            @p
+                        </h2>
+                    }
+                </div>
+                <div class="" style="background-color:lightcyan;padding:15px;margin-top:15px">
+                    <label>تعداد سفارشات</label>
+                    @{
+                        var o = (from c in db.Orders group c by c.Cartid into uniqueIds select uniqueIds.FirstOrDefault()).Count();
+                        <h2>
+                            @o
+                        </h2>
+                    }
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="" style="background-color:lightblue;padding:15px">
+                    <label>تعداد اعضا</label>
+                    @{
+                        var u = (from a in db.FAUsers select a).Count();
+                        <h2>
+                            @u
+                        </h2>
+                    }
+                </div>
+                <div class="" style="background-color:lightcyan;padding:15px;margin-top:15px">
+                    <label>تعداد پیام ها</label>
+                    @{
+                        var m = (from a in db.Contacts select a).Count();
+                        <h2>
+                            @m
+                        </h2>
+                    }
+                </div>
+            </div>
         </div>
-        <div class="" style="background-color:lightcyan">
-            <label>تعداد سفارشات</label>
-            @{
-                var o = (from c in db.Orders group c by c.Cartid into uniqueIds select uniqueIds.FirstOrDefault()).Count();
-                <h2>
-                    @o
-                </h2>
-            }
-        </div>
-        <div class="" style="background-color:lightblue">
-            <label>تعداد اعضا</label>
-            @{
-                var u = (from a in db.FAUsers select a).Count();
-                <h2>
-                    @u
-                </h2>
-            }
-        </div>
-        <div class="" style="background-color:lightcyan">
-            <label>تعداد پیام ها</label>
-            @{
-                var m = (from a in db.Contacts select a).Count();
-                <h2>
-                    @m
-                </h2>
-            }
-        </div>
-        <div style="overflow-x:auto">
+        <div class="col-md" style="max-height:500px; overflow-x:auto;overflow-y:auto;margin-top:15px">
             <div id="navasan_table_container"></div>
         </div>
     </div>
     <br />
     <div class="col-md-4" style="overflow-x:auto">
-        <div class="" style="background:lightblue;">
+        <div>
             <!-- Calendar by www.1abzar.com --->
             <script type="text/javascript" src="//1abzar.ir/abzar/tools/ruznama/?mod=2"></script><div style="display:none"><h3><a href="http://www.1abzar.com/abzar/ruznama.php">&#1578;&#1602;&#1608;&#1740;&#1605; &#1588;&#1605;&#1587;&#1740;</a></h3></div>
             <!-- Calendar by www.1abzar.com --->
         </div>
-        <div style="background:lightcyan;">
+        <div style="margin-top:5px;">
             <!-- kalam masoomin by www.1abzar.com --->
             <script type="text/javascript" src="//1abzar.ir/abzar/tools/behesht/?mod=1&kc=dddddd&kadr=1&n1=1&n2=1&n3=1&n4=1&n5=1&n6=1&n7=1&n8=1&n9=1&n10=1&n11=1&n12=1&n13=1&n14=1&time=30"></script><div style="display:none"><h2><a href="http://www.1abzar.com/abzar/behesht.php">ابزار حدیث</a></h2></div><!-- kalam masoomin by www.1abzar.com --->
         </div>
-        <div class="" style="background:lightblue;">
+        <div style="margin-top:15px;">
             <!-- OghatSharee by www.1abzar.com --->
             <script type="text/javascript" src="//1abzar.ir/abzar/tools/azan/v2/?color1=333333&color2=F07022&bg=FEF6DF&kc=B3181D&kadr=1&shahr=2-1"></script><div style="display:none"><h2><a href="http://www.1abzar.com/abzar/azan2.php">اوقات شرعی</a></h2></div><!-- OghatSharee by www.1abzar.com --->
         </div>
-        <div class="" style="background:lightcyan;">
+        <div style="margin-top:15px;">
             <!-- Weather by www.1abzar.com --->
             <script type="text/javascript" src="//1abzaar.ir/abzar/tools/weather/hava.php?color=333333&shahr=023&bg=F0F0F0&kc=BBBBBB&kadr=0"></script><div style="display:none"><h2><a href="http://www.1abzar.com/abzar/weather.php">&#1608;&#1590;&#1593;&#1740;&#1578; &#1570;&#1576; &#1608; &#1607;&#1608;&#1575;</a></h2></div><!-- Weather by www.1abzar.com --->
         </div>
