@@ -87,9 +87,9 @@
                     <div class="ftco-footer-widget mb-4 ml-md-4" style="text-align:right">
                         <h2 class="ftco-heading-2">پیوندها</h2>
                         <ul class="list-unstyled">
-                            <li><a href=@Url.Action("Index","Home") style="color:blue">* صفحه اصلی </a></li>
-                            <li><a href=@Url.Action("Login","Home") style="color:blue">* ورود</a></li>
-                            <li><a href=@Url.Action("Index","Store") style="color:blue">* فروشگاه</a></li>
+                            <li style="border-bottom: 1px solid blue;"><a href=@Url.Action("Index","Home") style="color:blue;">صفحه اصلی </a></li>
+                            <li style="border-bottom: 1px solid blue;"><a href=@Url.Action("Login","Home") style="color:blue">ورود</a></li>
+                            <li style="border-bottom: 1px solid blue;"><a href=@Url.Action("Index","Store") style="color:blue">فروشگاه</a></li>
                         </ul>
                     </div>
                 </div>
@@ -104,7 +104,7 @@
                             }
                             @foreach (var item in ls)
                             {
-                                <li style="color:blue">* @item</li>
+                                <li style="color:blue;border-bottom:1px solid blue">@item</li>
 
                             }
                         </ul>
@@ -145,7 +145,7 @@
 
     <!-- loader -->
     <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" /><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg></div>
-    <a id="topbutton" style="margin:0px 5px 65px 0px !important"></a>
+    <a id="topbutton" style="margin:0px 5px 65px 0px !important;background-color:#207dff;"></a>
 
 
     <script src="~/Content/Home/js/jquery.min.js"></script>
@@ -181,10 +181,10 @@
 
         btn.on('click', function (e) {
             e.preventDefault();
-            $('html, body').animate({ scrollTop: 0 }, '300');
+            $('html, body').animate({ scrollTop: 0 }, 1500);
         });
     </script>
-    <!-- Online Support by www.1abzar.com --->
+    <!-- Online Support by www.1abzar.com 
     <style>
         #abzar-online-support {
             position: fixed;

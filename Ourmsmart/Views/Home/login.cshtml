@@ -107,7 +107,6 @@
             var Data = $("#loginform").serialize();
             sData = JSON.stringify({ Username: $('#user').val(), Password: $('#pass').val() });
             jQuery.support.cors = true;
-            console.log(sData);
             $.ajax({
             type: 'POST' ,
             dataType : 'JSON',
