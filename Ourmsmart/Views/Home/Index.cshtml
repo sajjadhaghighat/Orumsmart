@@ -2,6 +2,7 @@
 @{
     ViewBag.Title = "صفحه اصلی | خانه هوشمند ارومیه -OrumSmart";
     Layout = "~/Views/Shared/_LayoutMain.cshtml";
+    VIRADB db = new VIRADB();
 }
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
     <div class="container">
@@ -27,15 +28,15 @@
     </div>
 </nav>
 
-<section class="hero-wrap js-fullheight" data-section="home" data-stellar-background-ratio="0.5">
+<!--<section class="hero-wrap js-fullheight" data-section="home" data-stellar-background-ratio="0.5">
     <div class="overlay"></div>
     <div class="container">
         <div class="row no-gutters slider-text  align-items-center justify-content-start" data-scrollax-parent="true">
             <div class="col-md-6 pt-5 ftco-animate">
                 <div class="mt-5">
                     @{
-                        VIRADB db = new VIRADB();
-                        var ct = (from a in db.FAContents select a).Where(x => x.title == "عنوان").FirstOrDefault();
+
+                        /*var ct = (from a in db.FAContents select a).Where(x => x.title == "عنوان").FirstOrDefault();
                         if (ct != null)
                         {
                             @Html.Raw(ct.content);
@@ -45,12 +46,62 @@
                             <span class="subheading">به اروم اسمارت خوش آمدید</span>
                             <h1 class="mb-4" style="color:white;line-height:1.2">خانه هوشمند ارومیه <br></h1>
                             <p class="mb-4" style="width:80%;text-align:justify;color:yellow">شرکت ویرا رایانش آریا پاد</p>
-                        }
+                        }*/
 
                     }
                 </div>
             </div>
         </div>
+    </div>
+</section>-->
+
+<section>
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        </ol>
+        @{
+            var ct1 = (from a in db.FAContents select a).Where(x => x.title == "عنوان").FirstOrDefault();      
+        }
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img class="d-block w-100" src="~/Content/Home/images/bg_3.jpg" alt="First slide">
+                <div class="carousel-caption d-none d-md-block">
+                    @if (ct1 != null)
+                    {
+                        @Html.Raw(ct1.content);
+                    }
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img class="d-block w-100" src="~/Content/Home/images/bg_3.jpg" alt="Second slide">
+                <div class="carousel-caption d-none d-md-block">
+                    @if (ct1 != null)
+                    {
+                        @Html.Raw(ct1.content);
+                    }
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img class="d-block w-100" src="~/Content/Home/images/bg_3.jpg" alt="Third slide">
+                <div class="carousel-caption d-none d-md-block">
+                    @if (ct1 != null)
+                    {
+                        @Html.Raw(ct1.content);
+                    }
+                </div>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
     </div>
 </section>
 
@@ -58,7 +109,7 @@
     <div class="container">
         <div class="row d-flex">
             <div class="col-md-6 col-lg-5 d-flex">
-                <div class="img d-flex align-self-stretch align-items-center" style="background-image:url(../../Content/Home/images/about.jpg);">
+                <div class="img d-flex align-self-stretch align-items-center" style="background-image:url(../../Content/Home/images/about.jpg);" >
                 </div>
             </div>
             <div class="col-md-6 col-lg-7 pl-lg-5 py-md-5">
@@ -79,9 +130,9 @@
                                         ویرا رایانش آریا پاد به عنوان یک شرکت نرم افزاری و سخت افزاری مستقل در سال ۱۳۹۹ در ارومیه تاسیس گردید. این شرکت فعالیت خود را در قالب هوشمند سازی خانگی آغاز کرده و توانایی توسعه و پیاده سازی  سیستم های هوشمند و فرمان پذیر با واسط نرم افزاری و قابل دسترس از سرتاسر جهان را دارد. رویکرد اصلی شرکت ارائه سیستمی هوشمند با قابلیت پیاده سازی روی ساختمان های در حال ساخت یا آماده تحویل با استفاده از قطعات انواع شرکت های تولیدی با پشتیبانی از پروتکل های بی سیم، به واسطه انواع درگاه نرم افزاری اندروید، IOS و وب، روی انواع بستر های شبکه اینترنت، اینترانت و شبکه محلی، با امکان حفظ امنیت روی بستر های ناامن از جمله اینترنت، میباشد. شرکت چشم انداز کاهش زمان پیاده سازی،توسعه و پشتیبانی سیستم های هوشمند را دنبال میکند. دسترسی، زیبایی، آسایش، امنیت خانه از جمله ارزش های  بنیادین قابل ارائه توسط شرکت میباشند.
                                     </p>
                                 }
-                              }
+                            }
                             <div style="text-align:center">
-                                <img src="#" alt="Alternate Text" />
+
                                 <p><a href="#contact-section" class="btn btn-secondary px-4 py-3">تماس با ما</a></p>
                             </div>
                         </div>
@@ -102,7 +153,7 @@
             <div class="col-md-9 text-center">
                 <h2>خدمات ما</h2>
                 <p>ما می توانیم هوشمندی را به خانه هایتان بیاوریم</p>
-                
+
             </div>
         </div>
     </div>
@@ -269,7 +320,8 @@
                     <div class="col-md-6 d-flex justify-content-center counter-wrap ftco-animate">
                         <div class="block-18">
                             <div class="text">
-                                <strong class="number">@if (cta != null) {@Html.Raw(cta.content)}</strong>
+                                <strong class="number">@if (cta != null)
+                                {@Html.Raw(cta.content)}</strong>
                                 <span>سال تجربه</span>
                             </div>
                         </div>
@@ -277,7 +329,8 @@
                     <div class="col-md-6 d-flex justify-content-center counter-wrap ftco-animate">
                         <div class="block-18">
                             <div class="text">
-                                <strong class="number">@if (ctkar != null) {@Html.Raw(ctkar.content)}</strong>
+                                <strong class="number">@if (ctkar != null)
+                                {@Html.Raw(ctkar.content)}</strong>
                                 <span>تعداد کارها</span>
                             </div>
                         </div>
@@ -285,7 +338,8 @@
                     <div class="col-md-6 d-flex justify-content-center counter-wrap ftco-animate">
                         <div class="block-18">
                             <div class="text">
-                                <strong class="number">@if (ctt != null) {@Html.Raw(ctt.content)}</strong>
+                                <strong class="number">@if (ctt != null)
+                                {@Html.Raw(ctt.content)}</strong>
                                 <span>تعداد تیم ها</span>
                             </div>
                         </div>
@@ -293,7 +347,8 @@
                     <div class="col-md-6 d-flex justify-content-center counter-wrap ftco-animate">
                         <div class="block-18">
                             <div class="text">
-                                <strong class="number">@if (ctk != null) {@Html.Raw(ctk.content)}</strong>
+                                <strong class="number">@if (ctk != null)
+                                {@Html.Raw(ctk.content)}</strong>
                                 <span>تعداد کارکنان</span>
                             </div>
                         </div>
@@ -503,6 +558,8 @@
 
 
 <script>
+    $('.carousel').carousel()
+
     function postcontact() {
         sData = JSON.stringify({ Name: $('#cname').val(), Email: $('#cemail').val(), Subject: $('#csubject').val(), Message: $('#cmessage').val() });
         jQuery.support.cors = true;
@@ -519,7 +576,7 @@
                     /*setTimeout(() => {
                         $('html, body').animate({ scrollTop: 0 }, 1500);
                     }, 3000);*/
-                    
+
 
                 }
                 else {
