@@ -1224,35 +1224,17 @@
     <Content Include="Content\Home\fonts\ionicons\fonts\ionicons.svg" />
     <Content Include="Content\Home\fonts\open-iconic\open-iconic.svg" />
     <Content Include="Content\Home\images\about.jpg" />
-    <Content Include="Content\Home\images\bg_1.jpg" />
     <Content Include="Content\Home\images\bg_2.jpg" />
     <Content Include="Content\Home\images\bg_3.jpg" />
-    <Content Include="Content\Home\images\bg_31.png" />
-    <Content Include="Content\Home\images\dept-1.jpg" />
     <Content Include="Content\Home\images\doc-1.jpg" />
     <Content Include="Content\Home\images\doc-2.jpg" />
     <Content Include="Content\Home\images\doc-3.jpg" />
     <Content Include="Content\Home\images\doc-4.jpg" />
-    <Content Include="Content\Home\images\doc-5.jpg" />
-    <Content Include="Content\Home\images\doc-6.jpg" />
-    <Content Include="Content\Home\images\doc-7.jpg" />
-    <Content Include="Content\Home\images\doc-8.jpg" />
     <Content Include="Content\Home\images\footer-bg.jpg" />
     <Content Include="Content\Home\images\footer.jpg" />
-    <Content Include="Content\Home\images\image_1.jpg" />
-    <Content Include="Content\Home\images\image_2.jpg" />
-    <Content Include="Content\Home\images\image_3.jpg" />
-    <Content Include="Content\Home\images\image_4.jpg" />
-    <Content Include="Content\Home\images\image_5.jpg" />
-    <Content Include="Content\Home\images\image_6.jpg" />
-    <Content Include="Content\Home\images\image_7.jpg" />
-    <Content Include="Content\Home\images\image_8.jpg" />
     <Content Include="Content\Home\images\loc.png" />
-    <Content Include="Content\Home\images\person_1.jpg" />
-    <Content Include="Content\Home\images\person_2.jpg" />
-    <Content Include="Content\Home\images\person_3.jpg" />
-    <Content Include="Content\Home\images\person_4.jpg" />
     <Content Include="Content\Home\images\sajjad.jpg" />
+    <Content Include="Content\Home\images\sajjad1.jpg" />
     <Content Include="Content\Home\js\aos.js" />
     <Content Include="Content\Home\js\bootstrap.min.js" />
     <Content Include="Content\Home\js\google-map.js" />
@@ -1462,7 +1444,8 @@
     <Compile Include="Filter\AdFilter.cs" />
     <Compile Include="Filter\AuthFilter.cs" />
     <Compile Include="Filter\BothFilter.cs" />
-    <Compile Include="Filter\CarFilter.cs" />
+    <Compile Include="Filter\CusFilter.cs" />
+    <Compile Include="Filter\EmpFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

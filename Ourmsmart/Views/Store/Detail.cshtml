@@ -158,6 +158,13 @@
                 @Html.DisplayFor(model => model.Title)
             </dd>
 
+            <dt>
+                معرفی
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Summary)
+            </dd>
 
             <dt>
                 قیمت
@@ -186,10 +193,16 @@
                     </div>
                 </form>
             }
-            else
+            else if (Model.Status == "ناموجود")
             {
                 @Html.Raw("<dd style='color:red'>")
                 @Html.Raw("ناموجود");
+                @Html.Raw("</dd>")
+            }
+            else if (Model.Status == "بزودی")
+            {
+                @Html.Raw("<dd style='color:#207dff'>")
+                @Html.Raw("بزودی");
                 @Html.Raw("</dd>")
             }
         </dl>

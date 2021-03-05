@@ -7,7 +7,7 @@ using System.Web.Routing;
 
 namespace Ourmsmart.Filter
 {
-    public class BothFilter : ActionFilterAttribute
+    public class EmpFilter : ActionFilterAttribute
     {
         public override void OnActionExecuted(ActionExecutedContext actionExecutedContext)
         {
@@ -16,11 +16,7 @@ namespace Ourmsmart.Filter
 
         public override void OnActionExecuting(ActionExecutingContext actionContext)
         {
-            if (AuthFilter.Role == "Employee" || AuthFilter.Role == "Admin")
-            {
-                base.OnActionExecuting(actionContext);
-            }
-            else
+            if (AuthFilter.Role != "Employee")
             {
                 //actionContext.Result = new System.Web.Mvc.HttpStatusCodeResult(HttpStatusCode.Unauthorized);
                 actionContext.Result = new RedirectToRouteResult(
@@ -28,7 +24,8 @@ namespace Ourmsmart.Filter
                 actionContext.Result.ExecuteResult(actionContext.Controller.ControllerContext);
                 return;
             }
-               
+            else
+                base.OnActionExecuting(actionContext);
         }
     }
 }

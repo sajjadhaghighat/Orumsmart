@@ -201,11 +201,17 @@
                                     <div style="color:green">@item.Price</div>
                                     <div style="color:green">ریال</div>
                                 }
-                                else
+                                else if (item.Status == "ناموجود")
                                 {
                                     <div style="color:red">@item.Status</div>
                                     <div style="color:red">@item.Price</div>
                                     <div style="color:red">ریال</div>
+                                }
+                                else if (item.Status == "بزودی")
+                                {
+                                    <div style="color:royalblue">@item.Status</div>
+                                    <div style="color:royalblue">@item.Price</div>
+                                    <div style="color:royalblue">ریال</div>
                                 }
 
                             </div>

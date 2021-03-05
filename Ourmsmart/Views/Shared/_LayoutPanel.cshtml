@@ -90,22 +90,34 @@
                         <!-- ============================================================== -->
                         <li>
                             <a class="profile-pic" href="#">
-                                <span class="text-white font-medium">
-                                @{ 
-                                    VIRADB db = new VIRADB();
-                                    var u = (from a in db.FAUsers select a).Where(x => x.Username == AuthFilter.username).FirstOrDefault();
-                                 }
+
                                 @if (AuthFilter.Role == "Admin")
                                 {
-                                    <span> نقش : وبمستر</span>
+                                    VIRADB db = new VIRADB();
+                                    var u = (from a in db.FAUsers select a).Where(x => x.Username == AuthFilter.username).FirstOrDefault();
+                                    <span class="text-white font-medium">
+                                        <span> نقش : مدیر</span>
+                                    </span>
+                                    <img src="@u.Imagepath" alt="-" width="36"
+                                         class="img-circle">
+                                    <span> @u.Fullname </span>
+                                }
+                                else if (AuthFilter.Role == "Employee")
+                                {
+                                    VIRADB db = new VIRADB();
+                                    var u = (from a in db.FAUsers select a).Where(x => x.Username == AuthFilter.username).FirstOrDefault();
+                                    <span class="text-white font-medium">
+                                         <span> نقش : کارمند  </span>
+                                    </span>
+                                    <img src="@u.Imagepath" alt="-" width="36"
+                                         class="img-circle">
+                                    <span> @u.Fullname </span>
                                 }
                                 else
                                 {
-                                    <span>نقش : کاربر</span>
-                                }</span>
-                                <img src="@u.Imagepath" alt="-" width="36"
-                                     class="img-circle">
-                                <span> @u.Fullname </span>
+                                    <span> نقش : مشتری  </span>
+                                }
+
                             </a>
                         </li>
                         <!-- Search -->

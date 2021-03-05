@@ -1,4 +1,5 @@
-﻿using Ourmsmart.Models;
+﻿using Ourmsmart.Filter;
+using Ourmsmart.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,10 @@ namespace Ourmsmart.Controllers
 
         public ActionResult Login()
         {
+            if (AuthFilter.Role != null)
+            {
+                return RedirectToAction("Index", "Profile");
+            }
             return View();
         }
 

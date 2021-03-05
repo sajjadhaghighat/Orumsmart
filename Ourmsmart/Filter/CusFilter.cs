@@ -7,7 +7,7 @@ using System.Web.Routing;
 
 namespace Ourmsmart.Filter
 {
-    public class CarFilter : ActionFilterAttribute
+    public class CusFilter : ActionFilterAttribute
     {
         public override void OnActionExecuted(ActionExecutedContext actionExecutedContext)
         {
@@ -16,7 +16,7 @@ namespace Ourmsmart.Filter
 
         public override void OnActionExecuting(ActionExecutingContext actionContext)
         {
-            if (AuthFilter.Role != "Carmand")
+            if (AuthFilter.Role != "Customer")
             {
                 //actionContext.Result = new System.Web.Mvc.HttpStatusCodeResult(HttpStatusCode.Unauthorized);
                 actionContext.Result = new RedirectToRouteResult(

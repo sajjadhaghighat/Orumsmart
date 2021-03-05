@@ -1,6 +1,6 @@
 ﻿@using Ourmsmart.Models
 @{
-    ViewBag.Title = "صفحه اصلی | خانه هوشمند ارومیه -OrumSmart";
+    ViewBag.Title = "صفحه اصلی | خانه هوشمند  -OrumSmart";
     Layout = "~/Views/Shared/_LayoutMain.cshtml";
     VIRADB db = new VIRADB();
 }
@@ -120,12 +120,14 @@
                                 var cd = (from a in db.FAContents select a).Where(x => x.title == "درباره ما").SingleOrDefault();
                                 if (cd != null)
                                 {
+                                    <h2 class="mb-4">ما <span>OrumSmart</span> هستیم</h2>
+                                    <h3>یک شرکت فعال در زمینه هوشمندسازی خانه</h3>
                                     @Html.Raw(cd.content);
                                 }
                                 else
                                 {
-                                    <h2 class="mb-4">ما <span>OrumSmart</span> هستیم.</h2>
-                                    <h3>یک گروه فعال در زمینه هوشمندسازی خانه ها</h3>
+                                    <h2 class="mb-4">ما <span>OrumSmart</span> هستیم</h2>
+                                    <h3>یک شرکت فعال در زمینه هوشمندسازی خانه</h3>
                                     <p>
                                         ویرا رایانش آریا پاد به عنوان یک شرکت نرم افزاری و سخت افزاری مستقل در سال ۱۳۹۹ در ارومیه تاسیس گردید. این شرکت فعالیت خود را در قالب هوشمند سازی خانگی آغاز کرده و توانایی توسعه و پیاده سازی  سیستم های هوشمند و فرمان پذیر با واسط نرم افزاری و قابل دسترس از سرتاسر جهان را دارد. رویکرد اصلی شرکت ارائه سیستمی هوشمند با قابلیت پیاده سازی روی ساختمان های در حال ساخت یا آماده تحویل با استفاده از قطعات انواع شرکت های تولیدی با پشتیبانی از پروتکل های بی سیم، به واسطه انواع درگاه نرم افزاری اندروید، IOS و وب، روی انواع بستر های شبکه اینترنت، اینترانت و شبکه محلی، با امکان حفظ امنیت روی بستر های ناامن از جمله اینترنت، میباشد. شرکت چشم انداز کاهش زمان پیاده سازی،توسعه و پشتیبانی سیستم های هوشمند را دنبال میکند. دسترسی، زیبایی، آسایش، امنیت خانه از جمله ارزش های  بنیادین قابل ارائه توسط شرکت میباشند.
                                     </p>
@@ -207,7 +209,7 @@
             <div class="col-md-6 col-lg-3 ftco-animate">
                 <div class="staff">
                     <div class="img-wrap d-flex align-items-stretch">
-                        <div class="img align-self-stretch" style="background-image: url(../../Content/Home/images/doc-1.png);"></div>
+                        <div class="img align-self-stretch" style="background-image: url(../../Content/Home/images/doc-1.jpg);"></div>
                     </div>
                     <div class="text pt-3 text-center">
                         <h3 class="mb-2">واحد نرم افزار</h3>
@@ -228,7 +230,7 @@
             <div class="col-md-6 col-lg-3 ftco-animate">
                 <div class="staff">
                     <div class="img-wrap d-flex align-items-stretch">
-                        <div class="img align-self-stretch" style="background-image: url(../../Content/Home/images/doc-2.png);"></div>
+                        <div class="img align-self-stretch" style="background-image: url(../../Content/Home/images/doc-2.jpg);"></div>
                     </div>
                     <div class="text pt-3 text-center">
                         <h3 class="mb-2">واحد شبکه</h3>
@@ -249,7 +251,7 @@
             <div class="col-md-6 col-lg-3 ftco-animate">
                 <div class="staff">
                     <div class="img-wrap d-flex align-items-stretch">
-                        <div class="img align-self-stretch" style="background-image: url(../../Content/Home/images/doc-3.png);"></div>
+                        <div class="img align-self-stretch" style="background-image: url(../../Content/Home/images/doc-3.jpg);"></div>
                     </div>
                     <div class="text pt-3 text-center">
                         <h3 class="mb-2">واحد الکترونیک و قدرت</h3>
@@ -270,7 +272,7 @@
             <div class="col-md-6 col-lg-3 ftco-animate">
                 <div class="staff">
                     <div class="img-wrap d-flex align-items-stretch">
-                        <div class="img align-self-stretch" style="background-image: url(../../Content/Home/images/doc-4.png);"></div>
+                        <div class="img align-self-stretch" style="background-image: url(../../Content/Home/images/doc-4.jpg);"></div>
                     </div>
                     <div class="text pt-3 text-center">
                         <h3 class="mb-2">واحد طراحی</h3>
@@ -322,7 +324,7 @@
                             <div class="text">
                                 <strong class="number">@if (cta != null)
                                 {@Html.Raw(cta.content)}</strong>
-                                <span>سال تجربه</span>
+                                <!--<span>سال تجربه</span>-->
                             </div>
                         </div>
                     </div>
@@ -331,7 +333,7 @@
                             <div class="text">
                                 <strong class="number">@if (ctkar != null)
                                 {@Html.Raw(ctkar.content)}</strong>
-                                <span>تعداد کارها</span>
+                                <!--<span>تعداد کارها</span>-->
                             </div>
                         </div>
                     </div>
@@ -490,16 +492,20 @@
             </div>
         </div>
         <div class="row d-flex contact-info mb-5">
-            <div class="col-md-6 col-lg-3 d-flex ftco-animate">
+            <div class="col-md-12 col-lg-12 d-flex ftco-animate">
                 <div class="align-self-stretch box p-4 text-center bg-light">
                     <div class="icon d-flex align-items-center justify-content-center">
                         <span class="icon-map-signs"></span>
                     </div>
-                    <h3 class="mb-4">آدرس</h3>
+                    <h3 class="mb-4">آدرس شرکت</h3>
                     <p>ارومیه خیابان مولوی۱ نبش کوی ۸ پلاک ۲۴۴</p>
+                    <h3 class="mb-4">آدرس کارگاه</h3>
+                    <p>شهرک صنعتی چهاردانگه خیابان سه و نیم آلومینیوم کاران خیابان سرو پلاک ۲۰</p>
+                    <h3 class="mb-4">نمایندگی فروش تهران</h3>
+                    <p>بازار مبل یافت آباد جنب بانک ملی مب خاکباز قدیم، پلاک ۹ مبل مودب</p>
                 </div>
             </div>
-            <div class="col-md-6 col-lg-3 d-flex ftco-animate">
+            <div class="col-md-6 col-lg-4 d-flex ftco-animate">
                 <div class="align-self-stretch box p-4 text-center bg-light">
                     <div class="icon d-flex align-items-center justify-content-center">
                         <span class="icon-phone2"></span>
@@ -508,7 +514,7 @@
                     <p><a href="tel://04433489690">۳۳۴۸۹۶۹۰ ۰۴۴</a></p>
                 </div>
             </div>
-            <div class="col-md-6 col-lg-3 d-flex ftco-animate">
+            <div class="col-md-6 col-lg-4 d-flex ftco-animate">
                 <div class="align-self-stretch box p-4 text-center bg-light">
                     <div class="icon d-flex align-items-center justify-content-center">
                         <span class="icon-paper-plane"></span>
@@ -517,7 +523,7 @@
                     <p><a href="mailto:info@yoursite.com">info@orumsmart.ir</a></p>
                 </div>
             </div>
-            <div class="col-md-6 col-lg-3 d-flex ftco-animate">
+            <div class="col-md-6 col-lg-4 d-flex ftco-animate">
                 <div class="align-self-stretch box p-4 text-center bg-light">
                     <div class="icon d-flex align-items-center justify-content-center">
                         <span class="icon-globe"></span>
