@@ -9,6 +9,10 @@
       width:100%;
       height: auto;
    }
+   .topstyle{
+       width:100%;
+       height:100px;
+   }
 </style>
 
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
@@ -62,6 +66,7 @@
     </div>
 </section>-->
 
+<div class="topstyle"></div>
 <section>
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
@@ -70,11 +75,20 @@
             <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
         </ol>
         @{
-            var ct1 = (from a in db.FAContents select a).Where(x => x.title == "عنوان").FirstOrDefault();      
+            var ct1 = (from a in db.FAContents select a).Where(x => x.title == "عنوان").FirstOrDefault();
         }
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <img class="d-block w-100" src="~/Content/Home/images/slider1.jpg" alt="First slide">
+                <div class="carousel-caption d-none d-md-block">
+                    @if (ct1 != null && false)
+                    {
+                        @Html.Raw(ct1.content);
+                    }
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img class="d-block w-100" src="~/Content/Home/images/slider2.jpg" alt="Second slide">
                 <div class="carousel-caption d-none d-md-block">
                     @if (ct1 != null)
                     {
@@ -83,7 +97,16 @@
                 </div>
             </div>
             <div class="carousel-item">
-                <img class="d-block w-100" src="~/Content/Home/images/bg_3.jpg" alt="Second slide">
+                <img class="d-block w-100" src="~/Content/Home/images/slider3.jpg" alt="Third slide">
+                <div class="carousel-caption d-none d-md-block">
+                    @if (ct1 != null && false)
+                    {
+                        @Html.Raw(ct1.content);
+                    }
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img class="d-block w-100" src="~/Content/Home/images/bg_3.jpg" alt="Third slide">
                 <div class="carousel-caption d-none d-md-block">
                     @if (ct1 != null)
                     {
@@ -91,7 +114,6 @@
                     }
                 </div>
             </div>
-            
         </div>
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -108,7 +130,7 @@
     <div class="container">
         <div class="row d-flex">
             <div class="col-md-6 col-lg-5 d-flex">
-                <div class="img-wrap" style="margin-top:35%;">
+                <div class="img-wrap" style="margin-top:20%;">
                     <img src="~/Content/Home/images/about.jpg" />
                 </div>
             </div>
