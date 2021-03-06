@@ -35,11 +35,11 @@ namespace Ourmsmart.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpPost]
         public ActionResult logout()
         {
-            Session["Auth"] = "0";
-            Session["Username"] = "0";
+            Session["Auth"] = null;
+            Session["Username"] = null;
             return Json(new { message = "با موفقیت خارج شدید", title = "خروج از حساب" });
         }
 

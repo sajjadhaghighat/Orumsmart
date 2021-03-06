@@ -330,10 +330,10 @@
         function exitpanel()
         {
             $.ajax({
-                type: 'GET',
+                type: 'POST',
                 dataType: 'JSON',
                 contentType: 'application/json; charset=utf-8',
-                url: '/Auth/logout',
+                url: "/Auth/logout",
                 success: function (rs) {
                     toastr.success(rs.message, rs.title, { timeOut: 3000 });
                     setTimeout(function () { window.location.replace('@Url.Action("Index","Home")'); }, 3000);
