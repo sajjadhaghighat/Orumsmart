@@ -112,7 +112,7 @@
             dataType : 'JSON',
             contentType : 'application/json; charset=utf-8',
             data: sData,
-            url: "/api/Auth/login",
+            url: "/Auth/login",
             success: function (rs) {
                 if (rs.success) {
                     toastr.success(rs.message, rs.title, { timeOut: 2000 });

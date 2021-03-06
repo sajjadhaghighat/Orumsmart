@@ -1,5 +1,9 @@
 ﻿@using Ourmsmart.Filter
 @using Ourmsmart.Models
+@{ 
+    string username = (string)Session["Username"];
+    string auth = (string)Session["Auth"];
+}
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
 
@@ -91,10 +95,10 @@
                         <li>
                             <a class="profile-pic" href="#">
 
-                                @if (AuthFilter.Role == "Admin")
+                                @if (auth == "Admin")
                                 {
                                     VIRADB db = new VIRADB();
-                                    var u = (from a in db.FAUsers select a).Where(x => x.Username == AuthFilter.username).FirstOrDefault();
+                                    var u = (from a in db.FAUsers select a).Where(x => x.Username == username).FirstOrDefault();
                                     <span class="text-white font-medium">
                                         <span> نقش : مدیر</span>
                                     </span>
@@ -102,10 +106,10 @@
                                          class="img-circle">
                                     <span> @u.Fullname </span>
                                 }
-                                else if (AuthFilter.Role == "Employee")
+                                else if (auth == "Employee")
                                 {
                                     VIRADB db = new VIRADB();
-                                    var u = (from a in db.FAUsers select a).Where(x => x.Username == AuthFilter.username).FirstOrDefault();
+                                    var u = (from a in db.FAUsers select a).Where(x => x.Username == username).FirstOrDefault();
                                     <span class="text-white font-medium">
                                          <span> نقش : کارمند  </span>
                                     </span>
@@ -164,7 +168,7 @@
                                 <i class="fa fa-user" aria-hidden="true"></i><span class="hide-menu">پروفایل</span>
                             </a>
                         </li>
-                        @if (AuthFilter.Role == "Admin")
+                        @if (auth == "Admin")
                         {
                             <li class="sidebar-item">
                                 <a class="sidebar-link waves-effect waves-dark sidebar-link"
@@ -329,7 +333,7 @@
                 type: 'GET',
                 dataType: 'JSON',
                 contentType: 'application/json; charset=utf-8',
-                url: '/api/Auth/logout',
+                url: '/Auth/logout',
                 success: function (rs) {
                     toastr.success(rs.message, rs.title, { timeOut: 3000 });
                     setTimeout(function () { window.location.replace('@Url.Action("Index","Home")'); }, 3000);

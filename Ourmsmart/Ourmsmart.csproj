@@ -1445,7 +1445,6 @@
     <Compile Include="Controllers\Panel\UsersController.cs" />
     <Compile Include="Controllers\StoreController.cs" />
     <Compile Include="Filter\AdFilter.cs" />
-    <Compile Include="Filter\AuthFilter.cs" />
     <Compile Include="Filter\BothFilter.cs" />
     <Compile Include="Filter\CusFilter.cs" />
     <Compile Include="Filter\EmpFilter.cs" />

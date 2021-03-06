@@ -19,7 +19,7 @@ namespace Ourmsmart.Controllers
 
         public ActionResult Login()
         {
-            if (AuthFilter.Role != null)
+            if (Session["Auth"] != null)
             {
                 return RedirectToAction("Index", "Profile");
             }

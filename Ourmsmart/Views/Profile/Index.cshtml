@@ -16,7 +16,8 @@
             </style>
             @{
                 VIRADB db = new VIRADB();
-                var u = (from a in db.FAUsers select a).Where(x => x.Username == AuthFilter.username).FirstOrDefault();
+                string username = Session["Username"].ToString();
+                var u = (from a in db.FAUsers select a).Where(x => x.Username == username).FirstOrDefault();
             }
             <div class="user-bg">
                 <img  src="@u.Imagepath">

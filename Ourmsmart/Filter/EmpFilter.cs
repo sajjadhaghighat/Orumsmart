@@ -16,16 +16,26 @@ namespace Ourmsmart.Filter
 
         public override void OnActionExecuting(ActionExecutingContext actionContext)
         {
-            if (AuthFilter.Role != "Employee")
+            try
             {
-                //actionContext.Result = new System.Web.Mvc.HttpStatusCodeResult(HttpStatusCode.Unauthorized);
+                if (actionContext.HttpContext.Session["Auth"].ToString() != "Employee")
+                {
+                    //actionContext.Result = new System.Web.Mvc.HttpStatusCodeResult(HttpStatusCode.Unauthorized);
+                    actionContext.Result = new RedirectToRouteResult(
+                        new RouteValueDictionary(new { controller = "Message", action = "http401" }));
+                    actionContext.Result.ExecuteResult(actionContext.Controller.ControllerContext);
+                    return;
+                }
+                else
+                    base.OnActionExecuting(actionContext);
+            }
+            catch (Exception)
+            {
                 actionContext.Result = new RedirectToRouteResult(
-                    new RouteValueDictionary(new { controller = "Message", action = "http401" }));
+                                        new RouteValueDictionary(new { controller = "Message", action = "http401" }));
                 actionContext.Result.ExecuteResult(actionContext.Controller.ControllerContext);
                 return;
             }
-            else
-                base.OnActionExecuting(actionContext);
         }
     }
 }

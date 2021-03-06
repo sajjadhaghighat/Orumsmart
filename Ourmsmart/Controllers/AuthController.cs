@@ -2,19 +2,14 @@
 using Ourmsmart.Models;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Web;
-using System.Web.Hosting;
-using System.Web.Http;
+using System.Web.Mvc;
 
 namespace Ourmsmart.Controllers
 {
     
-    public class AuthController : ApiController
+    public class AuthController : Controller
     {
         public class Users
         {
@@ -25,14 +20,13 @@ namespace Ourmsmart.Controllers
         VIRADB db = new VIRADB();
 
         [HttpPost]
-        [Route("api/Auth/login")]
-        public IHttpActionResult login(Users u)
+        public ActionResult login(Users u)
         {
             var q = (from a in db.FAUsers select a).Where(x => x.Username == u.Username && x.Password == u.Password).FirstOrDefault();
             if (q != null)
             {
-                AuthFilter.Role = q.Type;
-                AuthFilter.username = q.Username;
+                Session["Auth"] = q.Type;
+                Session["Username"] = q.Username;
                 return Json(new { success = true, message = "با موفقیت وارد شدید", title = "سلام" });
             }
             else
@@ -42,27 +36,13 @@ namespace Ourmsmart.Controllers
         }
 
         [HttpGet]
-        [Route("api/Auth/logout")]
-        public IHttpActionResult logout()
+        public ActionResult logout()
         {
-            AuthFilter.Role = null;
+            Session["Auth"] = "0";
+            Session["Username"] = "0";
             return Json(new { message = "با موفقیت خارج شدید", title = "خروج از حساب" });
         }
 
-        /*[HttpPost]
-        public HttpResponseMessage Updatepropic(HttpPostedFileBase file)
-        {
-            string filename = Path.GetFileNameWithoutExtension(file.FileName);
-            string extension = Path.GetExtension(file.FileName);
-            filename = filename + DateTime.Now.ToString("yymmssfff") + extension;
-            string path = "~/Content/images/admin/" + filename;
-            filename = Path.Combine(HostingEnvironment.MapPath("~/Content/images/admin/"), filename);
-            file.SaveAs(filename);
-            string imgpath = "<img src='" + filename + "' />";
-            var response = new HttpResponseMessage();
-            response.Content = new StringContent(imgpath);
-            response.Content.Headers.ContentType = new MediaTypeHeaderValue("text/html");
-            return response;
-        }*/
+        
     }
 }

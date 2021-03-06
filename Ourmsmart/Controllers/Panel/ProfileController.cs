@@ -20,20 +20,6 @@ namespace Ourmsmart.Controllers
             return View();
         }
 
-        [HttpPost]
-        public void Updatepropic(HttpPostedFileBase imagefile)
-        {
-            string filename = Path.GetFileNameWithoutExtension(imagefile.FileName);
-            string extension = Path.GetExtension(imagefile.FileName);
-            filename = filename + DateTime.Now.ToString("yymmssfff") + extension;
-            string path = "~/Content/images/admin/" + filename;
-            filename = Path.Combine(Server.MapPath("~/Content/images/admin/"), filename);
-            imagefile.SaveAs(filename);
-            //string imgpath = "<img src='" + path + "' />";
-            //return Content(imgpath , "text/html");
-        }
-
-
         public ActionResult Dashboard()
         {
             return View();
