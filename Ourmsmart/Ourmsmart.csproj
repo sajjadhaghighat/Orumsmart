@@ -1253,9 +1253,6 @@
     <Content Include="Content\Home\js\owl.carousel.min.js" />
     <Content Include="Content\Home\js\popper.min.js" />
     <Content Include="Content\Home\js\scrollax.min.js" />
-    <Content Include="Content\img\1.jpg" />
-    <Content Include="Content\img\2.jpg" />
-    <Content Include="Content\img\3.jpg" />
     <Content Include="Content\Login\css\main.css" />
     <Content Include="Content\Login\css\util.css" />
     <Content Include="Content\Login\fonts\font-awesome-4.7.0\css\font-awesome.css" />
@@ -1380,41 +1377,8 @@
     <Content Include="Content\panel\plugins\bower_components\popper.js\dist\popper.min.js" />
     <Content Include="Content\panel\plugins\bower_components\popper.js\dist\umd\popper-utils.min.js" />
     <Content Include="Content\panel\plugins\bower_components\popper.js\dist\umd\popper.min.js" />
-    <Content Include="Content\panel\plugins\images\custom-select.png" />
-    <Content Include="Content\panel\plugins\images\favicon.png" />
-    <Content Include="Content\panel\plugins\images\large\img1.jpg" />
     <Content Include="Content\panel\plugins\images\logo-icon.png" />
-    <Content Include="Content\panel\plugins\images\logo-light-icon.png" />
-    <Content Include="Content\panel\plugins\images\logo-light-text.png" />
     <Content Include="Content\panel\plugins\images\logo-text.png" />
-    <Content Include="Content\panel\plugins\images\users\1-old.jpg" />
-    <Content Include="Content\panel\plugins\images\users\1.jpg" />
-    <Content Include="Content\panel\plugins\images\users\1.png" />
-    <Content Include="Content\panel\plugins\images\users\2.jpg" />
-    <Content Include="Content\panel\plugins\images\users\2.png" />
-    <Content Include="Content\panel\plugins\images\users\3.jpg" />
-    <Content Include="Content\panel\plugins\images\users\3.png" />
-    <Content Include="Content\panel\plugins\images\users\4.jpg" />
-    <Content Include="Content\panel\plugins\images\users\5.jpg" />
-    <Content Include="Content\panel\plugins\images\users\6.jpg" />
-    <Content Include="Content\panel\plugins\images\users\7.jpg" />
-    <Content Include="Content\panel\plugins\images\users\8.jpg" />
-    <Content Include="Content\panel\plugins\images\users\agent.jpg" />
-    <Content Include="Content\panel\plugins\images\users\agent2.jpg" />
-    <Content Include="Content\panel\plugins\images\users\arijit.jpg" />
-    <Content Include="Content\panel\plugins\images\users\d1.jpg" />
-    <Content Include="Content\panel\plugins\images\users\d2.jpg" />
-    <Content Include="Content\panel\plugins\images\users\d3.jpg" />
-    <Content Include="Content\panel\plugins\images\users\d4.jpg" />
-    <Content Include="Content\panel\plugins\images\users\d5.jpg" />
-    <Content Include="Content\panel\plugins\images\users\genu.jpg" />
-    <Content Include="Content\panel\plugins\images\users\govinda.jpg" />
-    <Content Include="Content\panel\plugins\images\users\hritik.jpg" />
-    <Content Include="Content\panel\plugins\images\users\pawandeep.jpg" />
-    <Content Include="Content\panel\plugins\images\users\profile.png" />
-    <Content Include="Content\panel\plugins\images\users\ritesh.jpg" />
-    <Content Include="Content\panel\plugins\images\users\sonu.jpg" />
-    <Content Include="Content\panel\plugins\images\users\varun.jpg" />
     <Content Include="Content\toastr\build\toastr.min.css" />
     <Content Include="Content\toastr\build\toastr.min.js" />
     <Content Include="Content\toastr\toastr.js" />
@@ -2029,6 +1993,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Data\" />
+    <Folder Include="Content\img\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
