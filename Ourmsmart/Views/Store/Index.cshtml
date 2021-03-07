@@ -31,15 +31,16 @@
         padding: 15px;
     }
 
-    .block-20:hover {
-        zoom: 1.02;
-        border-right: solid 10px #207dff;
-        border-bottom: solid 10px #207dff;
+    .exist , .non-exist{
+        transition : all 0.4s;
     }
-    .second:hover {
+    .exist:hover {
         zoom: 1.02;
-        border-right: solid 10px red;
-        border-bottom: solid 10px red;
+        border-top: solid 10px #207dff;
+    }
+    .non-exist:hover {
+        zoom: 1.02;
+        border-top: solid 10px #fe5f55;
     }
 
     .pagenum {
@@ -100,6 +101,10 @@
             background-color: grey;
             color: white;
         }
+    .img-wrap img {
+        width: 100%;
+        height: auto;
+    }
 </style>
 <link href="~/Content/PagedList.css" rel="stylesheet" />
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
@@ -153,10 +158,9 @@
         </div>
     </div>
 </nav>
-<section class="ftco-section bg-light" id="blog-section" ;
-        background-size: cover !important">
+<section class="ftco-section bg-light" id="blog-section">
     <div class="container">
-        <div style="width:100%;height:auto;">
+        <div class="topstore">
             <form class="row bg-light searchform" method="get" action="@Url.Action("Index", "Store")">
                 <div class="col-md-4 heading-section text-center ftco-animate">
                     <h4 class="mb-4" style="padding-top:15px;">فروشگاه</h4>
@@ -185,13 +189,17 @@
                     <div class="blog-entry">
                         @if (item.Status == "موجود")
                         {
-                            <a href=@Url.Action("Detail", "Store", new { id = item.PID }) class="block-20" style="background-image: url('../../@item.Imagepath')"></a>
+                            <div class="img-wrap">
+                                <a href=@Url.Action("Detail", "Store", new { id = item.PID })><img src="@item.Imagepath" alt="بدون عکس" /></a>
+                            </div>
                             <div style="margin:-50px -10px 0px 0px;position:relative;"><a href=@Url.Action("AddItemToBasket", "Store", new { pid = item.PID, qty = 1 }) class="btn btn-primary">+</a></div>
                         }
                         else
                         {
-                            <a href=@Url.Action("Detail", "Store", new { id = item.PID }) class="block-20 second" style="background-image: url('../../@item.Imagepath')"></a>
-                            <div style="margin:-50px -10px 0px 0px;position:relative;"><a href="#" class="btn btn-danger" style="background-color:red">+</a></div>
+                            <div class="img-wrap">
+                                <a href=@Url.Action("Detail", "Store", new { id = item.PID })><img src="@item.Imagepath" class="non-exist" alt="بدون عکس" /></a>
+                            </div>
+                            <div style="margin:-50px -10px 0px 0px;position:relative;"><a href="#" class="btn btn-danger" style="background-color:#fe5f55">+</a></div>
                         }
                         <div class="text d-block">
                             <div class="meta mb-3">
