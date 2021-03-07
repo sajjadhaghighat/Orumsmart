@@ -27,8 +27,8 @@
 	{
 		// Paste your license name and key here. If left blank, CKFinder will
 		// be fully functional, in Demo Mode.
-		LicenseName = "";
-		LicenseKey = "";
+		LicenseName = "www.orumsmart.com";
+		LicenseKey = "AQV97X2SM9K4GPNFSBRH1GRSX88XNSX6";
 
 		// The base URL used to reach files in CKFinder through the browser.
 		BaseUrl = "~/Content/Data/";

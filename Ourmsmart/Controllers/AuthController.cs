@@ -27,6 +27,7 @@ namespace Ourmsmart.Controllers
             {
                 Session["Auth"] = q.Type;
                 Session["Username"] = q.Username;
+                Session.Timeout = 60;
                 return Json(new { success = true, message = "با موفقیت وارد شدید", title = "سلام" });
             }
             else
