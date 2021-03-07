@@ -1230,7 +1230,6 @@
     <Content Include="Content\Home\images\doc-2.jpg" />
     <Content Include="Content\Home\images\doc-3.jpg" />
     <Content Include="Content\Home\images\doc-4.jpg" />
-    <Content Include="Content\Home\images\footer-bg.jpg" />
     <Content Include="Content\Home\images\footer.jpg" />
     <Content Include="Content\Home\images\loc.png" />
     <Content Include="Content\Home\images\orumsmart.jpg" />
@@ -1238,6 +1237,7 @@
     <Content Include="Content\Home\images\sajjad1.jpg" />
     <Content Include="Content\Home\images\slider2.jpg" />
     <Content Include="Content\Home\images\slider1.jpg" />
+    <Content Include="Content\Home\images\slider3.jpg" />
     <Content Include="Content\Home\js\aos.js" />
     <Content Include="Content\Home\js\bootstrap.min.js" />
     <Content Include="Content\Home\js\google-map.js" />
