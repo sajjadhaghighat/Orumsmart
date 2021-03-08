@@ -70,6 +70,7 @@
             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
             <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
             <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
         </ol>
         @{
             var ct1 = (from a in db.FAContents select a).Where(x => x.title == "عنوان").FirstOrDefault();
@@ -87,13 +88,16 @@
         <div class="carousel-item">
             <img class="d-block w-100" src="~/Content/Home/images/slider2.jpg" alt="Second slide">
             <div class="carousel-caption d-none d-md-block">
-
             </div>
         </div>
         <div class="carousel-item">
             <img class="d-block w-100" src="~/Content/Home/images/slider3.jpg" alt="Second slide">
             <div class="carousel-caption d-none d-md-block">
-
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img class="d-block w-100" src="~/Content/Home/images/slider4.jpg" alt="Second slide">
+            <div class="carousel-caption d-none d-md-block">
             </div>
         </div>
 
@@ -569,7 +573,7 @@
 
 
 <script>
-    $('.carousel').carousel()
+    $("#carouselExampleIndicators").carousel();
 
     function postcontact() {
         sData = JSON.stringify({ Name: $('#cname').val(), Email: $('#cemail').val(), Subject: $('#csubject').val(), Message: $('#cmessage').val() });

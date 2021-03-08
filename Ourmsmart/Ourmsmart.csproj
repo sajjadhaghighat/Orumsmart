@@ -1238,6 +1238,7 @@
     <Content Include="Content\Home\images\slider2.jpg" />
     <Content Include="Content\Home\images\slider1.jpg" />
     <Content Include="Content\Home\images\slider3.jpg" />
+    <Content Include="Content\Home\images\slider4.jpg" />
     <Content Include="Content\Home\js\aos.js" />
     <Content Include="Content\Home\js\bootstrap.min.js" />
     <Content Include="Content\Home\js\google-map.js" />
