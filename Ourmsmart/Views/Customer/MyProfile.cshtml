@@ -27,7 +27,7 @@
             <div class="form-group">
                 @Html.DisplayName("نام کاربری")
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
+                    <input type="text" name="Username" value="@Model.Username" disabled />
                     @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -122,7 +122,7 @@
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="ذخیره" class="btn btn-default" />
+                    <input type="submit" value="ذخیره" class="btn btn-primary" />
                 </div>
             </div>
         </div>
