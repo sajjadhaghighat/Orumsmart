@@ -31,7 +31,7 @@ namespace Ourmsmart.Controllers
             return View();
         }
 
-        /*[HttpPost]
+        [HttpPost]
         public ActionResult Register(Customer customer)
         {
             if (!ModelState.IsValid)
@@ -47,7 +47,7 @@ namespace Ourmsmart.Controllers
                 return Json(new { success = false, message = "پیام شما ارسال نشد. مجددا در تایم بعدی سعی کنید." });
                 throw;
             }
-        }*/
+        }
         
         [AllowAnonymous]
         [HttpPost]

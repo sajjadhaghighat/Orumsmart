@@ -129,7 +129,7 @@
                             </div>
                         </div>
                         <div class="p-t-15">
-                            <button class="btn btn--radius-2 btn--blue" type="submit">ثبت نام</button>
+                            <button class="btn btn--radius-2 btn--blue" onclick="Registerform()">ثبت نام</button>
                         </div>
                         <div class="p-t-15">
                             <a href="@Url.Action("login")"><button class="btn btn--radius-2 btn--green" type="button">برگشت به صفحه ورود</button></a>
@@ -143,6 +143,7 @@
     <!-- Jquery JS-->
     <script src="~/Content/Register/vendor/jquery/jquery.min.js"></script>
     <!-- Vendor JS-->
+    <script src="~/Content/Register/js/formToJson.min.js"></script>
     <script src="~/Content/Register/vendor/select2/select2.min.js"></script>
     <script src="~/Content/Register/vendor/datepicker/moment.min.js"></script>
     <script src="~/Content/Register/vendor/datepicker/daterangepicker.js"></script>
@@ -155,7 +156,7 @@
         });
         function Registerform() {
             var Data = $("#Registerform").serialize();
-            sData = JSON.stringify(Data);
+            sData = JSON.stringify($("#Registerform").formToJson());
             jQuery.support.cors = true;
             $.ajax({
             type: 'POST' ,
@@ -167,7 +168,7 @@
                 if (rs.success) {
                     toastr.success(rs.message, rs.title, { timeOut: 2000 });
                     setTimeout(() => {
-                        window.location.href = '@Url.Action("Index", "Profile")';
+                        window.location.href = '@Url.Action("Login", "Home")';
                     }, 2000);
                 }
                 else {

@@ -1381,6 +1381,8 @@
     <Content Include="Content\panel\plugins\images\logo-icon.png" />
     <Content Include="Content\panel\plugins\images\logo-text.png" />
     <Content Include="Content\Register\css\main.css" />
+    <Content Include="Content\Register\js\formToJson.js" />
+    <Content Include="Content\Register\js\formToJson.min.js" />
     <Content Include="Content\Register\js\global.js" />
     <Content Include="Content\Register\readme.txt" />
     <Content Include="Content\Register\vendor\datepicker\daterangepicker.css" />
