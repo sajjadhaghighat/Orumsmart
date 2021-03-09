@@ -26,6 +26,29 @@ namespace Ourmsmart.Controllers
             return View();
         }
 
+        public ActionResult Register()
+        {
+            return View();
+        }
+
+        /*[HttpPost]
+        public ActionResult Register(Customer customer)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Json(new { success = false, message = "ناسازگاری در پایگاه داده" });
+            }
+            try
+            {
+                return Json(new { success = true, message = "پیام شما با موفقیت ارسال شد" });
+            }
+            catch (Exception)
+            {
+                return Json(new { success = false, message = "پیام شما ارسال نشد. مجددا در تایم بعدی سعی کنید." });
+                throw;
+            }
+        }*/
+        
         [AllowAnonymous]
         [HttpPost]
         public ActionResult Contact(Contact contact)

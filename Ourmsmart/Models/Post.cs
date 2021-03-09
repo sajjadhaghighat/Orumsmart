@@ -12,26 +12,14 @@ namespace Ourmsmart.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class FAProduct
+    public partial class Post
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public FAProduct()
-        {
-            this.Orders = new HashSet<Order>();
-        }
-    
-        public int PID { get; set; }
+        public int PostID { get; set; }
         public string Title { get; set; }
         public string Summary { get; set; }
         public string Description { get; set; }
-        public string Price { get; set; }
-        public string Status { get; set; }
-        public int Qty { get; set; }
         public string Imagepath { get; set; }
-        public string Ptype { get; set; }
-        public string Pmodel { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Order> Orders { get; set; }
+        public string AuthorName { get; set; }
+        public string Timestamp { get; set; }
     }
 }

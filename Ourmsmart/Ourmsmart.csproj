@@ -1380,6 +1380,23 @@
     <Content Include="Content\panel\plugins\bower_components\popper.js\dist\umd\popper.min.js" />
     <Content Include="Content\panel\plugins\images\logo-icon.png" />
     <Content Include="Content\panel\plugins\images\logo-text.png" />
+    <Content Include="Content\Register\css\main.css" />
+    <Content Include="Content\Register\js\global.js" />
+    <Content Include="Content\Register\readme.txt" />
+    <Content Include="Content\Register\vendor\datepicker\daterangepicker.css" />
+    <Content Include="Content\Register\vendor\datepicker\daterangepicker.js" />
+    <Content Include="Content\Register\vendor\datepicker\moment.min.js" />
+    <Content Include="Content\Register\vendor\font-awesome-4.7\css\font-awesome.css" />
+    <Content Include="Content\Register\vendor\font-awesome-4.7\css\font-awesome.min.css" />
+    <Content Include="Content\Register\vendor\font-awesome-4.7\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\Register\vendor\font-awesome-4.7\HELP-US-OUT.txt" />
+    <Content Include="Content\Register\vendor\jquery\jquery.js" />
+    <Content Include="Content\Register\vendor\jquery\jquery.min.js" />
+    <Content Include="Content\Register\vendor\mdi-font\css\material-design-iconic-font.css" />
+    <Content Include="Content\Register\vendor\mdi-font\css\material-design-iconic-font.min.css" />
+    <Content Include="Content\Register\vendor\mdi-font\fonts\Material-Design-Iconic-Font.svg" />
+    <Content Include="Content\Register\vendor\select2\select2.min.css" />
+    <Content Include="Content\Register\vendor\select2\select2.min.js" />
     <Content Include="Content\toastr\build\toastr.min.css" />
     <Content Include="Content\toastr\build\toastr.min.js" />
     <Content Include="Content\toastr\toastr.js" />
@@ -1389,7 +1406,6 @@
       <DependentUpon>Model.edmx</DependentUpon>
       <LastGenOutput>Model.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\Model.edmx.sql" />
     <Content Include="Models\Model.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model.edmx</DependentUpon>
@@ -1419,19 +1435,16 @@
     <Compile Include="Models\Contact.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ENContent.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ENProduct.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ENUser.cs">
+    <Compile Include="Models\Customer.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\FAContent.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\FAProduct.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FATeam.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\FAUser.cs">
@@ -1458,7 +1471,16 @@
     <Compile Include="Models\OrderAddress.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Post.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Service.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Services.cs" />
+    <Compile Include="Models\Slider.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1937,6 +1959,20 @@
     <Content Include="Content\Home\fonts\IRANSansWeb.eot" />
     <Content Include="Content\Home\fonts\IRANSansWeb.woff" />
     <Content Include="Content\Home\fonts\IRANSansWeb.woff2" />
+    <Content Include="Content\Home\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\Home\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\Home\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\Home\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\Home\fonts\FontAwesome.otf" />
+    <Content Include="Content\Register\vendor\font-awesome-4.7\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\Register\vendor\font-awesome-4.7\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\Register\vendor\font-awesome-4.7\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\Register\vendor\font-awesome-4.7\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\Register\vendor\font-awesome-4.7\fonts\FontAwesome.otf" />
+    <Content Include="Content\Register\vendor\mdi-font\fonts\Material-Design-Iconic-Font.eot" />
+    <Content Include="Content\Register\vendor\mdi-font\fonts\Material-Design-Iconic-Font.ttf" />
+    <Content Include="Content\Register\vendor\mdi-font\fonts\Material-Design-Iconic-Font.woff" />
+    <Content Include="Content\Register\vendor\mdi-font\fonts\Material-Design-Iconic-Font.woff2" />
     <EntityDeploy Include="Models\Model.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model.Designer.cs</LastGenOutput>
@@ -1944,11 +1980,6 @@
     <Content Include="Models\Model.edmx.diagram">
       <DependentUpon>Model.edmx</DependentUpon>
     </Content>
-    <Content Include="Content\Home\fonts\fontawesome-webfont.eot" />
-    <Content Include="Content\Home\fonts\fontawesome-webfont.ttf" />
-    <Content Include="Content\Home\fonts\fontawesome-webfont.woff" />
-    <Content Include="Content\Home\fonts\fontawesome-webfont.woff2" />
-    <Content Include="Content\Home\fonts\FontAwesome.otf" />
     <None Include="packages.config" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\login.cshtml" />
@@ -1985,6 +2016,7 @@
     <Content Include="Views\Message\DBerror.cshtml" />
     <Content Include="Views\Message\SuccessInsertProduct.cshtml" />
     <Content Include="Views\Message\AbortOrder.cshtml" />
+    <Content Include="Views\Home\Register.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

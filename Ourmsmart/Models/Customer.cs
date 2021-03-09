@@ -12,16 +12,21 @@ namespace Ourmsmart.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class FAUser
+    public partial class Customer
     {
-        public int UID { get; set; }
+        public int CusID { get; set; }
         public string Fullname { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
         public string Email { get; set; }
-        public string Bio { get; set; }
-        public string Team { get; set; }
-        public string Type { get; set; }
+        public string Gender { get; set; }
+        public string SSN { get; set; }
+        public string Ostan { get; set; }
+        public string City { get; set; }
+        public string Address { get; set; }
+        public string Phone { get; set; }
+        public string Codeposti { get; set; }
+        public string CardNumber { get; set; }
         public string Imagepath { get; set; }
     }
 }

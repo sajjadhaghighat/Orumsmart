@@ -4,18 +4,20 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="2d85d5bd4ffc437eb39fe0eb07b135ab" Name="Diagram1">
+      <Diagram DiagramId="25bdf310c947407d95abbee4e4de968c" Name="Diagram1">
         <EntityTypeShape EntityType="VIRADBModel.Contact" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="VIRADBModel.ENContent" Width="1.5" PointX="2.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="VIRADBModel.ENProduct" Width="1.5" PointX="4.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="VIRADBModel.ENUser" Width="1.5" PointX="6.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="VIRADBModel.FAContent" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VIRADBModel.Customer" Width="1.5" PointX="2.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VIRADBModel.FAContent" Width="1.5" PointX="4.75" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="VIRADBModel.FAProduct" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="VIRADBModel.FAUser" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VIRADBModel.FATeam" Width="1.5" PointX="6.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VIRADBModel.FAUser" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="VIRADBModel.OrderAddress" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="VIRADBModel.Order" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <AssociationConnector Association="VIRADBModel.FK__Orders__PID__1BFD2C07" ManuallyRouted="false" />
-        <AssociationConnector Association="VIRADBModel.FK__OrderAddres__OID__1ED998B2" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="VIRADBModel.Post" Width="1.5" PointX="8.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VIRADBModel.Service" Width="1.5" PointX="4.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VIRADBModel.Slider" Width="1.5" PointX="6.75" PointY="8.75" IsExpanded="true" />
+        <AssociationConnector Association="VIRADBModel.FK__Orders__PID__68487DD7" ManuallyRouted="false" />
+        <AssociationConnector Association="VIRADBModel.FK__OrderAddres__OID__6B24EA82" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

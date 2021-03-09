@@ -12,17 +12,10 @@ namespace Ourmsmart.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class ENProduct
+    public partial class Service
     {
-        public int PID { get; set; }
-        public string Title { get; set; }
-        public string Summary { get; set; }
-        public string Description { get; set; }
-        public string Price { get; set; }
-        public string Status { get; set; }
-        public int Qty { get; set; }
-        public string Imagepath { get; set; }
-        public string Ptype { get; set; }
-        public string Pmodel { get; set; }
+        public int SID { get; set; }
+        public string title { get; set; }
+        public string content { get; set; }
     }
 }

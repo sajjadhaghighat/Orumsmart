@@ -12,16 +12,10 @@ namespace Ourmsmart.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class ENUser
+    public partial class FATeam
     {
-        public int UID { get; set; }
-        public string Fullname { get; set; }
-        public string Username { get; set; }
-        public string Password { get; set; }
-        public string Email { get; set; }
-        public string Bio { get; set; }
-        public string Team { get; set; }
-        public string Type { get; set; }
-        public string Imagepath { get; set; }
+        public int TEAMID { get; set; }
+        public string Content { get; set; }
+        public string ImgUrl { get; set; }
     }
 }

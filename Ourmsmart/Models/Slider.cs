@@ -12,10 +12,11 @@ namespace Ourmsmart.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class ENContent
+    public partial class Slider
     {
-        public int CID { get; set; }
-        public string title { get; set; }
-        public string content { get; set; }
+        public int SLID { get; set; }
+        public string ImgUrl { get; set; }
+        public string Caption { get; set; }
+        public string ImgLink { get; set; }
     }
 }

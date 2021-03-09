@@ -26,13 +26,15 @@ namespace Ourmsmart.Models
         }
     
         public virtual DbSet<Contact> Contacts { get; set; }
-        public virtual DbSet<ENContent> ENContents { get; set; }
-        public virtual DbSet<ENProduct> ENProducts { get; set; }
-        public virtual DbSet<ENUser> ENUsers { get; set; }
+        public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<FAContent> FAContents { get; set; }
         public virtual DbSet<FAProduct> FAProducts { get; set; }
+        public virtual DbSet<FATeam> FATeams { get; set; }
         public virtual DbSet<FAUser> FAUsers { get; set; }
         public virtual DbSet<OrderAddress> OrderAddresses { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
+        public virtual DbSet<Post> Posts { get; set; }
+        public virtual DbSet<Service> Services { get; set; }
+        public virtual DbSet<Slider> Sliders { get; set; }
     }
 }
