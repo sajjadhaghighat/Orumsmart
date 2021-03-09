@@ -153,76 +153,107 @@
             <div class="scroll-sidebar">
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
-                    <ul id="sidebarnav">
-                        <!-- User Profile-->
-                        <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                               href=@Url.Action("Dashboard","Profile") aria-expanded="false">
-                                <i class="fas fa-clock fa-fw"
-                                   aria-hidden="true"></i><span class="hide-menu">داشبورد</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                               href=@Url.Action("Index","Profile") aria-expanded="false">
-                                <i class="fa fa-user" aria-hidden="true"></i><span class="hide-menu">پروفایل</span>
-                            </a>
-                        </li>
-                        @if (auth == "Admin")
-                        {
+                    @if (auth != "Customer")
+                    {
+                        <ul id="sidebarnav">
+                            <!-- User Profile-->
                             <li class="sidebar-item">
                                 <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                   href=@Url.Action("Index","Contents") aria-expanded="false">
-                                    <i class="fa fa-table"
-                                       aria-hidden="true"></i><span class="hide-menu">محتوا</span>
+                                   href=@Url.Action("Dashboard","Profile") aria-expanded="false">
+                                    <i class="fas fa-clock fa-fw"
+                                       aria-hidden="true"></i><span class="hide-menu">داشبورد</span>
                                 </a>
                             </li>
                             <li class="sidebar-item">
                                 <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                   href=@Url.Action("Index","Users") aria-expanded="false">
-                                    <i class="fa fa-user-plus"
-                                       aria-hidden="true"></i><span class="hide-menu">اعضاء</span>
+                                   href=@Url.Action("Index","Profile") aria-expanded="false">
+                                    <i class="fa fa-user" aria-hidden="true"></i><span class="hide-menu">پروفایل</span>
                                 </a>
                             </li>
-                        }
+                            @if (auth == "Admin")
+                            {
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                       href=@Url.Action("Index","Contents") aria-expanded="false">
+                                        <i class="fa fa-table"
+                                           aria-hidden="true"></i><span class="hide-menu">محتوا</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                       href=@Url.Action("Index","Users") aria-expanded="false">
+                                        <i class="fa fa-user-plus"
+                                           aria-hidden="true"></i><span class="hide-menu">اعضاء</span>
+                                    </a>
+                                </li>
+                            }
 
-                        <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                               href=@Url.Action("Index","Order") aria-expanded="false">
-                                <i class="fa fa-shopping-cart"
-                                   aria-hidden="true"></i><span class="hide-menu">سفارشات</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                               href=@Url.Action("Products","Store") aria-expanded="false">
-                                <i class="fa fa-shopping-bag"
-                                   aria-hidden="true"></i><span class="hide-menu">محصولات</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                               href=@Url.Action("Index","Contact") aria-expanded="false">
-                                <i class="fa fa-question-circle"
-                                   aria-hidden="true"></i><span class="hide-menu">صندوق پیام</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                               href="#1" onclick="window.open('http://online.1abzar.com/index.php','','resizable=1,scrollbars=1,width=600,height=600,top=,left=,status=1,menubar=1,toolbar=1,location=1,directories=1');return false;" aria-expanded="false">
-                                <i class="fa fa-exchange"
-                                   aria-hidden="true"></i><span class="hide-menu">بخش پشتیبانی</span>
-                            </a>
-                        </li>
-                        <li class="text-center p-20 upgrade-btn">
-                            <a onclick="exitpanel()"
-                               class="btn btn-block btn-danger text-white">
-                                <i class="fa fa-sign-out"
-                                aria-hidden="true"></i> 
-                                خروج
-                            </a>
-                        </li>
-                    </ul>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                   href=@Url.Action("Index","Order") aria-expanded="false">
+                                    <i class="fa fa-shopping-cart"
+                                       aria-hidden="true"></i><span class="hide-menu">سفارشات</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                   href=@Url.Action("Products","Store") aria-expanded="false">
+                                    <i class="fa fa-shopping-bag"
+                                       aria-hidden="true"></i><span class="hide-menu">محصولات</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                   href=@Url.Action("Index","Contact") aria-expanded="false">
+                                    <i class="fa fa-question-circle"
+                                       aria-hidden="true"></i><span class="hide-menu">صندوق پیام</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                   href="#1" onclick="window.open('http://online.1abzar.com/index.php','','resizable=1,scrollbars=1,width=600,height=600,top=,left=,status=1,menubar=1,toolbar=1,location=1,directories=1');return false;" aria-expanded="false">
+                                    <i class="fa fa-exchange"
+                                       aria-hidden="true"></i><span class="hide-menu">بخش پشتیبانی</span>
+                                </a>
+                            </li>
+                            <li class="text-center p-20 upgrade-btn">
+                                <a onclick="exitpanel()"
+                                   class="btn btn-block btn-danger text-white">
+                                    <i class="fa fa-sign-out"
+                                       aria-hidden="true"></i>
+                                    خروج
+                                </a>
+                            </li>
+                        </ul>
+                    }
+                    else
+                    {
+                        <ul id="sidebarnav">
+                            <!-- User Profile-->
+                            <li class="sidebar-item">
+                                <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                   href=@Url.Action("MyProfile","Customer") aria-expanded="false">
+                                    <i class="fas fa-clock fa-fw"
+                                       aria-hidden="true"></i><span class="hide-menu">پروفایل</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                   href="#1" onclick="window.open('http://www.1abzar.com/visit/contact-form/?email=ce.sajjad.haghighat@gmail.com','','resizable=1,scrollbars=1,width=600,height=600,top=,left=,status=1,menubar=1,toolbar=1,location=1,directories=1');return false;" aria-expanded="false">
+                                    <i class="fa fa-exchange"
+                                       aria-hidden="true"></i><span class="hide-menu">تماس با مدیر</span>
+                                </a>
+                            </li>
+                            <li class="text-center p-20 upgrade-btn">
+                                <a onclick="exitpanel()"
+                                   class="btn btn-block btn-danger text-white">
+                                    <i class="fa fa-sign-out"
+                                       aria-hidden="true"></i>
+                                    خروج
+                                </a>
+                            </li>
+                        </ul>
+                    }
 
                 </nav>
                 <!-- End Sidebar navigation -->

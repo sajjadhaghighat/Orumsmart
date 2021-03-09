@@ -123,7 +123,12 @@
                 if (rs.success) {
                     toastr.success(rs.message, rs.title, { timeOut: 2000 });
                     setTimeout(() => {
-                        window.location.href = '@Url.Action("Index", "Profile")';
+                        if (rs.type != "Customer") {
+                            window.location.href = '@Url.Action("Index", "Profile")';
+                        }
+                        else {
+                            window.location.href = '@Url.Action("MyProfile", "Customer")';
+                        }
                     }, 2000);
                 }
                 else {

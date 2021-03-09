@@ -21,12 +21,13 @@
     <!-- Vendor CSS-->
     <link href="~/Content/Register/vendor/select2/select2.min.css" rel="stylesheet" media="all">
     <link href="~/Content/Register/vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
-
+    <link href="~/Content/toastr/build/toastr.min.css" rel="stylesheet" />
     <!-- Main CSS-->
     <link href="~/Content/Register/css/main.css" rel="stylesheet" media="all">
+
 </head>
 
-<body dir="rtl">
+<body dir="rtl" style="font-family: 'IRANSans' !important;" >
     <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
         <div class="wrapper wrapper--w680">
             <div class="card card-4">
@@ -37,13 +38,13 @@
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">* نام کامل</label>
-                                    <input class="input--style-4" type="text" name="Fullname">
+                                    <input class="input--style-4" type="text" name="Fullname" required>
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">* شماره تلفن</label>
-                                    <input class="input--style-4" type="text" name="Phone">
+                                    <input class="input--style-4" type="text" name="Phone" required>
                                 </div>
                             </div>
                         </div>
@@ -60,12 +61,12 @@
                                     <div class="p-t-10">
                                         <label class="radio-container m-r-45">
                                             مرد
-                                            <input type="radio" checked="checked" name="Gender">
+                                            <input type="radio" checked="checked" name="Gender" value="مرد">
                                             <span class="checkmark"></span>
                                         </label>
                                         <label class="radio-container">
                                             زن
-                                            <input type="radio" name="Gender">
+                                            <input type="radio" name="Gender" value="زن">
                                             <span class="checkmark"></span>
                                         </label>
                                     </div>
@@ -76,7 +77,7 @@
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">* ایمیل</label>
-                                    <input class="input--style-4" type="email" name="Email">
+                                    <input class="input--style-4" type="email" name="Email" required>
                                 </div>
                             </div>
                             <div class="col-2">
@@ -118,18 +119,21 @@
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">* نام کاربری</label>
-                                    <input class="input--style-4" type="text" name="Username">
+                                    <input class="input--style-4" type="text" name="Username" required>
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">* رمز عبور</label>
-                                    <input class="input--style-4" type="text" name="Password">
+                                    <input class="input--style-4" type="text" name="Password" required>
                                 </div>
                             </div>
                         </div>
                         <div class="p-t-15">
                             <button class="btn btn--radius-2 btn--blue" onclick="Registerform()">ثبت نام</button>
+                        </div>
+                        <div>
+                            همه فیلدها با علامت ستاره باید پر شود.
                         </div>
                         <div class="p-t-15">
                             <a href="@Url.Action("login")"><button class="btn btn--radius-2 btn--green" type="button">برگشت به صفحه ورود</button></a>
@@ -147,7 +151,7 @@
     <script src="~/Content/Register/vendor/select2/select2.min.js"></script>
     <script src="~/Content/Register/vendor/datepicker/moment.min.js"></script>
     <script src="~/Content/Register/vendor/datepicker/daterangepicker.js"></script>
-
+    <script src="~/Content/toastr/build/toastr.min.js"></script>
     <!-- Main JS-->
     <script src="~/Content/Register/js/global.js"></script>
     <script>

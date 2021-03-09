@@ -34,17 +34,30 @@ namespace Ourmsmart.Controllers
         [HttpPost]
         public ActionResult Register(Customer customer)
         {
+            Customer c = customer;
+            if (c.Fullname == null || c.Phone==null || c.Email==null || c.Username==null || c.Password==null)
+            {
+                return Json(new { success = false, message = "موارد ضروری را پر کنید" });
+            }
             if (!ModelState.IsValid)
             {
-                return Json(new { success = false, message = "ناسازگاری در پایگاه داده" });
+                return Json(new { success = false, message = "ناسازگاری پایگاه داده" });
             }
             try
             {
-                return Json(new { success = true, message = "پیام شما با موفقیت ارسال شد" });
+                var q = (from a in db.Customers select a).Where(x => x.Username == customer.Username).FirstOrDefault();
+                if (q != null)
+                {
+                    return Json(new { success = false, message = "نام کاربری مجاز نمی باشد." });
+                }
+                db.Customers.Add(customer);
+                db.SaveChanges();
+                return Json(new { success = true, message = "ثبت نام با موفقیت انجام شد" });
+                
             }
             catch (Exception)
             {
-                return Json(new { success = false, message = "پیام شما ارسال نشد. مجددا در تایم بعدی سعی کنید." });
+                return Json(new { success = false, message = "خطایی رخ داد. مجددا در تایم بعدی سعی کنید." });
                 throw;
             }
         }

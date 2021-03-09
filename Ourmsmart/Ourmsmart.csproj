@@ -1422,6 +1422,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Panel\ContactController.cs" />
     <Compile Include="Controllers\Panel\ContentsController.cs" />
+    <Compile Include="Controllers\Panel\CustomerController.cs" />
     <Compile Include="Controllers\Panel\MessageController.cs" />
     <Compile Include="Controllers\Panel\OrderController.cs" />
     <Compile Include="Controllers\Panel\ProfileController.cs" />
@@ -2019,6 +2020,7 @@
     <Content Include="Views\Message\SuccessInsertProduct.cshtml" />
     <Content Include="Views\Message\AbortOrder.cshtml" />
     <Content Include="Views\Home\Register.cshtml" />
+    <Content Include="Views\Customer\MyProfile.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
