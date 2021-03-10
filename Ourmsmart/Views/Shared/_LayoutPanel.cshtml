@@ -111,7 +111,7 @@
                                     VIRADB db = new VIRADB();
                                     var u = (from a in db.FAUsers select a).Where(x => x.Username == username).FirstOrDefault();
                                     <span class="text-white font-medium">
-                                         <span> نقش : کارمند  </span>
+                                        <span> نقش : کارمند  </span>
                                     </span>
                                     <img src="@u.Imagepath" alt="-" width="36"
                                          class="img-circle">
@@ -126,7 +126,7 @@
                         </li>
                         <!-- Search -->
                         <!-- ============================================================== -->
-                         <!--<li class=" in">
+                        <!--<li class=" in">
                             <form role="search" class="app-search d-none d-md-block mr-3">
                                 <input type="text" placeholder="جستجو..." class="form-control mt-0">
                                 <a href="" class="active">
@@ -281,7 +281,8 @@
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                         <div class="d-md-flex">
                             <ol class="breadcrumb ml-auto">
-                                <li>@if (@ViewBag.Title != "داشبورد"){<span>@ViewBag.Title</span>}</li>
+                                <li>@if (@ViewBag.Title != "داشبورد")
+                                {<span>@ViewBag.Title</span>}</li>
                             </ol>
                             <ol class="breadcrumb ml-auto">
                                 <li><a href="@Url.Action("Dashboard","Profile")">داشبورد</a></li>
@@ -344,6 +345,7 @@
     <!-- All Jquery -->
     <!-- ============================================================== -->
     <script src="~/Content/panel/plugins/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="~/Content/Register/js/formToJson.min.js"></script>
     <script src="~/Content/panel/js/jquery.form.js"></script>
     <!-- Bootstrap tether Core JavaScript -->
     <script src="~/Content/panel/plugins/bower_components/popper.js/dist/umd/popper.min.js"></script>

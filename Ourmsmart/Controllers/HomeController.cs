@@ -21,6 +21,10 @@ namespace Ourmsmart.Controllers
         {
             if (Session["Auth"] != null)
             {
+                if ((string)Session["Auth"] == "Customer")
+                {
+                    return RedirectToAction("MyProfile", "Customer");
+                }
                 return RedirectToAction("Index", "Profile");
             }
             return View();

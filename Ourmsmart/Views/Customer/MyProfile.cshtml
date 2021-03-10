@@ -6,8 +6,7 @@
 }
 
 <div style="text-align:right;background-color:white;padding:15px" dir="rtl">
-    @using (Html.BeginForm())
-    {
+    <form id="uform">
         @Html.AntiForgeryToken()
 
         <div class="form-horizontal">
@@ -17,7 +16,7 @@
             @Html.HiddenFor(model => model.CusID)
 
             <div class="form-group">
-                @Html.DisplayName("نام کامل")
+                @Html.DisplayName("نام کامل *")
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.Fullname, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.Fullname, "", new { @class = "text-danger" })
@@ -25,15 +24,15 @@
             </div>
 
             <div class="form-group">
-                @Html.DisplayName("نام کاربری")
+                
                 <div class="col-md-10">
-                    <input type="text" name="Username" value="@Model.Username" disabled />
+                    <input type="text" name="Username" value="@Model.Username" hidden />
                     @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
                 </div>
             </div>
 
             <div class="form-group">
-                @Html.DisplayName("رمز عبور")
+                @Html.DisplayName("رمز عبور *")
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
@@ -41,7 +40,7 @@
             </div>
 
             <div class="form-group">
-                @Html.DisplayName("ایمیل")
+                @Html.DisplayName("ایمیل *")
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
@@ -122,13 +121,42 @@
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="ذخیره" class="btn btn-primary" />
+                    <input type="button" onclick="Updateform()" value="ذخیره" class="btn btn-primary" />
                 </div>
             </div>
         </div>
-    }
+    </form>
 </div>
 
-<div>
-    
-</div>
+<script>
+        $("#uform").submit(function (e) {
+            e.preventDefault();
+        });
+        function Updateform() {
+            var Data = $("#uform").serialize();
+            sData = JSON.stringify($("#uform").formToJson());
+            jQuery.support.cors = true;
+            $.ajax({
+            type: 'POST' ,
+            dataType : 'JSON',
+            contentType : 'application/json; charset=utf-8',
+            data: sData,
+            url: "/Customer/UpdateProfile",
+            success: function (rs) {
+                if (rs.success) {
+                    toastr.success(rs.message, rs.title, { timeOut: 2000 });
+                    setTimeout(() => {
+                        window.location.href = '@Url.Action("MyProfile", "Customer")';
+                    }, 2000);
+                }
+                else {
+                    toastr.warning(rs.message, rs.title, { timeOut: 3000 });
+
+                }
+            },
+            error: function (response) {
+            toastr.error("مشکل در سرور داخلی. بعدا امتحان کنید." , "خطا" , { timeOut: 3000 });
+            }
+            });
+        }
+</script>

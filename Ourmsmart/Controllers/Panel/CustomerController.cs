@@ -2,6 +2,7 @@
 using Ourmsmart.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -18,6 +19,31 @@ namespace Ourmsmart.Controllers.Panel
             string auth = (string)Session["Username"];
             var q = (from a in db.Customers where a.Username == auth select a).FirstOrDefault();
             return View(q);
+        }
+        [HttpPost]
+        public ActionResult UpdateProfile(Customer customer)
+        {
+            Customer c = customer;
+            if (c.Fullname == null || c.Phone == null || c.Email == null || c.Username == null || c.Password == null)
+            {
+                return Json(new { success = false, message = "موارد ضروری را پر کنید" });
+            }
+            if (!ModelState.IsValid)
+            {
+                return Json(new { success = false, message = "ناسازگاری پایگاه داده" });
+            }
+            try
+            {
+                db.Entry(c).State = EntityState.Modified;
+                db.SaveChanges();
+                return Json(new { success = true, message = "ویرایش با موفقیت انجام شد" });
+
+            }
+            catch (Exception)
+            {
+                return Json(new { success = false, message = "خطایی رخ داد. مجددا در تایم بعدی سعی کنید." });
+                throw;
+            }
         }
     }
 }
