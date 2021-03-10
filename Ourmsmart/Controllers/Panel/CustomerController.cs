@@ -45,5 +45,15 @@ namespace Ourmsmart.Controllers.Panel
                 throw;
             }
         }
+
+        public ActionResult MyOrders()
+        {
+            string auth = (string)Session["Username"];
+            Customer cus = (from a in db.Customers where a.Username == auth select a).FirstOrDefault();
+            var q = (from c in db.Orders
+                     group c by c.Cartid into uniqueIds
+                     select uniqueIds.FirstOrDefault()).OrderByDescending(x => x.OID).Where(x=>x.UserId == cus.CusID);
+            return View(q);
+        }
     }
 }

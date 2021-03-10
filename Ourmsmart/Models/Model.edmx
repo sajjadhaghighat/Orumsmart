@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="VIRADBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="VIRADBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Contact">
           <Key>
             <PropertyRef Name="CoID" />
@@ -109,6 +109,7 @@
           <Property Name="Description" Type="nvarchar(max)" />
           <Property Name="Tracingcode" Type="nvarchar(max)" />
           <Property Name="PID" Type="int" />
+          <Property Name="UserId" Type="int" />
         </EntityType>
         <EntityType Name="Posts">
           <Key>
@@ -184,8 +185,7 @@
             <End Role="Orders" EntitySet="Orders" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="VIRADBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -297,6 +297,7 @@
           <Property Name="PID" Type="Int32" />
           <NavigationProperty Name="FAProduct" Relationship="Self.FK__Orders__PID__68487DD7" FromRole="Orders" ToRole="FAProducts" />
           <NavigationProperty Name="OrderAddresses" Relationship="Self.FK__OrderAddres__OID__6B24EA82" FromRole="Orders" ToRole="OrderAddress" />
+          <Property Name="UserId" Type="Int32" />
         </EntityType>
         <EntityType Name="Post">
           <Key>
@@ -478,6 +479,7 @@
           <EntitySetMapping Name="Orders">
             <EntityTypeMapping TypeName="VIRADBModel.Order">
               <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="OID" ColumnName="OID" />
                 <ScalarProperty Name="Cartid" ColumnName="Cartid" />
                 <ScalarProperty Name="Oqty" ColumnName="Oqty" />

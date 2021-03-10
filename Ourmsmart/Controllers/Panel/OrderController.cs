@@ -84,7 +84,7 @@ namespace Ourmsmart.Controllers.Panel
             
         }
 
-        [BothFilter]
+        [AUCFilter]
         public ActionResult detailOrder(string trace)
         {
             var q = from a in db.Orders where a.Tracingcode == trace select a;

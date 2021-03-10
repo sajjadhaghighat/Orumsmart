@@ -41,7 +41,7 @@ namespace Ourmsmart.Models
         public string Ptype { get; set; }
         [Display(Name = "دسته محصول")]
         public string Pmodel { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order> Orders { get; set; }
     }

@@ -1429,6 +1429,7 @@
     <Compile Include="Controllers\Panel\UsersController.cs" />
     <Compile Include="Controllers\StoreController.cs" />
     <Compile Include="Filter\AdFilter.cs" />
+    <Compile Include="Filter\AUCFilter.cs" />
     <Compile Include="Filter\BothFilter.cs" />
     <Compile Include="Filter\CusFilter.cs" />
     <Compile Include="Filter\EmpFilter.cs" />
@@ -2021,6 +2022,7 @@
     <Content Include="Views\Message\AbortOrder.cshtml" />
     <Content Include="Views\Home\Register.cshtml" />
     <Content Include="Views\Customer\MyProfile.cshtml" />
+    <Content Include="Views\Customer\MyOrders.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

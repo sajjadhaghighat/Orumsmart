@@ -35,7 +35,7 @@ namespace Ourmsmart.Models
         public Nullable<int> Cartid { get; set; }
         [Display(Name = "کد سفارش")]
         public Nullable<int> OID { get; set; }
-    
+
         public virtual Order Order { get; set; }
     }
 }

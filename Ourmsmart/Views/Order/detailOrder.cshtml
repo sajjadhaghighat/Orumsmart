@@ -94,7 +94,17 @@
             <label>قیمت کل</label>
             <p>@ViewBag.sum ریال</p>
         </div>
-        <a style="color:red;text-decoration:underline overline" href="@Url.Action("Index","Order")"><p>برگشت به لیست</p></a>
+        @{
+            string auth = (string)Session["Auth"];
+        }
+        @if (auth != "Customer")
+        {
+            <a style="color:red;text-decoration:underline overline" href="@Url.Action("Index","Order")"><p>برگشت به لیست</p></a>
+        }
+        else
+        {
+            <a style="color:red;text-decoration:underline overline" href="@Url.Action("MyOrders","Customer")"><p>برگشت به لیست</p></a>
+        }
     </div>
 </div>
 
