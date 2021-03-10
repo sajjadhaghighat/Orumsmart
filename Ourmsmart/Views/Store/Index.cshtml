@@ -6,6 +6,8 @@
 @{
     ViewBag.Title = "فروشگاه";
     Layout = "~/Views/Shared/_LayoutMain.cshtml";
+    string auth = (string)Session["Auth"];
+    string username = (string)Session["Username"];
 }
 <style>
     .search-form-control {
@@ -190,7 +192,7 @@
                         @if (item.Status == "موجود")
                         {
                             <div class="img-wrap">
-                                <a href=@Url.Action("Detail", "Store", new { id = item.PID })><img src="@item.Imagepath" alt="بدون عکس" /></a>
+                                <a href=@Url.Action("Detail", "Store", new { id = item.PID })><img src="@item.Imagepath" class="exist" alt="بدون عکس" /></a>
                             </div>
                             <div style="margin:-50px -10px 0px 0px;position:relative;"><a href=@Url.Action("AddItemToBasket", "Store", new { pid = item.PID, qty = 1 }) class="btn btn-primary">+</a></div>
                         }
@@ -201,7 +203,7 @@
                             </div>
                             <div style="margin:-50px -10px 0px 0px;position:relative;"><a href="#" class="btn btn-danger" style="background-color:#fe5f55">+</a></div>
                         }
-                        <div class="text d-block">
+                        <div class="text d-block" style="margin-top:20px;text-align:center;border-top:2px solid green">
                             <div class="meta mb-3">
                                 @if (item.Status == "موجود")
                                 {
@@ -223,7 +225,9 @@
                                 }
 
                             </div>
-                            <p class=""><a href=@Url.Action("Detail", "Store", new { id = item.PID })>@item.Title</a></p>
+                            <div style="text-align:center">
+                                <p class=""><a href=@Url.Action("Detail", "Store", new { id = item.PID })>@item.Title</a></p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -350,60 +354,81 @@
                             }
                         }
                         <br />
-                        <div style="width:100%;background-color:red;color:white;text-align:center">
-                            فرم اطلاعات
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <input type="text" class="search-form-control" name="Name" placeholder="نام و نام خانوادگی" />
+                        @if (auth == "Customer")
+                        {
+                            var q = (from a in db.Customers where username == a.Username select a).FirstOrDefault();
+                            <div>
+                                <div style="width:100%;background-color:red;color:white;text-align:center">
+                                    فرم اطلاعات
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        @q.Fullname
+                                        <input type="text" class="search-form-control" value="@q.Fullname" name="Name" placeholder="نام و نام خانوادگی" hidden />
+                                    </div>
+                                    <div class="col-md-6">
+                                        @q.Phone
+                                        <input type="text" class="search-form-control" value="@q.Phone" name="Phone" placeholder="شماره تلفن" hidden />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        @q.Email
+                                        <input type="text" class="search-form-control" value="@q.Email" name="Email" placeholder="ایمیل" hidden />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="text" class="search-form-control" name="Paycode" placeholder="لینک عکس واریز" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <input type="text" class="search-form-control" value="@q.Ostan" name="Ostan" placeholder="استان *" />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="text" class="search-form-control" value="@q.City" name="City" placeholder="شهر *" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <textarea class="search-form-control" value="@q.Address" name="Address" placeholder="آدرس *"></textarea>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <input type="text" class="search-form-control" value="@q.Codeposti" name="Codeposti" placeholder="کدپستی *" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <input type="text" class="search-form-control" name="Description" placeholder="توضیحات" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label>هزینه ارسال : 250000 ریال</label>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label>مبلغ پرداختی : @ViewBag.sum ریال</label>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-md-6">
-                                <input type="text" class="search-form-control" name="Phone" placeholder="شماره تلفن" />
+                        }
+                        else
+                        {
+                            <div style="width:100%;background-color:red;color:white;text-align:center">
+                                برای ثبت سفارش، وارد حساب کاربری خود شوید
+                                <a href="/Home/Login"><button type="button" class="btn btn--radius-2 btn--green">ورود به حساب</button></a>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <input type="text" class="search-form-control" name="Email" placeholder="ایمیل" />
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text" class="search-form-control" name="Paycode" placeholder="لینک عکس واریز" />
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <input type="text" class="search-form-control" name="Ostan" placeholder="استان" />
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text" class="search-form-control" name="City" placeholder="شهر" />
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <textarea class="search-form-control" name="Address" placeholder="آدرس" ></textarea>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <input type="text" class="search-form-control" name="Codeposti" placeholder="کدپستی" />
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <input type="text" class="search-form-control" name="Description" placeholder="توضیحات" />
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <label>هزینه ارسال : 250000 ریال</label>
-                            </div>
-                            <div class="col-md-12">
-                                <label>مبلغ پرداختی : @ViewBag.sum ریال</label>
-                            </div>
-                        </div>
-
+                        }
+                    </div>
+                    <div style="width:100%;background-color:red;color:white;text-align:center">
+                        پر کردن همه فیلدهای ستاره دار ضروری است
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">ثبت سفارش</button>
+                        @if (auth == "Customer")
+                        {
+                            <button type="submit" class="btn btn-primary">ثبت سفارش</button>
+                        }
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">بستن</button>
                     </div>
                 </form>

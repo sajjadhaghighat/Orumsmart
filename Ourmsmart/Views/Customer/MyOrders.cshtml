@@ -41,9 +41,7 @@
                     @Html.DisplayFor(modelItem => item.Tracingcode)
                 </td>
                 <td>
-                    
-                    @Html.ActionLink("جزئیات", "detailOrder", new { trace = item.Tracingcode }) 
-                    
+                    <a href="/Order/detailOrder?trace=@item.Tracingcode">جزئیات</a>
                 </td>
             </tr>
         }

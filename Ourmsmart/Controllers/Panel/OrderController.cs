@@ -46,6 +46,10 @@ namespace Ourmsmart.Controllers.Panel
                     order.Status = "در انتظار بررسی";
                     order.Price = (item.Qty * Int32.Parse(db.FAProducts.Find(item.PID).Price)).ToString();
                     order.Tracingcode = trace;
+                    string auth = (string)Session["Username"];
+                    Customer cus = (from a in db.Customers where a.Username == auth select a).FirstOrDefault();
+                    order.UserId = cus.CusID;
+                    order.Paycode = "Off";
                     db.Orders.Add(order);
                     db.SaveChanges();
                 }
