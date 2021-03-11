@@ -320,8 +320,6 @@ else
             <div class="col-md-5 heading-section heading-section-white">
                 @{
                     var csh = (from a in db.FAContents select a).Where(x => x.title == "شعار").FirstOrDefault();
-                    var cta = (from a in db.FAContents select a).Where(x => x.title == "تجربه").FirstOrDefault();
-                    var ctkar = (from a in db.FAContents select a).Where(x => x.title == "تعداد کارها").FirstOrDefault();
                     var ctt = (from a in db.FAContents select a).Where(x => x.title == "تعداد تیم ها").FirstOrDefault();
                     var ctk = (from a in db.FAContents select a).Where(x => x.title == "تعداد کارکنان").FirstOrDefault();
                     if (csh != null)
@@ -341,18 +339,14 @@ else
                     <div class="col-md-6 d-flex justify-content-center counter-wrap ftco-animate">
                         <div class="block-18">
                             <div class="text">
-                                <strong class="number">@if (cta != null)
-                                {@Html.Raw(cta.content)}</strong>
-                                <!--<span>سال تجربه</span>-->
+
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6 d-flex justify-content-center counter-wrap ftco-animate">
                         <div class="block-18">
                             <div class="text">
-                                <strong class="number">@if (ctkar != null)
-                                {@Html.Raw(ctkar.content)}</strong>
-                                <!--<span>تعداد کارها</span>-->
+
                             </div>
                         </div>
                     </div>

@@ -49,7 +49,7 @@ namespace Ourmsmart.Controllers.Panel
                     string auth = (string)Session["Username"];
                     Customer cus = (from a in db.Customers where a.Username == auth select a).FirstOrDefault();
                     order.UserId = cus.CusID;
-                    order.Paycode = "Off";
+                    if (order.Paycode == null) { order.Paycode = "Off"; } 
                     db.Orders.Add(order);
                     db.SaveChanges();
                 }

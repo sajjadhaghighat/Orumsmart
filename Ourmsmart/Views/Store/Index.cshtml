@@ -339,7 +339,9 @@
                                         </thead>
                                         <tbody>
                                             @{
-                                                ViewBag.sum = 250000;
+                                                var sendprice = (from a in db.FAContents select a).Where(x => x.title == "هزینه ارسال").FirstOrDefault();
+                                                ViewBag.sum = Int32.Parse(sendprice.content);
+                                                ViewBag.sendprice = Int32.Parse(sendprice.content);
                                             }
                                             @foreach (var item in cb)
                                             {
@@ -434,12 +436,16 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <label>هزینه ارسال : 250000 ریال</label>
+
+                                        <label>هزینه ارسال : @ViewBag.sendprice ریال</label>
                                     </div>
                                     <div class="col-md-12">
                                         <label>مبلغ پرداختی : @ViewBag.sum ریال</label>
                                     </div>
                                 </div>
+                            </div>
+                            <div style="width:100%;background-color:red;color:white;text-align:center">
+                                پر کردن همه فیلدهای ستاره دار ضروری است
                             </div>
                         }
                         else
@@ -450,9 +456,7 @@
                             </div>
                         }
                     </div>
-                    <div style="width:100%;background-color:red;color:white;text-align:center">
-                        پر کردن همه فیلدهای ستاره دار ضروری است
-                    </div>
+                    
                     <div class="modal-footer">
                         @if (auth == "Customer")
                         {
