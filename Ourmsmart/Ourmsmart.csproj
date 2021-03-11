@@ -1250,6 +1250,7 @@
     <Content Include="Content\Home\js\owl.carousel.min.js" />
     <Content Include="Content\Home\js\popper.min.js" />
     <Content Include="Content\Home\js\scrollax.min.js" />
+    <Content Include="Content\jQuery.persianNumbers-1.0.js" />
     <Content Include="Content\Login\css\main.css" />
     <Content Include="Content\Login\css\util.css" />
     <Content Include="Content\Login\fonts\font-awesome-4.7.0\css\font-awesome.css" />

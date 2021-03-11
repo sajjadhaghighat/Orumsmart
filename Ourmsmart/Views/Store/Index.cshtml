@@ -9,6 +9,7 @@
     string auth = (string)Session["Auth"];
     string username = (string)Session["Username"];
 }
+
 <style>
     .search-form-control {
         height: auto;
@@ -33,17 +34,19 @@
         padding: 15px;
     }
 
-    .exist , .non-exist{
-        transition : all 0.4s;
+    .exist, .non-exist {
+        transition: all 0.4s;
     }
-    .exist:hover {
-        zoom: 1.02;
-        border-top: solid 10px #207dff;
-    }
-    .non-exist:hover {
-        zoom: 1.02;
-        border-top: solid 10px #fe5f55;
-    }
+
+        .exist:hover {
+            zoom: 1.02;
+            border-top: solid 10px #207dff;
+        }
+
+        .non-exist:hover {
+            zoom: 1.02;
+            border-top: solid 10px #fe5f55;
+        }
 
     .pagenum {
         text-align: center;
@@ -55,22 +58,27 @@
         padding-top: 10px;
         margin: 2px;
     }
-    .modal  {
-        color:black;
+
+    .modal {
+        color: black;
         background-image: linear-gradient(to left,#314755,#26a0da);
     }
-    .modal-body div{
-        margin-top:5px;
+
+    .modal-body div {
+        margin-top: 5px;
     }
-    .nav-link{
-        cursor:pointer;
+
+    .nav-link {
+        cursor: pointer;
     }
+
     .modal-body a {
-        background-color:white;
-        color:red;
-        padding:2px;
-        border-radius:2px;
+        background-color: white;
+        color: red;
+        padding: 2px;
+        border-radius: 2px;
     }
+
     .animateinput {
         width: 50%;
         border: 2px solid #ccc;
@@ -85,12 +93,12 @@
 
         .animateinput:focus {
             width: 70%;
-            
         }
+
     .seachbtn {
         background-color: #207dff;
         color: white;
-        font-size:14px;
+        font-size: 14px;
         padding: 6px 15px 6px 10px;
         border-top-left-radius: 50px;
         border-bottom-left-radius: 50px;
@@ -98,11 +106,13 @@
         margin-right: -4px;
         transition: all 0.4s;
     }
+
         .seachbtn:hover {
             padding-right: 20px;
             background-color: grey;
             color: white;
         }
+
     .img-wrap img {
         width: 100%;
         height: auto;
@@ -149,11 +159,13 @@
                         </a>
                     </li>
                     <li class="nav-item cta mr-md-2">
-                        <a data-toggle="modal" data-target="#exampleModal" class="nav-link" style="margin:1px;"><span style="font-size:12px;">
-                                    رهگیری
+                        <a data-toggle="modal" data-target="#exampleModal" class="nav-link" style="margin:1px;">
+                            <span style="font-size:12px;">
+                                رهگیری
                                 <i class="fa fa-search-minus"
-                                            aria-hidden="true"></i>
-                         </span></a>
+                                   aria-hidden="true"></i>
+                            </span>
+                        </a>
                     </li>
                 </ul>
             </div>
@@ -180,7 +192,7 @@
                         <input type="text" class="animateinput" name="search" placeholder="...">
                         <input type="submit" class="seachbtn" value="جستجو">
                     </div>
-                    
+
                 </div>
             </form>
         </div>
@@ -208,21 +220,38 @@
                                 @if (item.Status == "موجود")
                                 {
                                     <div style="color:green !important;">@item.Status</div>
-                                    <div style="color:green">@item.Price</div>
+                                    <span style="color:green" id="number"></span>
                                     <div style="color:green">ریال</div>
                                 }
                                 else if (item.Status == "ناموجود")
                                 {
                                     <div style="color:red">@item.Status</div>
-                                    <div style="color:red">@item.Price</div>
+                                    <span style="color:red" id="number"></span>
                                     <div style="color:red">ریال</div>
                                 }
                                 else if (item.Status == "بزودی")
                                 {
                                     <div style="color:royalblue">@item.Status</div>
-                                    <div style="color:royalblue">@item.Price</div>
+                                    <span style="color:royalblue" id="number"></span>
                                     <div style="color:royalblue">ریال</div>
                                 }
+                                <script src="~/Content/Home/js/jquery.min.js"></script>
+                                <script src="~/Content/jQuery.persianNumbers-1.0.js"></script>
+                                <script type="text/javascript" language="javascript">
+                                        number_input = @item.Price;
+                                        number_input += '';
+                                        number_input = number_input.replace(',', ''); number_input = number_input.replace(',', ''); number_input = number_input.replace(',', '');
+                                        number_input = number_input.replace(',', ''); number_input = number_input.replace(',', ''); number_input = number_input.replace(',', '');
+                                        x = number_input.split('.');
+                                        x1 = x[0];
+                                        x2 = x.length > 1 ? '.' + x[1] : '';
+                                        var rgx = /(\d+)(\d{3})/;
+                                        while (rgx.test(x1))
+                                            x1 = x1.replace(rgx, '$1' + ',' + '$2');
+                                        console.log(x1 + x2);
+                                        document.getElementById("number").innerHTML = $.persianNumbers(x1 + x2);
+                                    
+                                </script>
 
                             </div>
                             <div style="text-align:center">
@@ -232,7 +261,7 @@
                     </div>
                 </div>
             }
-            @if(Model == null)
+            @if (Model == null)
             {
                 <h3>
                     موردی یافت نشد
@@ -261,7 +290,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="@Url.Action("traceOrder","Order")" method="post" >
+            <form action="@Url.Action("traceOrder","Order")" method="post">
                 <div class="modal-body" dir="rtl">
                     <label>کدرهگیری را وارد کنید</label>
                     <input type="text" class="search-form-control" name="trace" value="" />
@@ -442,3 +471,4 @@
         </div>
     </div>
 </div>
+

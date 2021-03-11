@@ -171,7 +171,7 @@
             </dt>
 
             <dd>
-                @Html.DisplayFor(model => model.Price) ریال
+                <span id="number"></span> ریال
             </dd>
 
             <dt>
@@ -240,6 +240,9 @@
     <div id="caption"></div>
 </div>
 
+
+<script src="~/Content/Home/js/jquery.min.js"></script>
+<script src="~/Content/jQuery.persianNumbers-1.0.js"></script>
 <script>
     // Get the modal
     var modal = document.getElementById("myModal");
@@ -261,4 +264,20 @@
     span.onclick = function () {
         modal.style.display = "none";
     }
+</script>
+
+<script type="text/javascript" language="javascript">
+           var number_input = @Model.Price;
+           number_input += '';
+           number_input = number_input.replace(',', ''); number_input = number_input.replace(',', ''); number_input = number_input.replace(',', '');
+           number_input = number_input.replace(',', ''); number_input = number_input.replace(',', ''); number_input = number_input.replace(',', '');
+           x = number_input.split('.');
+           x1 = x[0];
+           x2 = x.length > 1 ? '.' + x[1] : '';
+           var rgx = /(\d+)(\d{3})/;
+           while (rgx.test(x1))
+                x1 = x1.replace(rgx, '$1' + ',' + '$2');
+           console.log(x1 + x2);
+           document.getElementById("number").innerHTML = $.persianNumbers(x1 + x2);
+            
 </script>
