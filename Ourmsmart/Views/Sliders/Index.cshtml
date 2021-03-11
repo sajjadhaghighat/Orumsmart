@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Ourmsmart.Models.Slider>
+
+@{
+    ViewBag.Title = "اسلایدر";
+    Layout = "~/Views/Shared/_LayoutPanel.cshtml";
+}
+
+
+<div style="text-align:right; background-color:white;padding:25px;overflow-x:auto;">
+    <p>
+        @Html.ActionLink("افزودن", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayName("شماره عکس")
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Caption)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImgLink)
+            </th>
+            <th></th>
+        </tr>
+        @{ 
+            int i = 1;
+        }
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @i
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Caption)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ImgLink)
+                </td>
+                <td>
+                    @Html.ActionLink("ویرایش", "Edit", new { id = item.SLID }) |
+                    @Html.ActionLink("جزئیات", "Details", new { id = item.SLID }) |
+                    @Html.ActionLink("حذف", "Delete", new { id = item.SLID })
+                </td>
+            </tr>
+
+                i++;
+
+        }
+
+    </table>
+</div>
+

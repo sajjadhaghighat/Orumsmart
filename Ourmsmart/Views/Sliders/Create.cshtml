@@ -1,0 +1,66 @@
+﻿@model Ourmsmart.Models.Slider
+
+@{
+    ViewBag.Title = "افزودن عکس";
+    Layout = "~/Views/Shared/_LayoutPanel.cshtml";
+}
+<script src="~/Content/ckfinder/ckfinder.js"></script>
+<script src="~/Content/ckeditor/ckeditor.js"></script>
+<div style="text-align:right; background-color:white;padding:25px;overflow-x:auto;">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>افزودن عکس</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Caption, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextArea("Caption", new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Caption, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ImgUrl, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ImgUrl, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ImgUrl, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ImgLink, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ImgLink, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ImgLink, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="افزودن" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>
+    }
+
+    <div>
+        @Html.ActionLink("برگشت به لیست", "Index")
+    </div>
+</div>
+
+
+<script type="text/javascript">
+        var editor = CKEDITOR.instances['Caption'];
+        if (editor) {
+            editor.destroy(true);
+        }
+        CKEDITOR.replace('Caption', {
+            enterMode : CKEDITOR.ENTER_BR
+        });
+        CKFinder.setupCKEditor(null, '@Url.Content("~/Content/ckfinder/")');
+</script>

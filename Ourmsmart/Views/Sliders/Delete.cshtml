@@ -1,0 +1,51 @@
+﻿@model Ourmsmart.Models.Slider
+
+@{
+    ViewBag.Title = "حذف عکس";
+    Layout = "~/Views/Shared/_LayoutPanel.cshtml";
+}
+
+<div style="text-align:right; background-color:white;padding:25px;overflow-x:auto;">
+    <h3>آیا از  حذف عکس مطمئن هستید ؟</h3>
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.ImgUrl)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ImgUrl)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Caption)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Caption)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ImgLink)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ImgLink)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="حذف" class="btn btn-danger" /> |
+                @Html.ActionLink("برگشت به لیست", "Index")
+            </div>
+        }
+    </div>
+</div>
+
+

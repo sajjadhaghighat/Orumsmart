@@ -1235,10 +1235,6 @@
     <Content Include="Content\Home\images\orumsmart.jpg" />
     <Content Include="Content\Home\images\sajjad.jpg" />
     <Content Include="Content\Home\images\sajjad1.jpg" />
-    <Content Include="Content\Home\images\slider2.jpg" />
-    <Content Include="Content\Home\images\slider1.jpg" />
-    <Content Include="Content\Home\images\slider3.jpg" />
-    <Content Include="Content\Home\images\slider4.jpg" />
     <Content Include="Content\Home\js\aos.js" />
     <Content Include="Content\Home\js\bootstrap.min.js" />
     <Content Include="Content\Home\js\google-map.js" />
@@ -1426,6 +1422,7 @@
     <Compile Include="Controllers\Panel\MessageController.cs" />
     <Compile Include="Controllers\Panel\OrderController.cs" />
     <Compile Include="Controllers\Panel\ProfileController.cs" />
+    <Compile Include="Controllers\Panel\SlidersController.cs" />
     <Compile Include="Controllers\Panel\UsersController.cs" />
     <Compile Include="Controllers\StoreController.cs" />
     <Compile Include="Filter\AdFilter.cs" />
@@ -2023,6 +2020,11 @@
     <Content Include="Views\Home\Register.cshtml" />
     <Content Include="Views\Customer\MyProfile.cshtml" />
     <Content Include="Views\Customer\MyOrders.cshtml" />
+    <Content Include="Views\Sliders\Create.cshtml" />
+    <Content Include="Views\Sliders\Delete.cshtml" />
+    <Content Include="Views\Sliders\Details.cshtml" />
+    <Content Include="Views\Sliders\Edit.cshtml" />
+    <Content Include="Views\Sliders\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

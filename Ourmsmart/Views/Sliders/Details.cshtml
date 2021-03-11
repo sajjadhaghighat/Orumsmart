@@ -1,0 +1,45 @@
+﻿@model Ourmsmart.Models.Slider
+
+@{
+    ViewBag.Title = "جزئیات عکس";
+    Layout = "~/Views/Shared/_LayoutPanel.cshtml";
+}
+
+
+<div style="text-align:right; background-color:white;padding:25px;overflow-x:auto;">
+    <div>
+        <h4>جزئیات عکس</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.ImgUrl)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ImgUrl)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Caption)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Caption)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ImgLink)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ImgLink)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("ویرایش", "Edit", new { id = Model.SLID }) |
+        @Html.ActionLink("برگشت به لیست", "Index")
+    </p>
+</div>
+
