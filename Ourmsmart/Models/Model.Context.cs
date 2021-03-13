@@ -36,5 +36,6 @@ namespace Ourmsmart.Models
         public virtual DbSet<Post> Posts { get; set; }
         public virtual DbSet<Service> Services { get; set; }
         public virtual DbSet<Slider> Sliders { get; set; }
+        public virtual DbSet<Feature> Features { get; set; }
     }
 }

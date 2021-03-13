@@ -1420,6 +1420,7 @@
     <Compile Include="Controllers\Panel\ContactController.cs" />
     <Compile Include="Controllers\Panel\ContentsController.cs" />
     <Compile Include="Controllers\Panel\CustomerController.cs" />
+    <Compile Include="Controllers\Panel\FeaturesController.cs" />
     <Compile Include="Controllers\Panel\MessageController.cs" />
     <Compile Include="Controllers\Panel\OrderController.cs" />
     <Compile Include="Controllers\Panel\ProfileController.cs" />
@@ -1450,6 +1451,9 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\FAUser.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Feature.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Model.Context.cs">
@@ -2026,6 +2030,11 @@
     <Content Include="Views\Sliders\Details.cshtml" />
     <Content Include="Views\Sliders\Edit.cshtml" />
     <Content Include="Views\Sliders\Index.cshtml" />
+    <Content Include="Views\Features\Create.cshtml" />
+    <Content Include="Views\Features\Delete.cshtml" />
+    <Content Include="Views\Features\Details.cshtml" />
+    <Content Include="Views\Features\Edit.cshtml" />
+    <Content Include="Views\Features\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

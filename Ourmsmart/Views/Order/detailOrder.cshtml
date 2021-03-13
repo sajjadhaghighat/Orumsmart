@@ -37,8 +37,9 @@
                 </thead>
                 <tbody>
                     @{
-                        ViewBag.sum = 250000;
                         VIRADB db = new VIRADB();
+                        var qp = (db.FAContents).Select(x => new { x.title, x.content }).Where(x => x.title == "هزینه ارسال").FirstOrDefault();
+                        ViewBag.sum = Int32.Parse(qp.content);
                         int add = 0;
                     }
                     @foreach (var item in Model)

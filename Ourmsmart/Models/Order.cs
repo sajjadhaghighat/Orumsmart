@@ -43,7 +43,7 @@ namespace Ourmsmart.Models
         public Nullable<int> PID { get; set; }
         [Display(Name = "کد مشتری")]
         public Nullable<int> UserId { get; set; }
-    
+
         public virtual FAProduct FAProduct { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderAddress> OrderAddresses { get; set; }

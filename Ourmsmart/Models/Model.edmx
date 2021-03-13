@@ -80,6 +80,16 @@
           <Property Name="Type" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="Imagepath" Type="nvarchar(max)" />
         </EntityType>
+        <EntityType Name="Features">
+          <Key>
+            <PropertyRef Name="FID" />
+          </Key>
+          <Property Name="FID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Price" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Cate" Type="nvarchar" MaxLength="255" />
+          <Property Name="PID" Type="int" />
+        </EntityType>
         <EntityType Name="OrderAddress">
           <Key>
             <PropertyRef Name="AID" />
@@ -140,6 +150,18 @@
           <Property Name="Caption" Type="nvarchar(max)" />
           <Property Name="ImgLink" Type="nvarchar(max)" />
         </EntityType>
+        <Association Name="FK__Features__PID__73BA3083">
+          <End Role="FAProducts" Type="Self.FAProducts" Multiplicity="0..1" />
+          <End Role="Features" Type="Self.Features" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FAProducts">
+              <PropertyRef Name="PID" />
+            </Principal>
+            <Dependent Role="Features">
+              <PropertyRef Name="PID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__OrderAddres__OID__6B24EA82">
           <End Role="Orders" Type="Self.Orders" Multiplicity="0..1" />
           <End Role="OrderAddress" Type="Self.OrderAddress" Multiplicity="*" />
@@ -171,11 +193,16 @@
           <EntitySet Name="FAProducts" EntityType="Self.FAProducts" Schema="orumsmart" store:Type="Tables" />
           <EntitySet Name="FATeam" EntityType="Self.FATeam" Schema="orumsmart" store:Type="Tables" />
           <EntitySet Name="FAUsers" EntityType="Self.FAUsers" Schema="orumsmart" store:Type="Tables" />
+          <EntitySet Name="Features" EntityType="Self.Features" Schema="orumsmart" store:Type="Tables" />
           <EntitySet Name="OrderAddress" EntityType="Self.OrderAddress" Schema="orumsmart" store:Type="Tables" />
           <EntitySet Name="Orders" EntityType="Self.Orders" Schema="orumsmart" store:Type="Tables" />
           <EntitySet Name="Posts" EntityType="Self.Posts" Schema="orumsmart" store:Type="Tables" />
           <EntitySet Name="Services" EntityType="Self.Services" Schema="orumsmart" store:Type="Tables" />
           <EntitySet Name="Slider" EntityType="Self.Slider" Schema="orumsmart" store:Type="Tables" />
+          <AssociationSet Name="FK__Features__PID__73BA3083" Association="Self.FK__Features__PID__73BA3083">
+            <End Role="FAProducts" EntitySet="FAProducts" />
+            <End Role="Features" EntitySet="Features" />
+          </AssociationSet>
           <AssociationSet Name="FK__OrderAddres__OID__6B24EA82" Association="Self.FK__OrderAddres__OID__6B24EA82">
             <End Role="Orders" EntitySet="Orders" />
             <End Role="OrderAddress" EntitySet="OrderAddress" />
@@ -242,6 +269,7 @@
           <Property Name="Ptype" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Pmodel" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__PID__68487DD7" FromRole="FAProducts" ToRole="Orders" />
+          <NavigationProperty Name="Features" Relationship="VIRADBModel.FK__Features__PID__73BA3083" FromRole="FAProduct" ToRole="Feature" />
         </EntityType>
         <EntityType Name="FATeam">
           <Key>
@@ -372,7 +400,35 @@
             <End Role="Orders" EntitySet="Orders" />
             <End Role="OrderAddress" EntitySet="OrderAddresses" />
           </AssociationSet>
+          <EntitySet Name="Features" EntityType="VIRADBModel.Feature" />
+          <AssociationSet Name="FK__Features__PID__73BA3083" Association="VIRADBModel.FK__Features__PID__73BA3083">
+            <End Role="FAProduct" EntitySet="FAProducts" />
+            <End Role="Feature" EntitySet="Features" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Feature">
+          <Key>
+            <PropertyRef Name="FID" />
+          </Key>
+          <Property Name="FID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Cate" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PID" Type="Int32" />
+          <NavigationProperty Name="FAProduct" Relationship="VIRADBModel.FK__Features__PID__73BA3083" FromRole="Feature" ToRole="FAProduct" />
+        </EntityType>
+        <Association Name="FK__Features__PID__73BA3083">
+          <End Type="VIRADBModel.FAProduct" Role="FAProduct" Multiplicity="0..1" />
+          <End Type="VIRADBModel.Feature" Role="Feature" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FAProduct">
+              <PropertyRef Name="PID" />
+            </Principal>
+            <Dependent Role="Feature">
+              <PropertyRef Name="PID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -522,6 +578,17 @@
                 <ScalarProperty Name="ImgUrl" ColumnName="ImgUrl" />
                 <ScalarProperty Name="Caption" ColumnName="Caption" />
                 <ScalarProperty Name="ImgLink" ColumnName="ImgLink" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Features">
+            <EntityTypeMapping TypeName="VIRADBModel.Feature">
+              <MappingFragment StoreEntitySet="Features">
+                <ScalarProperty Name="PID" ColumnName="PID" />
+                <ScalarProperty Name="Cate" ColumnName="Cate" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="FID" ColumnName="FID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

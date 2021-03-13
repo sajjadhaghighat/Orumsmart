@@ -18,6 +18,8 @@
         <EntityTypeShape EntityType="VIRADBModel.Slider" Width="1.5" PointX="6.75" PointY="8.75" IsExpanded="true" />
         <AssociationConnector Association="VIRADBModel.FK__Orders__PID__68487DD7" ManuallyRouted="false" />
         <AssociationConnector Association="VIRADBModel.FK__OrderAddres__OID__6B24EA82" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="VIRADBModel.Feature" Width="1.5" PointX="3" PointY="11.75" />
+        <AssociationConnector Association="VIRADBModel.FK__Features__PID__73BA3083" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -70,7 +70,7 @@ namespace Ourmsmart.Controllers.Panel
         {
             try
             {
-                var q = (from a in db.Orders where a.Tracingcode == trace select a).FirstOrDefault();
+                var q = (from a in db.Orders where a.Tracingcode == trace select a);
                 if (q != null)
                 {
                     return View(q);
