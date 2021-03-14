@@ -1,51 +1,53 @@
 ﻿@model Ourmsmart.Models.Feature
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "ویژگی محصول";
     Layout = "~/Views/Shared/_LayoutPanel.cshtml";
 }
 
-<h2>Details</h2>
+<div style="text-align:right; background-color:white;padding:25px;overflow-x:auto;">
+    <div>
+        <h4>ویژگی محصول</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Title)
+            </dt>
 
-<div>
-    <h4>Feature</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Title)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Price)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Price)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Price)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Cate)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Cate)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Cate)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Cate)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.FAProduct.Title)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.FAProduct.Title)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.FAProduct.Title)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.FAProduct.Title)
-        </dd>
-
-    </dl>
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("ویرایش", "Edit", new { id = Model.FID }) |
+        @Html.ActionLink("برگشت به لیست", "Index")
+    </p>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.FID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+

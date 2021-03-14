@@ -6,10 +6,12 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Ourmsmart.Filter;
 using Ourmsmart.Models;
 
 namespace Ourmsmart.Controllers.Panel
 {
+    [BothFilter]
     public class FeaturesController : Controller
     {
         private VIRADB db = new VIRADB();

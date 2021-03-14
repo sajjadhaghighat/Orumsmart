@@ -15,10 +15,12 @@ namespace Ourmsmart.Controllers
     {
         public int PID { get; set; }
         public int Qty { get; set; }
-        
-        public Cbasket(int pid,int qty)
+        public List<int> Feature { get; set; }
+
+        public Cbasket(int pid,int qty, List<int> cate)
         {
             PID = pid; Qty = qty;
+            Feature = cate;
         }
     }
     
@@ -84,7 +86,7 @@ namespace Ourmsmart.Controllers
 
         
 
-        public ActionResult AddItemToBasket(int pid, int qty)
+        public ActionResult AddItemToBasket(int pid, int qty, List<int> Cate)
         {
             if (qty > 0)
             {
@@ -99,7 +101,7 @@ namespace Ourmsmart.Controllers
                         return RedirectToAction("Index");
                     }
                 }
-                cb.Add(new Cbasket(pid, qty));
+                cb.Add(new Cbasket(pid, qty, Cate));
                 Session["Basket"] = cb;
             }
             return RedirectToAction("Index");

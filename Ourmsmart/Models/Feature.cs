@@ -25,7 +25,7 @@ namespace Ourmsmart.Models
         public string Cate { get; set; }
         [Display(Name = "کد محصول")]
         public Nullable<int> PID { get; set; }
-    
+        [Display(Name =  "محصول")]
         public virtual FAProduct FAProduct { get; set; }
     }
 }

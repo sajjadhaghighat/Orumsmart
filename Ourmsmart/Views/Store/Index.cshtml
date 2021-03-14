@@ -40,7 +40,7 @@
 
         .exist:hover {
             zoom: 1.02;
-            border-top: solid 10px #207dff;
+            border-top: solid 10px green;
         }
 
         .non-exist:hover {
@@ -180,7 +180,7 @@
                     <h4 class="mb-4" style="padding-top:15px;">فروشگاه</h4>
                 </div>
                 <!--<div class="form-group col-md-3">
-                    <select name="Category" class="search-form-control" id="Category">
+                    <select name="Category" class="search-form-control" "id="Category>
                         <option value="" disabled selected>انتخاب دسته بندی</option>
                         <option value="Gadget">گجت</option>
                         <option value="Device">دستگاه</option>
@@ -199,41 +199,42 @@
         <div class="row d-flex">
             @foreach (var item in Model)
             {
-                <div class="col-md-3 ftco-animate itemstyle">
+                <div class="col-md-4 ftco-animate itemstyle">
                     <div class="blog-entry">
-                        @if (item.Status == "موجود")
+                        @if (item.Status == "موجود" || item.Status == "بزودی")
                         {
                             <div class="img-wrap">
                                 <a href=@Url.Action("Detail", "Store", new { id = item.PID })><img src="@item.Imagepath" class="exist" alt="بدون عکس" /></a>
                             </div>
-                            <div style="margin:-50px -10px 0px 0px;position:relative;"><a href=@Url.Action("AddItemToBasket", "Store", new { pid = item.PID, qty = 1 }) class="btn btn-primary">+</a></div>
+                            <div style="margin:-50px -10px 0px 0px;position:relative;"><a href="#" class="btn btn-primary" style="background-color:green">@item.Status</a></div>
                         }
                         else
                         {
                             <div class="img-wrap">
                                 <a href=@Url.Action("Detail", "Store", new { id = item.PID })><img src="@item.Imagepath" class="non-exist" alt="بدون عکس" /></a>
                             </div>
-                            <div style="margin:-50px -10px 0px 0px;position:relative;"><a href="#" class="btn btn-danger" style="background-color:#fe5f55">+</a></div>
+                            <div style="margin:-50px -10px 0px 0px;position:relative;"><a href="#" class="btn btn-danger" style="background-color:#fe5f55">@item.Status</a></div>
                         }
-                        <div class="text d-block" style="margin-top:20px;text-align:center;border-top:2px solid green">
+                        <div class="text d-block" style="margin-top:20px;text-align:center;border-top:2px solid black">
                             <div class="meta mb-3">
                                 @if (item.Status == "موجود")
                                 {
-                                    <div style="color:green !important;">@item.Status</div>
-                                    <span style="color:green" id="number"></span>
-                                    <div style="color:green">ریال</div>
+                                        <span style="color:green" id="number"></span>
+                                        <span style="color:green">ریال</span>
                                 }
                                 else if (item.Status == "ناموجود")
                                 {
-                                    <div style="color:red">@item.Status</div>
-                                    <span style="color:red" id="number"></span>
-                                    <div style="color:red">ریال</div>
+                                    <s>
+                                        <span style="color:red" id="number"></span>
+                                        <span style="color:red">ریال</span>
+                                    </s>
                                 }
                                 else if (item.Status == "بزودی")
                                 {
-                                    <div style="color:royalblue">@item.Status</div>
-                                    <span style="color:royalblue" id="number"></span>
-                                    <div style="color:royalblue">ریال</div>
+                                    <s>
+                                        <span style="color:royalblue" id="number"></span>
+                                        <span style="color:royalblue">ریال</span>
+                                    </s>
                                 }
                                 <script src="~/Content/Home/js/jquery.min.js"></script>
                                 <script src="~/Content/jQuery.persianNumbers-1.0.js"></script>

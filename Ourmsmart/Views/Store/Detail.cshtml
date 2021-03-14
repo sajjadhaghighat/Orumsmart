@@ -4,8 +4,8 @@
 @{
     ViewBag.Title = Model.Title;
     Layout = "~/Views/Shared/_LayoutMain.cshtml";
+    VIRADB db = new VIRADB();
 }
-<br />
 <br />
 <style>
     .imagepath {
@@ -29,15 +29,15 @@
     dt {
         color: #207dff;
     }
+    dd {
+        color: black;
+    }
 
     .searchform {
         width: 100%;
         height: auto;
-        border-bottom: 2px solid blue;
-        border-top: 2px solid blue;
-        margin-bottom: 15px;
-        margin-top: 15px;
-        padding-top: 15px;
+        margin: 15px;
+        padding:10px;
     }
 
     #myImg {
@@ -137,6 +137,9 @@
             width: 100%;
         }
     }
+    .constyle {
+        color:black;
+    }
     .constyle img{
         width:100%;
     }
@@ -147,7 +150,7 @@
     <hr />
     <div class="row">
         <div class="col-md-4 imagepath">
-            <img id="myImg" src="../../@Model.Imagepath" width="300px" alt="@Model.Title" />
+            <img id="myImg" src="../../@Model.Imagepath" width="300" alt="@Model.Title" />
         </div>
         <dl class="col-md-8 dl-horizontal">
             <dt>
@@ -173,39 +176,66 @@
             <dd>
                 <span id="number"></span> ریال
             </dd>
+        </dl>
+            <form class="row bg-light searchform" method="get" action="@Url.Action("AddItemToBasket", "Store")">
+                @{
+                    var qcate = (from c in db.Features
+                                 group c by c.Cate into g
+                                 select new { Cate = g.Key });
+                    var qtitle = (from c in db.Features select c);
+                    int i = 1;
+                }
+                @foreach (var item in qcate)
+                {
+                    string s = "select" + i.ToString();
+                    <span style='color:#207dff'>@item.Cate</span>
+                    <div class="col-md-12 form-group">
+                        <select class="form-control" name="Cate" id="@s" onchange="changePrice()">
+                            @foreach (var tt in qtitle)
+                            {
+                                if (tt.Cate == item.Cate)
+                                {
+                                    <option value="@tt.FID" title="@tt.Price" @if (tt.Price == "0") { Html.Raw("selected"); }>@tt.Title</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    i++;
+                    <br />
+                }
+                <span style='color:#207dff'>
+                   وضعیت : 
+                </span>
+                @if (Model.Status == "موجود" && Model.Qty > 0)
+                {
+                    @Html.Raw("<span style='color:green'>")
+                    @Html.Raw("موجود")
+                    @Html.Raw("</span>")
 
-            <dt>
-                وضعیت
-            </dt>
-            @if (Model.Status == "موجود" && Model.Qty > 0)
-            {
-                @Html.Raw("<dd style='color:green'>")
-                @Html.Raw("موجود")
-                @Html.Raw("</dd>")
-                <form class="row bg-light searchform" method="get" action="@Url.Action("AddItemToBasket", "Store")">
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-12">
                         <input type="number" hidden class="search-form-control" name="pid" id="pid" value="@Model.PID">
-                        <label>موجودی : @Model.Qty عدد</label>
+                        <label style='color:#207dff'>موجودی : @Model.Qty عدد</label>
                         <input type="number" class="search-form-control" style="width:100%" name="qty" id="qty" placeholder="تعداد ..." min="1" max="@Model.Qty">
                     </div>
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-12">
                         <button type="submit" class="btn btn-secondary ">افزودن به سبد خرید</button>
                     </div>
-                </form>
-            }
-            else if (Model.Status == "ناموجود")
-            {
-                @Html.Raw("<dd style='color:red'>")
-                @Html.Raw("ناموجود");
-                @Html.Raw("</dd>")
-            }
-            else if (Model.Status == "بزودی")
-            {
-                @Html.Raw("<dd style='color:#207dff'>")
-                @Html.Raw("بزودی");
-                @Html.Raw("</dd>")
-            }
-        </dl>
+
+                }
+                else if (Model.Status == "ناموجود")
+                {
+                    @Html.Raw("<span style='color:red'>")
+                    @Html.Raw("ناموجود");
+                    @Html.Raw("</span>")
+                }
+                else if (Model.Status == "بزودی")
+                {
+                    @Html.Raw("<span style='color:#207dff'>")
+                    @Html.Raw("بزودی");
+                    @Html.Raw("</span>")
+                }
+            </form>
+            
     </div>
 </div>
 <div class="container detailstyle">
@@ -217,7 +247,7 @@
     </div>
 </div>
 @{
-        VIRADB db = new VIRADB();
+
         var cshart = (from a in db.FAContents select a).Where(x => x.title == "شرایط پرداخت").FirstOrDefault();
         if (cshart != null)
         {
@@ -277,7 +307,32 @@
            var rgx = /(\d+)(\d{3})/;
            while (rgx.test(x1))
                 x1 = x1.replace(rgx, '$1' + ',' + '$2');
-           console.log(x1 + x2);
            document.getElementById("number").innerHTML = $.persianNumbers(x1 + x2);
             
+</script>
+
+
+<script>
+    function convert(number_input) {
+           number_input += '';
+           number_input = number_input.replace(',', ''); number_input = number_input.replace(',', ''); number_input = number_input.replace(',', '');
+           number_input = number_input.replace(',', ''); number_input = number_input.replace(',', ''); number_input = number_input.replace(',', '');
+           x = number_input.split('.');
+           x1 = x[0];
+           x2 = x.length > 1 ? '.' + x[1] : '';
+           var rgx = /(\d+)(\d{3})/;
+           while (rgx.test(x1))
+                x1 = x1.replace(rgx, '$1' + ',' + '$2');
+           console.log(x1 + x2);
+           document.getElementById("number").innerHTML = $.persianNumbers(x1 + x2);
+    }
+    function changePrice() {
+        var p = @Model.Price;
+        for (var i = 0; i < @qcate.Count(); i++) {
+           var con = "#select" + (i + 1).toString();
+           p = p + parseInt($(con).find("option:selected").attr("title")); 
+        }
+        convert(p);
+    }
+
 </script>
