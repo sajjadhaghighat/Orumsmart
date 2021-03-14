@@ -323,43 +323,68 @@
             {
                 <form action="@Url.Action("insertOrder","Order")" method="post">
                     <div class="modal-body" dir="rtl">
-                        <div style="overflow-x:auto">
+                        <div >
                             @{
                                 VIRADB db = new VIRADB();
                                 if (Session["Basket"] != null)
                                 {
                                     List<Cbasket> cb = (List<Cbasket>)Session["Basket"];
-                                    <table class="table">
-                                        <thead class="thead-light">
-                                            <tr>
-                                                <th scope="col">نام</th>
-                                                <th scope="col">قیمت</th>
-                                                <th scope="col">تعداد</th>
-                                                <th scope="col">قیمت کل</th>
-                                                <th scope="col">عملیات</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @{
-                                                var sendprice = (from a in db.FAContents select a).Where(x => x.title == "هزینه ارسال").FirstOrDefault();
-                                                ViewBag.sum = Int32.Parse(sendprice.content);
-                                                ViewBag.sendprice = Int32.Parse(sendprice.content);
-                                            }
-                                            @foreach (var item in cb)
-                                            {
-                                                var q = db.FAProducts.Find(item.PID);
-                                                int tprice = Int32.Parse(q.Price) * item.Qty;
-                                                ViewBag.sum += tprice;
-                                                <tr>
-                                                    <td>@q.Title</td>
-                                                    <td>@q.Price ریال</td>
-                                                    <td>@item.Qty</td>
-                                                    <td>@tprice ریال</td>
-                                                    <td><a href=@Url.Action("DelItemFromBascket", new { id = item.PID })>حذف</a></td>
-                                                </tr>
-                                            }
-                                        </tbody>
-                                    </table>
+                                    <div class="row d-flex">
+                                        <div class="col-md-4 ftco-animate itemstyle">
+                                              <div class="blog-entry">
+                                              @{
+                                                   var sendprice = (from a in db.FAContents select a).Where(x => x.title == "هزینه ارسال").FirstOrDefault();
+                                                   ViewBag.sum = Int32.Parse(sendprice.content);
+                                                   ViewBag.sendprice = Int32.Parse(sendprice.content);
+                                              }
+                                              @foreach (var item in cb)
+                                              {
+                                                  var q = db.FAProducts.Find(item.PID);
+                                                  List<int> feat = item.Feature;
+                                                  int tprice = 0;
+                                                  foreach (var pt in feat)
+                                                  {
+                                                      tprice += Int32.Parse(db.Features.Find(pt).Price);
+                                                  }
+                                                  tprice = (Int32.Parse(q.Price)+tprice) * item.Qty;
+                                                  ViewBag.sum += tprice;
+                                                 <div class="img-wrap">
+                                                      <a href=@Url.Action("Detail", "Store", new { id = item.PID })><img src="@q.Imagepath" class="exist" alt="بدون عکس" /></a>
+                                                 </div>
+                                                 <div style="margin:-50px -10px 0px 0px;position:relative;"><a href="@Url.Action("DelItemFromBascket", new { id = item.PID })" class="btn btn-primary" style="background-color:red">حذف</a></div>
+                                                 <div class="text d-block" style="margin-top:20px;text-align:center;border-top:2px solid black">
+                                                    <div class="meta mb-3">
+                                                        <span style="color:green" id="">تعداد</span>
+                                                        <span style="color:green"><script>document.write($.persianNumbers(@item.Qty))</script></span><br />
+                                                        <span style="color:green" id="number1"></span>
+                                                        <span style="color:green">ریال</span>
+                                                        <script src="~/Content/Home/js/jquery.min.js"></script>
+                                                        <script src="~/Content/jQuery.persianNumbers-1.0.js"></script>
+                                                        <script type="text/javascript" language="javascript">
+                                                                number_input = @tprice;
+                                                                number_input += '';
+                                                                number_input = number_input.replace(',', ''); number_input = number_input.replace(',', ''); number_input = number_input.replace(',', '');
+                                                                number_input = number_input.replace(',', ''); number_input = number_input.replace(',', ''); number_input = number_input.replace(',', '');
+                                                                x = number_input.split('.');
+                                                                x1 = x[0];
+                                                                x2 = x.length > 1 ? '.' + x[1] : '';
+                                                                var rgx = /(\d+)(\d{3})/;
+                                                                while (rgx.test(x1))
+                                                                    x1 = x1.replace(rgx, '$1' + ',' + '$2');
+                                                                document.getElementById("number1").innerHTML = $.persianNumbers(x1 + x2);
+
+                                                        </script>
+
+                                                    </div>
+                                                    <div style="text-align:center">
+                                                        <p class=""><a href=@Url.Action("Detail", "Store", new { id = item.PID })>@q.Title</a></p>
+                                                    </div>
+                                                </div>
+                                                                                            
+                                               }
+                                               </div>
+                                        </div>
+                                    </div>
                                 }
                                 else
                                 {
