@@ -2035,6 +2035,7 @@
     <Content Include="Views\Features\Details.cshtml" />
     <Content Include="Views\Features\Edit.cshtml" />
     <Content Include="Views\Features\Index.cshtml" />
+    <None Include="Properties\PublishProfiles\IISProfile.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
