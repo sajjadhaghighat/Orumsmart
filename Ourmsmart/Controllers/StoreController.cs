@@ -17,23 +17,23 @@ namespace Ourmsmart.Controllers
         public int Qty { get; set; }
         public List<int> Feature { get; set; }
 
-        public Cbasket(int pid,int qty, List<int> cate)
+        public Cbasket(int pid, int qty, List<int> cate)
         {
             PID = pid; Qty = qty;
             Feature = cate;
         }
     }
-    
+
     public class StoreController : Controller
     {
         private VIRADB db = new VIRADB();
         List<Cbasket> cb = new List<Cbasket>();
         // GET: Store
-        public ActionResult Index(string Category, string search,int? page)
+        public ActionResult Index(string Category, string search, int? page)
         {
             if (Category != null)
             {
-                var q = db.FAProducts.Where( x => x.Ptype == search || search == null).ToList().ToPagedList(page ?? 1, 4);
+                var q = db.FAProducts.Where(x => x.Ptype == search || search == null).ToList().ToPagedList(page ?? 1, 4);
                 return View(q);
             }
             else
@@ -41,8 +41,8 @@ namespace Ourmsmart.Controllers
                 var q = db.FAProducts.Where(x => x.Title.Contains(search) || search == null).ToList().ToPagedList(page ?? 1, 4);
                 return View(q);
             }
-          
-            
+
+
         }
 
         [BothFilter]
@@ -84,7 +84,7 @@ namespace Ourmsmart.Controllers
             return View(q);
         }
 
-        
+
 
         public ActionResult AddItemToBasket(int pid, int qty, List<int> Cate)
         {
@@ -93,7 +93,7 @@ namespace Ourmsmart.Controllers
                 if (Session["Basket"] != null)
                 {
                     cb = (List<Cbasket>)Session["Basket"];
-                    var index = cb.FindIndex(a => a.PID == pid);
+                    var index = cb.FindIndex(a => a.PID == pid && Cate.All(a.Feature.Contains) && a.Feature.Count == Cate.Count);
                     if (index > -1)
                     {
                         cb[index].Qty = cb[index].Qty + qty;
@@ -107,12 +107,12 @@ namespace Ourmsmart.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult DelItemFromBascket(int id)
+        public ActionResult DelItemFromBascket(int deid, int deqty, int decate , int count)
         {
             cb = (List<Cbasket>)Session["Basket"];
-            var index = cb.FindIndex(a => a.PID == id);
+            var index = cb.FindIndex(a => a.PID == deid && a.Feature.Sum() == decate && a.Feature.Count == count);
             cb.RemoveAt(index);
-            if (cb.Count>0)
+            if (cb.Count > 0)
             {
                 Session["Basket"] = cb;
             }

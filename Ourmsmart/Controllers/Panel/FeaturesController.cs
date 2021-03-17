@@ -19,7 +19,7 @@ namespace Ourmsmart.Controllers.Panel
         // GET: Features
         public ActionResult Index()
         {
-            var features = db.Features.Include(f => f.FAProduct);
+            var features = db.Features.Include(f => f.FAProduct).OrderBy(x => x.Cate);
             return View(features.ToList());
         }
 
