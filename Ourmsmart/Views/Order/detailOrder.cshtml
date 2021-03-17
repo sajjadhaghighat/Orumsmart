@@ -18,47 +18,96 @@
         text-align: right;
         border-bottom: 1px solid;
     }
+    .img-wrap{
+        width:100%;
+        height:auto;
+    }
+    .img-wrap img{
+        width: 100%;
+        height: auto;
+    }
+    .itemstyle {
+        background-color: white;
+        margin: 2px;
+        transition: box-shadow .3s;
+        border-radius: 10px;
+        border: 1px solid #ccc;
+    }
+
+    .itemstyle:hover {
+            box-shadow: 0 0 11px rgba(33,33,33,.2);
+     }
 </style>
 
 <div class="container">
     <div class="message">
-        <div style="overflow-x:auto">
-            <table class="table">
-                <thead class="thead-light">
-                    <tr>
-                        <th scope="col">نام</th>
-                        <th scope="col">قیمت</th>
-                        <th scope="col">تعداد</th>
-                        <th scope="col">قیمت کل</th>
-                        <th scope="col">وضعیت</th>
-                        <th scope="col">کد واریز</th>
-                        <th scope="col">زمان سفارش</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @{
-                        VIRADB db = new VIRADB();
-                        var qp = (db.FAContents).Select(x => new { x.title, x.content }).Where(x => x.title == "هزینه ارسال").FirstOrDefault();
-                        ViewBag.sum = Int32.Parse(qp.content);
-                        int add = 0;
-                    }
-                    @foreach (var item in Model)
-                    {
-                        var q = db.FAProducts.Find(item.PID);
-                        add = item.Cartid;
-                        ViewBag.sum += Int32.Parse(item.Price);
-                        <tr>
-                            <td>@q.Title</td>
-                            <td>@q.Price ریال</td>
-                            <td>@item.Oqty</td>
-                            <td>@item.Price ریال</td>
-                            <td>@item.Status</td>
-                            <td><a href="@item.Paycode">لینک</a></td>
-                            <td>@item.Timestamp</td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
+        <div >
+            <div class="">
+                @{
+                    VIRADB db = new VIRADB();
+                    var qp = (db.FAContents).Select(x => new { x.title, x.content }).Where(x => x.title == "هزینه ارسال").FirstOrDefault();
+                    ViewBag.sum = Int32.Parse(qp.content);
+                    int add = 0;
+                    int inx = 1;
+                }
+                <script src="~/Content/Home/js/jquery.min.js"></script>
+                <script src="~/Content/jQuery.persianNumbers-1.0.js"></script>
+                @foreach (var item in Model)
+                {
+                    var q = db.FAProducts.Find(item.PID);
+                    add = item.Cartid;
+                    ViewBag.sum += Int32.Parse(item.Price);
+                    <div class="ftco-animate itemstyle">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="img-wrap">
+                                    <a href=@Url.Action("Detail", "Store", new { id = item.PID })><img src="~/@q.Imagepath" class="exist" alt="بدون عکس" /></a>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="text d-block" style="padding-top:20px;text-align:center;border-top:2px solid black;">
+                                    <div class="meta mb-3">
+                                        <span style="color:green" id="">تعداد</span>
+                                        <span style="color:green">
+                                            <script>document.write($.persianNumbers(@item.Oqty))</script>
+                                        </span><br />
+                                        @{ string idp = "num" + inx.ToString();}
+                                        <span style="color:green" id="@idp"></span>
+                                        <span style="color:green">ریال</span>
+                                        <script type="text/javascript" language="javascript">
+                                           number_input = @item.Price;
+                                           number_input += '';
+                                           number_input = number_input.replace(',', ''); number_input = number_input.replace(',', ''); number_input = number_input.replace(',', '');
+                                           number_input = number_input.replace(',', ''); number_input = number_input.replace(',', ''); number_input = number_input.replace(',', '');
+                                           x = number_input.split('.');
+                                           x1 = x[0];
+                                           x2 = x.length > 1 ? '.' + x[1] : '';
+                                           var rgx = /(\d+)(\d{3})/;
+                                           while (rgx.test(x1))
+                                             x1 = x1.replace(rgx, '$1' + ',' + '$2');
+                                           document.getElementById("@idp").innerHTML = $.persianNumbers(x1 + x2);
+                                        </script>
+                                    </div>
+                                    <div style="text-align:center;">
+                                        <p><a href=@Url.Action("Detail", "Store", new { id = item.PID })>@q.Title</a></p>
+                                    </div>
+                                    <div style="text-align:center;">
+                                        @{
+                                            var of = (from a in db.OrderFeatures select a).Where(x => x.OID == item.OID);
+                                        }
+                                        @foreach (var fea in of)
+                                        {
+                                            <p>@db.Features.Find(fea.FID).Title</p>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    inx++;
+                }
+            </div>
         </div>
         @{
             var user = db.OrderAddresses.Where(x => x.Cartid == add).SingleOrDefault();

@@ -9,7 +9,7 @@ using Ourmsmart.Models;
 
 namespace Ourmsmart.Controllers.Panel
 {
-    
+
     public class OrderController : Controller
     {
         VIRADB db = new VIRADB();
@@ -18,12 +18,12 @@ namespace Ourmsmart.Controllers.Panel
         public ActionResult Index()
         {
             var q = (from c in db.Orders
-                                 group c by c.Cartid into uniqueIds
-                                 select uniqueIds.FirstOrDefault()).OrderByDescending(x => x.OID);
+                     group c by c.Cartid into uniqueIds
+                     select uniqueIds.FirstOrDefault()).OrderByDescending(x => x.OID);
             return View(q);
         }
 
-        [HttpPost] 
+        [HttpPost]
         public ActionResult insertOrder(Order order, OrderAddress oaddress)
         {
             if (!ModelState.IsValid)
@@ -36,7 +36,7 @@ namespace Ourmsmart.Controllers.Panel
                 Random rd = new Random();
                 int rand_num = rd.Next(1, 1000000000);
                 List<Cbasket> cb = (List<Cbasket>)Session["Basket"];
-                string trace =  new string(Enumerable.Repeat(chars, 24).Select(s => s[rd.Next(s.Length)]).ToArray());
+                string trace = new string(Enumerable.Repeat(chars, 24).Select(s => s[rd.Next(s.Length)]).ToArray());
                 foreach (var item in cb)
                 {
                     order.Cartid = rand_num;
@@ -44,19 +44,33 @@ namespace Ourmsmart.Controllers.Panel
                     order.Oqty = item.Qty;
                     order.PID = item.PID;
                     order.Status = "در انتظار بررسی";
-                    order.Price = (item.Qty * Int32.Parse(db.FAProducts.Find(item.PID).Price)).ToString();
+                    order.Price = db.FAProducts.Find(item.PID).Price;
+                    foreach (var fea in item.Feature)
+                    {
+                        order.Price = (Int32.Parse(order.Price) + Int32.Parse(db.Features.Find(fea).Price)).ToString();
+                    }
+                    order.Price = (item.Qty * Int32.Parse(order.Price)).ToString();
                     order.Tracingcode = trace;
                     string auth = (string)Session["Username"];
                     Customer cus = (from a in db.Customers where a.Username == auth select a).FirstOrDefault();
                     order.UserId = cus.CusID;
-                    if (order.Paycode == null) { order.Paycode = "Off"; } 
+                    if (order.Paycode == null) { order.Paycode = "Off"; }
                     db.Orders.Add(order);
                     db.SaveChanges();
+                    foreach (var fea in item.Feature)
+                    {
+                        OrderFeature of = new OrderFeature();
+                        of.OID = order.OID;
+                        of.PID = order.PID;
+                        of.FID = fea;
+                        db.OrderFeatures.Add(of);
+                        db.SaveChanges();
+                    }
                 }
                 oaddress.Cartid = rand_num;
                 db.OrderAddresses.Add(oaddress);
                 db.SaveChanges();
-                return RedirectToAction("commitOrder", "Message", new { trace = trace});
+                return RedirectToAction("commitOrder", "Message", new { trace = trace });
             }
             catch (Exception)
             {
@@ -79,13 +93,13 @@ namespace Ourmsmart.Controllers.Panel
                 {
                     return RedirectToAction("AbortOrder", "Message");
                 }
-                
+
             }
             catch (Exception)
             {
                 return RedirectToAction("AbortOrder", "Message");
             }
-            
+
         }
 
         [AUCFilter]
@@ -134,14 +148,19 @@ namespace Ourmsmart.Controllers.Panel
             OrderAddress ad = (from a in db.OrderAddresses select a).Where(x => x.Cartid == cartId).FirstOrDefault();
             try
             {
+                db.OrderAddresses.Remove(ad);
                 foreach (var item in q)
                 {
+                    var of = (from a in db.OrderFeatures select a).Where(x => x.OID == item.OID);
+                    foreach (var fea in of)
+                    {
+                        db.OrderFeatures.Remove(fea);
+                    }
                     if (ModelState.IsValid)
                     {
                         db.Orders.Remove(item);
                     }
                 }
-                db.OrderAddresses.Remove(ad);
                 db.SaveChanges();
                 return Json(new { success = true, message = "سفارش حذف شد" });
             }
