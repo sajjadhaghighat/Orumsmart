@@ -105,6 +105,15 @@
           <Property Name="Cartid" Type="int" />
           <Property Name="OID" Type="int" />
         </EntityType>
+        <EntityType Name="OrderFeature">
+          <Key>
+            <PropertyRef Name="OFID" />
+          </Key>
+          <Property Name="OFID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OID" Type="int" />
+          <Property Name="PID" Type="int" />
+          <Property Name="FID" Type="int" />
+        </EntityType>
         <EntityType Name="Orders">
           <Key>
             <PropertyRef Name="OID" />
@@ -174,6 +183,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__OrderFeatur__FID__787EE5A0">
+          <End Role="Features" Type="Self.Features" Multiplicity="0..1" />
+          <End Role="OrderFeature" Type="Self.OrderFeature" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Features">
+              <PropertyRef Name="FID" />
+            </Principal>
+            <Dependent Role="OrderFeature">
+              <PropertyRef Name="FID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderFeatur__OID__76969D2E">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="0..1" />
+          <End Role="OrderFeature" Type="Self.OrderFeature" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="OID" />
+            </Principal>
+            <Dependent Role="OrderFeature">
+              <PropertyRef Name="OID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderFeatur__PID__778AC167">
+          <End Role="FAProducts" Type="Self.FAProducts" Multiplicity="0..1" />
+          <End Role="OrderFeature" Type="Self.OrderFeature" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FAProducts">
+              <PropertyRef Name="PID" />
+            </Principal>
+            <Dependent Role="OrderFeature">
+              <PropertyRef Name="PID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Orders__PID__68487DD7">
           <End Role="FAProducts" Type="Self.FAProducts" Multiplicity="0..1" />
           <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
@@ -195,6 +240,7 @@
           <EntitySet Name="FAUsers" EntityType="Self.FAUsers" Schema="orumsmart" store:Type="Tables" />
           <EntitySet Name="Features" EntityType="Self.Features" Schema="orumsmart" store:Type="Tables" />
           <EntitySet Name="OrderAddress" EntityType="Self.OrderAddress" Schema="orumsmart" store:Type="Tables" />
+          <EntitySet Name="OrderFeature" EntityType="Self.OrderFeature" Schema="orumsmart" store:Type="Tables" />
           <EntitySet Name="Orders" EntityType="Self.Orders" Schema="orumsmart" store:Type="Tables" />
           <EntitySet Name="Posts" EntityType="Self.Posts" Schema="orumsmart" store:Type="Tables" />
           <EntitySet Name="Services" EntityType="Self.Services" Schema="orumsmart" store:Type="Tables" />
@@ -206,6 +252,18 @@
           <AssociationSet Name="FK__OrderAddres__OID__6B24EA82" Association="Self.FK__OrderAddres__OID__6B24EA82">
             <End Role="Orders" EntitySet="Orders" />
             <End Role="OrderAddress" EntitySet="OrderAddress" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderFeatur__FID__787EE5A0" Association="Self.FK__OrderFeatur__FID__787EE5A0">
+            <End Role="Features" EntitySet="Features" />
+            <End Role="OrderFeature" EntitySet="OrderFeature" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderFeatur__OID__76969D2E" Association="Self.FK__OrderFeatur__OID__76969D2E">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="OrderFeature" EntitySet="OrderFeature" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderFeatur__PID__778AC167" Association="Self.FK__OrderFeatur__PID__778AC167">
+            <End Role="FAProducts" EntitySet="FAProducts" />
+            <End Role="OrderFeature" EntitySet="OrderFeature" />
           </AssociationSet>
           <AssociationSet Name="FK__Orders__PID__68487DD7" Association="Self.FK__Orders__PID__68487DD7">
             <End Role="FAProducts" EntitySet="FAProducts" />
@@ -270,6 +328,7 @@
           <Property Name="Pmodel" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__PID__68487DD7" FromRole="FAProducts" ToRole="Orders" />
           <NavigationProperty Name="Features" Relationship="VIRADBModel.FK__Features__PID__73BA3083" FromRole="FAProduct" ToRole="Feature" />
+          <NavigationProperty Name="OrderFeatures" Relationship="VIRADBModel.FK__OrderFeatur__PID__778AC167" FromRole="FAProduct" ToRole="OrderFeature" />
         </EntityType>
         <EntityType Name="FATeam">
           <Key>
@@ -326,6 +385,7 @@
           <NavigationProperty Name="FAProduct" Relationship="Self.FK__Orders__PID__68487DD7" FromRole="Orders" ToRole="FAProducts" />
           <NavigationProperty Name="OrderAddresses" Relationship="Self.FK__OrderAddres__OID__6B24EA82" FromRole="Orders" ToRole="OrderAddress" />
           <Property Name="UserId" Type="Int32" />
+          <NavigationProperty Name="OrderFeatures" Relationship="VIRADBModel.FK__OrderFeatur__OID__76969D2E" FromRole="Order" ToRole="OrderFeature" />
         </EntityType>
         <EntityType Name="Post">
           <Key>
@@ -405,6 +465,19 @@
             <End Role="FAProduct" EntitySet="FAProducts" />
             <End Role="Feature" EntitySet="Features" />
           </AssociationSet>
+          <EntitySet Name="OrderFeatures" EntityType="VIRADBModel.OrderFeature" />
+          <AssociationSet Name="FK__OrderFeatur__PID__778AC167" Association="VIRADBModel.FK__OrderFeatur__PID__778AC167">
+            <End Role="FAProduct" EntitySet="FAProducts" />
+            <End Role="OrderFeature" EntitySet="OrderFeatures" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderFeatur__FID__787EE5A0" Association="VIRADBModel.FK__OrderFeatur__FID__787EE5A0">
+            <End Role="Feature" EntitySet="Features" />
+            <End Role="OrderFeature" EntitySet="OrderFeatures" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderFeatur__OID__76969D2E" Association="VIRADBModel.FK__OrderFeatur__OID__76969D2E">
+            <End Role="Order" EntitySet="Orders" />
+            <End Role="OrderFeature" EntitySet="OrderFeatures" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Feature">
           <Key>
@@ -416,6 +489,7 @@
           <Property Name="Cate" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="PID" Type="Int32" />
           <NavigationProperty Name="FAProduct" Relationship="VIRADBModel.FK__Features__PID__73BA3083" FromRole="Feature" ToRole="FAProduct" />
+          <NavigationProperty Name="OrderFeatures" Relationship="VIRADBModel.FK__OrderFeatur__FID__787EE5A0" FromRole="Feature" ToRole="OrderFeature" />
         </EntityType>
         <Association Name="FK__Features__PID__73BA3083">
           <End Type="VIRADBModel.FAProduct" Role="FAProduct" Multiplicity="0..1" />
@@ -426,6 +500,54 @@
             </Principal>
             <Dependent Role="Feature">
               <PropertyRef Name="PID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="OrderFeature">
+          <Key>
+            <PropertyRef Name="OFID" />
+          </Key>
+          <Property Name="OFID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OID" Type="Int32" />
+          <Property Name="PID" Type="Int32" />
+          <Property Name="FID" Type="Int32" />
+          <NavigationProperty Name="FAProduct" Relationship="VIRADBModel.FK__OrderFeatur__PID__778AC167" FromRole="OrderFeature" ToRole="FAProduct" />
+          <NavigationProperty Name="Feature" Relationship="VIRADBModel.FK__OrderFeatur__FID__787EE5A0" FromRole="OrderFeature" ToRole="Feature" />
+          <NavigationProperty Name="Order" Relationship="VIRADBModel.FK__OrderFeatur__OID__76969D2E" FromRole="OrderFeature" ToRole="Order" />
+        </EntityType>
+        <Association Name="FK__OrderFeatur__PID__778AC167">
+          <End Type="VIRADBModel.FAProduct" Role="FAProduct" Multiplicity="0..1" />
+          <End Type="VIRADBModel.OrderFeature" Role="OrderFeature" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FAProduct">
+              <PropertyRef Name="PID" />
+            </Principal>
+            <Dependent Role="OrderFeature">
+              <PropertyRef Name="PID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderFeatur__FID__787EE5A0">
+          <End Type="VIRADBModel.Feature" Role="Feature" Multiplicity="0..1" />
+          <End Type="VIRADBModel.OrderFeature" Role="OrderFeature" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Feature">
+              <PropertyRef Name="FID" />
+            </Principal>
+            <Dependent Role="OrderFeature">
+              <PropertyRef Name="FID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderFeatur__OID__76969D2E">
+          <End Type="VIRADBModel.Order" Role="Order" Multiplicity="0..1" />
+          <End Type="VIRADBModel.OrderFeature" Role="OrderFeature" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="OID" />
+            </Principal>
+            <Dependent Role="OrderFeature">
+              <PropertyRef Name="OID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -589,6 +711,16 @@
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="FID" ColumnName="FID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderFeatures">
+            <EntityTypeMapping TypeName="VIRADBModel.OrderFeature">
+              <MappingFragment StoreEntitySet="OrderFeature">
+                <ScalarProperty Name="FID" ColumnName="FID" />
+                <ScalarProperty Name="PID" ColumnName="PID" />
+                <ScalarProperty Name="OID" ColumnName="OID" />
+                <ScalarProperty Name="OFID" ColumnName="OFID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

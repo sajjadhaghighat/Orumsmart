@@ -20,6 +20,10 @@
         <AssociationConnector Association="VIRADBModel.FK__OrderAddres__OID__6B24EA82" ManuallyRouted="false" />
         <EntityTypeShape EntityType="VIRADBModel.Feature" Width="1.5" PointX="3" PointY="11.75" />
         <AssociationConnector Association="VIRADBModel.FK__Features__PID__73BA3083" />
+        <EntityTypeShape EntityType="VIRADBModel.OrderFeature" Width="1.5" PointX="9.25" PointY="8.375" />
+        <AssociationConnector Association="VIRADBModel.FK__OrderFeatur__PID__778AC167" />
+        <AssociationConnector Association="VIRADBModel.FK__OrderFeatur__FID__787EE5A0" />
+        <AssociationConnector Association="VIRADBModel.FK__OrderFeatur__OID__76969D2E" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

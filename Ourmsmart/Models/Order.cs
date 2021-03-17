@@ -19,6 +19,7 @@ namespace Ourmsmart.Models
         public Order()
         {
             this.OrderAddresses = new HashSet<OrderAddress>();
+            this.OrderFeatures = new HashSet<OrderFeature>();
         }
 
         [Display(Name = "کد سفارش")]
@@ -43,9 +44,11 @@ namespace Ourmsmart.Models
         public Nullable<int> PID { get; set; }
         [Display(Name = "کد مشتری")]
         public Nullable<int> UserId { get; set; }
-
+    
         public virtual FAProduct FAProduct { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderAddress> OrderAddresses { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<OrderFeature> OrderFeatures { get; set; }
     }
 }

@@ -19,6 +19,8 @@ namespace Ourmsmart.Models
         public FAProduct()
         {
             this.Orders = new HashSet<Order>();
+            this.Features = new HashSet<Feature>();
+            this.OrderFeatures = new HashSet<OrderFeature>();
         }
 
         [Display(Name = "کد محصول")]
@@ -44,6 +46,9 @@ namespace Ourmsmart.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order> Orders { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Feature> Features { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<OrderFeature> OrderFeatures { get; set; }
     }
 }

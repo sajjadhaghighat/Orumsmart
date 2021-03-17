@@ -1477,6 +1477,9 @@
     <Compile Include="Models\OrderAddress.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\OrderFeature.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Post.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>

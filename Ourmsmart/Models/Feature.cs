@@ -15,6 +15,12 @@ namespace Ourmsmart.Models
 
     public partial class Feature
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Feature()
+        {
+            this.OrderFeatures = new HashSet<OrderFeature>();
+        }
+
         [Display(Name = "کد ویژگی")]
         public int FID { get; set; }
         [Display(Name = "عنوان ویژگی")]
@@ -25,7 +31,9 @@ namespace Ourmsmart.Models
         public string Cate { get; set; }
         [Display(Name = "کد محصول")]
         public Nullable<int> PID { get; set; }
-        [Display(Name =  "محصول")]
+        [Display(Name = "محصول")]
         public virtual FAProduct FAProduct { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<OrderFeature> OrderFeatures { get; set; }
     }
 }
