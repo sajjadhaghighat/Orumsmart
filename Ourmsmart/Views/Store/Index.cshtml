@@ -336,7 +336,7 @@
                                 if (Session["Basket"] != null)
                                 {
                                     List<Cbasket> cb = (List<Cbasket>)Session["Basket"];
-                                    <div class="row d-flex">
+                                    <div class="">
                                         @{
                                             var sendprice = (from a in db.FAContents select a).Where(x => x.title == "هزینه ارسال").FirstOrDefault();
                                             ViewBag.sum = Int32.Parse(sendprice.content);
@@ -347,8 +347,8 @@
                                         <script src="~/Content/jQuery.persianNumbers-1.0.js"></script>
                                         @foreach (var item in cb)
                                         {
-                                            <div class="col-md-4 ftco-animate itemstyle">
-                                                <div class="blog-entry">
+                                            <div class="ftco-animate itemstyle">
+                                                <div class="row">
                                                     @{var q = db.FAProducts.Find(item.PID);
                                                         List<int> feat = item.Feature;
                                                         int tprice = 0;
@@ -359,22 +359,25 @@
                                                         tprice = (Int32.Parse(q.Price) + tprice) * item.Qty;
                                                         ViewBag.sum += tprice;
                                                     }
-                                                    <div class="img-wrap">
-                                                        <a href=@Url.Action("Detail", "Store", new { id = item.PID })><img src="@q.Imagepath" class="exist" alt="بدون عکس" /></a>
+                                                    <div class="col-md-4">
+                                                        <div style="margin:-20px 0 0px 0px;position:relative;">
+                                                            <a href="@Url.Action("DelItemFromBascket", new { deid = item.PID , deqty = item.Qty , decate = item.Feature.Sum(), count = item.Feature.Count })" class="btn btn-primary" style="background-color:red">X</a>
+                                                        </div>
+                                                        <div class="img-wrap">
+                                                            <a href=@Url.Action("Detail", "Store", new { id = item.PID })><img src="@q.Imagepath" class="exist" alt="بدون عکس" /></a>
+                                                        </div>
                                                     </div>
-                                                    <div style="margin:-50px -10px 0px 0px;position:relative;">
-                                                        <a href="@Url.Action("DelItemFromBascket", new { deid = item.PID , deqty = item.Qty , decate = item.Feature.Sum(), count = item.Feature.Count })" class="btn btn-primary" style="background-color:red">X</a>
-                                                    </div>
-                                                    <div class="text d-block" style="margin-top:20px;text-align:center;border-top:2px solid black">
-                                                        <div class="meta mb-3">
-                                                            <span style="color:green" id="">تعداد</span>
-                                                            <span style="color:green">
-                                                                <script>document.write($.persianNumbers(@item.Qty))</script>
-                                                            </span><br />
-                                                            @{ string idp = "num" + inx.ToString();}
-                                                            <span style="color:green" id="@idp"></span>
-                                                            <span style="color:green">ریال</span>
-                                                            <script type="text/javascript" language="javascript">
+                                                    <div class="col-md-8">
+                                                        <div class="row" style="text-align:center;">
+                                                            <div class="col-md-6 meta mb-3">
+                                                                <span style="color:green" id="">تعداد</span>
+                                                                <span style="color:green">
+                                                                    <script>document.write($.persianNumbers(@item.Qty))</script>
+                                                                </span><br />
+                                                                @{ string idp = "num" + inx.ToString();}
+                                                                <span style="color:green" id="@idp"></span>
+                                                                <span style="color:green">ریال</span>
+                                                                <script type="text/javascript" language="javascript">
                                                                 number_input = @tprice;
                                                                 number_input += '';
                                                                 number_input = number_input.replace(',', ''); number_input = number_input.replace(',', ''); number_input = number_input.replace(',', '');
@@ -387,16 +390,18 @@
                                                                     x1 = x1.replace(rgx, '$1' + ',' + '$2');
                                                                 document.getElementById("@idp").innerHTML = $.persianNumbers(x1 + x2);
 
-                                                            </script>
-                                                        </div>
-                                                        <div style="text-align:center;">
-                                                            <p><a href=@Url.Action("Detail", "Store", new { id = item.PID })>@q.Title</a></p>
-                                                        </div>
-                                                        <div style="text-align:center;">
-                                                            @foreach (var fea in item.Feature)
-                                                            {
-                                                                <p>@db.Features.Find(fea).Title</p>
-                                                            }
+                                                                </script>
+
+                                                                <div style="text-align:center;">
+                                                                    <p><a href=@Url.Action("Detail", "Store", new { id = item.PID })>@q.Title</a></p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6" style="text-align:center;">
+                                                                @foreach (var fea in item.Feature)
+                                                                {
+                                                                    <p>@db.Features.Find(fea).Title</p>
+                                                                }
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -409,7 +414,7 @@
                                 else
                                 {
                                     <div>
-                                        آیتمی در سبد خرید وجود ندارد
+                                        کالایی در سبد خرید وجود ندارد
                                     </div>
                                 }
 
