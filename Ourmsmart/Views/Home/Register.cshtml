@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@using Ourmsmart.Models
+@{ 
+    VIRADB db = new VIRADB();
+}
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -17,31 +21,40 @@
     <link href="~/Content/Register/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
     <!-- Font special for pages-->
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
+    <link href="~/Content/Home/css/bootstrap.min.css" rel="stylesheet" />
     <!-- Vendor CSS-->
     <link href="~/Content/Register/vendor/select2/select2.min.css" rel="stylesheet" media="all">
     <link href="~/Content/Register/vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
     <link href="~/Content/toastr/build/toastr.min.css" rel="stylesheet" />
     <!-- Main CSS-->
     <link href="~/Content/Register/css/main.css" rel="stylesheet" media="all">
+    <style>
+        .btn{
+            margin:5px;
+            width:100%;
+        }
+        .modal-body {
+            font-family: 'IRANSans' !important;
+        }
+    </style>
 
 </head>
 
-<body dir="rtl" style="font-family: 'IRANSans' !important;" >
+<body dir="rtl" style="font-family: 'IRANSans' !important;text-align:center">
     <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
-        <div class="wrapper wrapper--w680">
+        <div class="container">
             <div class="card card-4">
                 <div class="card-body">
                     <h2 class="title">فرم ثبت نام</h2>
                     <form method="POST" id="Registerform">
                         <div class="row row-space">
-                            <div class="col-2">
+                            <div class="col-md-6">
                                 <div class="input-group">
                                     <label class="label">* نام کامل</label>
                                     <input class="input--style-4" type="text" name="Fullname" required>
                                 </div>
                             </div>
-                            <div class="col-2">
+                            <div class="col-md-6">
                                 <div class="input-group">
                                     <label class="label">* شماره تلفن</label>
                                     <input class="input--style-4" type="text" name="Phone" required>
@@ -49,13 +62,13 @@
                             </div>
                         </div>
                         <div class="row row-space">
-                            <div class="col-2">
+                            <div class="col-md-6">
                                 <div class="input-group">
                                     <label class="label">کدملی</label>
                                     <input class="input--style-4" type="text" name="SSN">
                                 </div>
                             </div>
-                            <div class="col-2">
+                            <div class="col-md-6">
                                 <div class="input-group">
                                     <label class="label">جنسیت</label>
                                     <div class="p-t-10">
@@ -74,13 +87,13 @@
                             </div>
                         </div>
                         <div class="row row-space">
-                            <div class="col-2">
+                            <div class="col-md-6">
                                 <div class="input-group">
                                     <label class="label">* ایمیل</label>
                                     <input class="input--style-4" type="email" name="Email" required>
                                 </div>
                             </div>
-                            <div class="col-2">
+                            <div class="col-md-6">
                                 <div class="input-group">
                                     <label class="label">شماره کارت</label>
                                     <input class="input--style-4" type="text" name="CartNumber">
@@ -88,13 +101,13 @@
                             </div>
                         </div>
                         <div class="row row-space">
-                            <div class="col-2">
+                            <div class="col-md-6">
                                 <div class="input-group">
                                     <label class="label">استان</label>
                                     <input class="input--style-4" type="text" name="Ostan">
                                 </div>
                             </div>
-                            <div class="col-2">
+                            <div class="col-md-6">
                                 <div class="input-group">
                                     <label class="label">شهر</label>
                                     <input class="input--style-4" type="text" name="City">
@@ -102,13 +115,13 @@
                             </div>
                         </div>
                         <div class="row row-space">
-                            <div class="col-2">
+                            <div class="col-md-6">
                                 <div class="input-group">
                                     <label class="label">آدرس</label>
                                     <textarea class="input--style-4" type="text" name="Address"></textarea>
                                 </div>
                             </div>
-                            <div class="col-2">
+                            <div class="col-md-6">
                                 <div class="input-group">
                                     <label class="label">کد پستی</label>
                                     <input class="input--style-4" type="text" name="Codeposti">
@@ -116,31 +129,49 @@
                             </div>
                         </div>
                         <div class="row row-space">
-                            <div class="col-2">
+                            <div class="col-md-6">
                                 <div class="input-group">
                                     <label class="label">* نام کاربری</label>
                                     <input class="input--style-4" type="text" name="Username" required>
                                 </div>
                             </div>
-                            <div class="col-2">
+                            <div class="col-md-6">
                                 <div class="input-group">
                                     <label class="label">* رمز عبور</label>
                                     <input class="input--style-4" type="password" name="Password" required>
                                 </div>
                             </div>
                         </div>
-                        <div class="p-t-15">
-                            <button class="btn btn--radius-2 btn--blue" onclick="Registerform()">ثبت نام</button>
-                        </div>
-                        <div>
+                        <div class="row row-space">
                             همه فیلدها با علامت ستاره باید پر شود.
                         </div>
-                        <div class="p-t-15">
-                            <a href="@Url.Action("login")"><button class="btn btn--radius-2 btn--green" type="button">برگشت به صفحه ورود</button></a>
-                            <a href="/Store/Index"><button class="btn btn--radius-2 btn--green" type="button">برگشت به فروشگاه</button></a>
+                        <br />
+                        <div class="row row-space" style="text-align:right">
+                            <div class="col-md-1">
+                                <div class="input-group">
+                                    <input class="form-check-input" type="checkbox" onchange="cbvalue()" value="" id="checkb">
+                                </div>
+                            </div>
+                            <div class="col-md-11">
+
+                                <div class="input-group">
+                                    <span class="label"><a href="#" data-toggle="modal" data-target="#exampleModal">قوانین</a> را خوانده و می پذیرم</span>
+                                </div>
+                            </div>
                         </div>
                         <div class="p-t-15">
-                            
+                            <button class="btn btn--radius-2 btn--blue" id="regbtn" onclick="Registerform()">ثبت نام</button>
+                        </div>
+                        <div class="row row-space" ">
+                            <div class="col-md-6">
+                                <a href="@Url.Action("login")"><button class="btn btn--radius-2 btn--green" type="button">ورود به حساب</button></a>
+                            </div>
+                            <div class="col-md-6">
+                                <a href="/Store/Index"><button class="btn btn--radius-2 btn--green" type="button">فروشگاه</button></a>
+                            </div> 
+                        </div>
+                        <div class="p-t-15">
+
                         </div>
                     </form>
                 </div>
@@ -148,9 +179,48 @@
         </div>
     </div>
 
+
+
+
+    <!-- Modal Basket-->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" dir="ltr">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">قوانین</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form>
+                    <div class="modal-body" dir="rtl" style="text-align:center">
+                        @{ 
+                            var q = (from a in db.FAContents select a).Where(a => a.title == "قوانین").FirstOrDefault();
+                        }
+                        @Html.Raw(q.content)
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" onclick="checkcbn()" class="btn btn-primary">می‌پذیرم</button>
+                        <button type="button" onclick="uncheckcbn()"  class="btn btn-danger" data-dismiss="modal">نمی‌پذیرم</button>
+
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
     <!-- Jquery JS-->
     <script src="~/Content/Register/vendor/jquery/jquery.min.js"></script>
     <!-- Vendor JS-->
+    <script src="~/Content/Home/js/bootstrap.min.js"></script>
     <script src="~/Content/Register/js/formToJson.min.js"></script>
     <script src="~/Content/Register/vendor/select2/select2.min.js"></script>
     <script src="~/Content/Register/vendor/datepicker/moment.min.js"></script>
@@ -159,6 +229,12 @@
     <!-- Main JS-->
     <script src="~/Content/Register/js/global.js"></script>
     <script>
+        if ($('#checkb').is(':checked')) {
+            $('#regbtn').attr('disabled', false);
+        }
+        else {
+            $('#regbtn').attr('disabled', true);
+        }
         $("#Registerform").submit(function (e) {
             e.preventDefault();
         });
@@ -188,6 +264,23 @@
             toastr.error("مشکل در سرور داخلی. بعدا امتحان کنید." , "خطا" , { timeOut: 3000 });
             }
             });
+        }
+        function cbvalue() {
+            if ($('#checkb').is(':checked')) {
+                $('#regbtn').attr('disabled', false);
+            } else {
+                $('#regbtn').attr('disabled', true);
+            }
+            
+        }
+        function checkcbn() {
+            $('#checkb').prop('checked', true); 
+            $('#exampleModal').modal('hide');
+            $('#regbtn').attr('disabled', false);
+        }
+        function uncheckcbn() {
+            $('#checkb').prop('checked', false); 
+            $('#regbtn').attr('disabled', true);
         }
     </script>
 </body>
