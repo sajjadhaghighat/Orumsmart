@@ -1196,6 +1196,30 @@
     <Content Include="Content\ckfinder\skins\v1\skin.js" />
     <Content Include="Content\ckfinder\skins\v1\uipanel.css" />
     <Content Include="Content\ckfinder\translations.txt" />
+    <Content Include="Content\Data\images\miz_store.jpg" />
+    <Content Include="Content\Data\images\slider1.jpg" />
+    <Content Include="Content\Data\images\slider2.jpg" />
+    <Content Include="Content\Data\images\slider3.jpg" />
+    <Content Include="Content\Data\images\slider4.jpg" />
+    <Content Include="Content\Data\images\Table\miz2%281%29.jpg" />
+    <Content Include="Content\Data\images\Table\miz5%281%29.jpg" />
+    <Content Include="Content\Data\images\Table\miz6%281%29.jpg" />
+    <Content Include="Content\Data\images\Table\miz7%281%29.jpg" />
+    <Content Include="Content\Data\images\touch-screen-smart-table-500x500.jpg" />
+    <Content Include="Content\Data\_thumbs\Images\0_HpPfn0H-lAnUPLpu.jpg" />
+    <Content Include="Content\Data\_thumbs\Images\123.jpg" />
+    <Content Include="Content\Data\_thumbs\Images\152140-phones-review-a51-review-image1-41kdzwnsqr.jpg" />
+    <Content Include="Content\Data\_thumbs\Images\index.jpg" />
+    <Content Include="Content\Data\_thumbs\Images\miz_store.jpg" />
+    <Content Include="Content\Data\_thumbs\Images\slider1.jpg" />
+    <Content Include="Content\Data\_thumbs\Images\slider2.jpg" />
+    <Content Include="Content\Data\_thumbs\Images\slider3.jpg" />
+    <Content Include="Content\Data\_thumbs\Images\slider4.jpg" />
+    <Content Include="Content\Data\_thumbs\Images\Table\miz2%281%29.jpg" />
+    <Content Include="Content\Data\_thumbs\Images\Table\miz5%281%29.jpg" />
+    <Content Include="Content\Data\_thumbs\Images\Table\miz6%281%29.jpg" />
+    <Content Include="Content\Data\_thumbs\Images\Table\miz7%281%29.jpg" />
+    <Content Include="Content\Data\_thumbs\Images\touch-screen-smart-table-500x500.jpg" />
     <Content Include="Content\favicon.ico" />
     <Content Include="Content\Home\css\ajax-loader.gif" />
     <Content Include="Content\Home\css\animate.css" />
@@ -2047,7 +2071,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Content\Data\" />
     <Folder Include="Content\img\" />
   </ItemGroup>
   <ItemGroup>
